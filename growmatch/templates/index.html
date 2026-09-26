@@ -4,6 +4,8 @@
 {% block title %}GrowMatch - Homepage{% endblock %}
 
 {% block style %}
+    <!-- Google Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=nature" />
     <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
 {% endblock %}
 
@@ -11,6 +13,10 @@
     <section class="homepage container">
         <div class="homepage-screen">
             <div class="homepage-text">
+                <div class="eyebrow">
+                    <span class="small-line"></span>
+                    Urban Farming & Biodiversity
+                </div>
                 <h1>
                     Aku gatau ini mau <i>tulis</i> apa.
                 </h1>
@@ -24,6 +30,16 @@
                 <button class="button--secondary">
                     Tombol lain
                 </button>
+                <div class="homepage-additional">
+                    <span class="material-symbols-outlined">
+                    nature
+                    </span>
+                    <p>
+                        Baru mulai berkebun?
+                        <br>
+                        <b>Gapapa, aku juga gtw! aku cowok!</b>
+                    </p>
+                </div>
             </div>
             <div class="homepage-thumbnail">
                 <img src="{% static 'img/plant-1.jpg' %}">
