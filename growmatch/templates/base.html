@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}GrowMatch{% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- DM Sans & DM Serif -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="icon" href="{% static 'img/icons/logo.svg' %}">
+    
+    <!-- Default tylesheets -->
+    <link rel="stylesheet" href="{% static 'css/defaults.css' %}">
+    {% block style %}{% endblock %}
+</head>
+<body>
+    <header class="site-header">
+        <a href="#profile" class="brand">growmatch</a>
+        <nav>
+            <a href="#">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        <p>
+            ...kamu ngapain kesasar ke base.html?
+        </p>
+        {% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Kelompok F13 PBP. Fakultas Ilmu Komputer, Universitas Indonesia.</p>
+        </div>
+    </footer>
+</body>
+</html>

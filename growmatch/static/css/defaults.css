@@ -1,0 +1,334 @@
+/* 
+Default Styling
+   
+Fonts: 
+- DM Sans (body/UI), 
+- DM Serif Display (headings, regular + italic).
+*/
+
+/* Theme */
+:root {
+  --green: #174f38;
+  --green-hover: #286443;
+  --deep: #143c2c;
+  --lime: #d7ed94;
+  --olive: #8aaa28;
+  --ink: #203a2d;
+  --muted: #68736a;
+  --line: #dfe5dd;
+  --paper: #ffffff;
+  --tint: #f4f7ef;
+
+  --font-body: "DM Sans", Arial, sans-serif;
+  --font-heading: "DM Serif Display", Georgia, serif;
+  --radius: 1rem;
+  --radius-card: 0.75rem;
+  --shadow: 0 0.625rem 2rem rgb(33 61 32 / 7%);
+  --content-width: 77.5rem;
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+}
+
+/* Reset and defaults */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  overflow-wrap: break-word;
+}
+
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, figure) {
+  margin-top: 0;
+}
+
+:where(img, video) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+:where(button, input, textarea, select) {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:where(button, input, textarea, select):disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+::selection {
+  background: var(--lime);
+  color: var(--deep);
+}
+
+:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 4px;
+}
+
+/* Typography */
+h1,
+h2 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: clamp(3rem, 1.75rem + 4vw, 5.2rem);
+  line-height: 1.08;
+}
+
+h2 {
+  font-size: clamp(2rem, 1.5rem + 2vw, 2.8rem);
+  line-height: 1.15;
+}
+
+:where(h3, h4, h5, h6) {
+  font-family: var(--font-body);
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin-bottom: 1.25rem;
+}
+
+:where(h1, h2) em {
+  color: var(--green);
+  font-weight: inherit;
+}
+
+a {
+  color: var(--green);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--green-hover);
+}
+
+small {
+  font-size: 0.875rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.eyebrow {
+  color: var(--green);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Layout helpers */
+.container {
+  width: min(var(--content-width), calc(100% - 2 * var(--gutter)));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.section--tinted {
+  background: var(--tint);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1.5rem;
+}
+
+.grid > * {
+  min-width: 0;
+}
+
+.card {
+  padding: 1.5rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+}
+
+/* Apply .button to either <button> or <a>. */
+.button, 
+.button--secondary, 
+.button--accent {
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+
+  min-height: 2.75rem;
+  padding: 0.9rem 1.5rem;
+  border: 1px solid transparent;
+
+  border-radius: var(--radius);
+  background: var(--green);
+  color: var(--paper);
+  font-family: var(--font-body);
+
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 
+    background-color 180ms ease, 
+    transform 180ms ease,
+    color 180ms ease;
+}
+
+.button--secondary {
+  background: transparent;
+  color: var(--green);
+}
+
+.button--accent {
+  background: var(--lime);
+  color: var(--deep);
+}
+
+@media (hover: hover) {
+  .button:not(:disabled):hover {
+    background: var(--green-hover);
+    color: var(--paper);
+    transform: translateY(-2px);
+  }
+
+  .button--secondary:not(:disabled):hover {
+    color: var(--olive);
+  }
+
+  .button--accent:not(:disabled):hover {
+    background: #e5f6b2;
+    color: var(--deep);
+  }
+}
+
+/* Forms: keep native checkbox, radio, and range controls. */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+:where(
+  input:not([type="checkbox"], [type="radio"], [type="range"],
+    [type="button"], [type="submit"], [type="reset"], [type="color"]),
+  textarea,
+  select
+) {
+  display: block;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.75rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 1rem;
+}
+
+textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+:where(input, textarea, select):focus {
+  border-color: var(--green);
+}
+
+:where(input[type="checkbox"], input[type="radio"], input[type="range"]) {
+  accent-color: var(--green);
+}
+
+/* Respect reduced-motion preferences. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .button {
+    transition: none;
+  }
+
+  .button:not(:disabled):hover {
+    transform: none;
+  }
+}
+
+
+
+.site-header {
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 2rem;
+}
+
+.brand {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.site-header nav {
+    display: flex;
+    gap: 2rem;
+}
+
+.site-header nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.95rem;
+}

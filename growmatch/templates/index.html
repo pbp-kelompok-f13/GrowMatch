@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}GrowMatch - Homepage{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="homepage container">
+        <div class="homepage-screen">
+            <div class="homepage-text">
+                <h1>
+                    Aku gatau ini mau <i>tulis</i> apa.
+                </h1>
+                <p>
+                    Gatau ah jangan suruh aku buat pikirin mau tulis apa disini. Pikirin sendiri aku gabisa ngarang! >:(
+                </p>
+                <button class="button">
+                    Tombol tombolan
+                </button>
+
+                <button class="button--secondary">
+                    Tombol lain
+                </button>
+            </div>
+            <div class="homepage-thumbnail">
+                <img src="{% static 'img/plant-1.jpg' %}">
+            </div>
+            
+        </div>
+    </section>
+{% endblock %}
