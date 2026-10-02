@@ -75,3 +75,8 @@ Dokumentasi: https://open-meteo.com/en/docs 
 - **Guest:** Dapat mengakses Homepage dan melihat katalog serta informasi tanaman yang bersifat publik.
 - **User:** Dapat menggunakan fitur rekomendasi, mengelola My Garden & Care Log, memberikan review, dan mengelola profil.
 - **Admin:** Dapat mengelola data tanaman dan akses admin portal.
+
+
+## Link
+Link Figma : https://www.figma.com/design/QhkjJXSy9hQMjMsmLPqnjj/GrowMatch?node-id=4004-3&t=QkT7KyLLpikKZoTs-1
+Link Web  :https://muhammad-nararya51-growmatch.pws.cs.ui.ac.id/
