@@ -8,25 +8,61 @@ Fonts:
 
 /* Theme */
 :root {
-  --green: #174f38;
-  --green-hover: #286443;
-  --deep: #143c2c;
-  --lime: #d7ed94;
-  --lime-cream: #f4f88c;
-  --olive: #8aaa28;
-  --ink: #203a2d;
-  --muted: #68736a;
-  --line: #dfe5dd;
-  --paper: #ffffff;
-  --tint: #f4f7ef;
 
-  --font-body: "DM Sans", Arial, sans-serif;
+  --primary-10: #E8F0EB;
+  --primary-20: #CFDFD5;
+  --primary-30: #A8C5B2;
+  --primary-40: #79A087;
+  --primary-50: #3F7255;
+  --primary-base: #06351B;
+  --primary-60: #052F18;
+  --primary-70: #042815;
+  --primary-80: #032111;
+  --primary-90: #02190D;
+  --primary-100: #011108;
+
+  --secondary-10: #F1F6EC;
+  --secondary-20: #E3EDD9;
+  --secondary-30: #CBDDBA;
+  --secondary-40: #AAC78E;
+  --secondary-50: #83AA60;
+  --secondary-base: #5D8B3A;
+  --secondary-60: #527B33;
+  --secondary-70: #45682B;
+  --secondary-80: #385523;
+  --secondary-90: #2A401A;
+  --secondary-100: #1C2B11;
+
+  --accent-10: #FFF0F7;
+  --accent-20: #FFD9EA;
+  --accent-30: #FFB7D8;
+  --accent-40: #FF89BE;
+  --accent-50: #FF54A3;
+  --accent-base: #FF0E86;
+  --accent-70: #C80068;
+  --accent-80: #A70057;
+  --accent-90: #850046;
+  --accent-100: #620034;
+
+  --selection-color: #5d8b3a77;
+  --hover-color: var(--secondary-base);
+  --paper: #FFFFF5;
+  --ink: var(--primary-base);
+  --tint: var(--secondary-30);
+  --line: var(--primary-30);
+
+  /* Fonts */
   --font-heading: "DM Serif Display", Georgia, serif;
-  --radius: 1rem;
-  --radius-card: 0.75rem;
+  --font-subheading: "Plus Jakarta Sans", sans-serif;
+  --font-body: "DM Sans", Arial, sans-serif;
+
+  /* Dimentions */
+  --radius-max: 9999px;
+  --radius: 2rem;
+  --radius-card: 1.75rem;
   --shadow: 0 0.625rem 2rem rgb(33 61 32 / 7%);
-  --content-width: 77.5rem;
-  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --content-width: 40rem;
+  --gutter: clamp(2rem, 8vw, 4rem);
 }
 
 /* Reset and defaults */
@@ -85,12 +121,12 @@ button {
 }
 
 ::selection {
-  background: var(--lime);
-  color: var(--deep);
+  background: var(--selection-color);
+  color: var(--primary-60);
 }
 
 :focus-visible {
-  outline: 3px solid var(--green);
+  outline: 3px solid var(--secondary-base);
   outline-offset: 4px;
 }
 
@@ -101,16 +137,16 @@ h2 {
   font-weight: 400;
   letter-spacing: -0.035em;
   text-wrap: balance;
-  margin-bottom: 1rem;
+  margin: 2em 0;
 }
 
 h1 {
-  font-size: clamp(3rem, 1.75rem + 4vw, 5.2rem);
+  font-size: clamp(3rem, 2rem + 5vw, 5rem);
   line-height: 1.08;
 }
 
 h2 {
-  font-size: clamp(2rem, 1.5rem + 2vw, 2.8rem);
+  font-size: clamp(2.5rem, 2rem + 3vw, 4.5rem);
   line-height: 1.15;
 }
 
@@ -152,18 +188,33 @@ small {
   color: var(--muted);
 }
 
+.small-line {
+    width: 1.5rem;
+    height: 1px;
+    background: currentColor;
+    flex-shrink: 0;
+}
+
 .eyebrow {
-  color: var(--green);
-  font-size: 0.75rem;
+  font-size: 0.75em;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
+
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  color: var(--secondary-base);
+  font-family: var(--font-subheading);
 }
 
 /* Layout helpers */
 .container {
-  width: min(var(--content-width), calc(100% - 2 * var(--gutter)));
-  margin-inline: auto;
+  width: 100%;
+  padding-inline: var(--gutter);
+  padding-block: 5rem;
+  box-sizing: border-box;
 }
 
 .section {
@@ -205,8 +256,8 @@ small {
   padding: 0.9rem 1.5rem;
   border: 1px solid transparent;
 
-  border-radius: var(--radius);
-  background: var(--green);
+  border-radius: var(--radius-max);
+  background: var(--primary-50);
   color: var(--paper);
   font-family: var(--font-body);
 
@@ -224,28 +275,28 @@ small {
 
 .button--secondary {
   background: transparent;
-  color: var(--green);
+  color: var(--ink);
 }
 
 .button--accent {
-  background: var(--lime);
-  color: var(--deep);
+  background: var(--accent-base);
+  color: var(--paper);
 }
 
 @media (hover: hover) {
   .button:not(:disabled):hover {
-    background: var(--green-hover);
+    background: var(--primary-40);
     color: var(--paper);
     transform: translateY(-2px);
   }
 
   .button--secondary:not(:disabled):hover {
-    color: var(--olive);
+    color: var(--secondary-base);
   }
 
   .button--accent:not(:disabled):hover {
-    background: #e5f6b2;
-    color: var(--deep);
+    background: var(--accent-50);
+    transform: translateY(-2px);
   }
 }
 
@@ -284,11 +335,11 @@ textarea {
 }
 
 :where(input, textarea, select):focus {
-  border-color: var(--green);
+  border-color: var(--hover-color);
 }
 
 :where(input[type="checkbox"], input[type="radio"], input[type="range"]) {
-  accent-color: var(--green);
+  accent-color: var(--hover-color);
 }
 
 /* Respect reduced-motion preferences. */
@@ -305,8 +356,6 @@ textarea {
     transform: none;
   }
 }
-
-
 
 .site-header {
     border-bottom: 1px solid var(--line);
