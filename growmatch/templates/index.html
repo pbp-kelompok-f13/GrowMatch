@@ -18,33 +18,136 @@
                     Urban Farming & Biodiversity
                 </div>
                 <h1>
-                    Aku gatau ini mau <i>tulis</i> apa.
+                    Find your <i>plant match.</i>
                 </h1>
                 <p>
-                    Gatau ah jangan suruh aku buat pikirin mau tulis apa disini. Pikirin sendiri aku gabisa ngarang! >:(
+                    Personalized plant recommendations for 
+                    your space, lifestyle, and vibe
                 </p>
-                <button class="button">
-                    Tombol tombolan
+                <button class="button--accent">
+                    Get Your Match
                 </button>
 
                 <button class="button--secondary">
-                    Tombol lain
+                    Explore Catalog
                 </button>
                 <div class="homepage-additional">
                     <span class="material-symbols-outlined">
                     nature
                     </span>
                     <p>
-                        Baru mulai berkebun?
+                        Haven't got experience?
                         <br>
-                        <b>Gapapa, aku juga gtw! aku cowok!</b>
+                        <b>Don't worry, you're in the right place!</b>
                     </p>
                 </div>
             </div>
             <div class="homepage-thumbnail">
                 <img src="{% static 'img/plant-1.jpg' %}">
             </div>
-            
         </div>
+    </section>
+
+    <div class="homepage-divider">
+        <p>match your environment</p>
+        <p>match your habits</p>
+        <p>good for the earth</p>
+    </div>
+
+    <section class="match-info container">
+
+        <h2>Match with only<br><i>3 steps</i></h2>
+        <div class="step-list">
+            <div class="step">
+                <h3 class="step-number">01</h3>
+                <p class="step-name">
+                    Tell us about your space
+                </p>
+                <p class="step-description">
+                    Where do you live? 
+                    Will your plants grow indoors or outdoors? 
+                    Help us get to know their future home.
+                </p>
+            </div>
+
+            <div class="step">
+                <h3 class="step-number">02</h3>
+                <p class="step-name">
+                    Find your rhythm
+                </p>
+                <p class="step-description">
+                    Tell us about your gardening experience 
+                    and how often you can make time to 
+                    water your plants.
+                </p>
+            </div>
+
+            <div class="step">
+                <h3 class="step-number">03</h3>
+                <p class="step-name">
+                    Meet your match
+                </p>
+                <p class="step-description">
+                    Explore plant recommendations tailored to you 
+                    and start your growing journey with confidence.
+                </p>
+            </div>
+        </div>
+        <div class="empty-space"></div>
+    </section>
+    <section class="example-plants">
+        <div class="container">
+            <div class="eyebrow">
+                <span class="small-line"></span>
+                Know your future roommates
+            </div>
+            <h2>
+                Green has many shapes
+            </h2>
+            <button class="button">
+                Get Your Match
+            </button>
+
+            <button class="button--secondary">
+                Explore Catalog
+            </button>
+            
+            <div class="plant-list">
+                <div class="plant">
+                    <div class="plant-info">
+                        <h3>Snake Plant</h3>
+                        <p><i>Dracaena trifasciata</i></p>
+                    </div>
+                    <div class="image-mask"></div>
+                    <img src="../static/img/snake-plant.jpg">
+                </div>
+                <div class="plant">
+                    <div class="plant-info">
+                        <h3>ZZ Plant</h3>
+                        <p><i>Zamioculcas zamiifolia</i></p>
+                    </div>
+                    <div class="image-mask"></div>
+                    <img src="../static/img/zz-plant.jpg">
+                </div>
+                <div class="plant">
+                    <div class="plant-info">
+                        <h3>Pothos</h3>
+                        <p><i>Epipremnum aureum</i></p>
+                    </div>
+                    <div class="image-mask"></div>
+                    <img src="../static/img/pothos.jpg">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="services container">
+        <div class="eyebrow">
+            <span class="small-line"></span>
+            Beyond just discovering
+        </div>
+        <h2>
+            Match now, <i>Grow</i> to Life
+        </h2>
+        
     </section>
 {% endblock %}
