@@ -1,0 +1,15 @@
+<h1>Review {{ plant }}</h1>
+
+{% for message in messages %}
+    <p>{{ message }}</p>
+{% endfor %}
+
+<form method="POST">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">
+        Submit Review
+    </button>
+</form>
