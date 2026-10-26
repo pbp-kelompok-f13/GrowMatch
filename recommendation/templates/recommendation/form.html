@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}GrowMatch - Get Your Match{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'recommendation/css/recommendation.css' %}">
+    <script src="{% static 'recommendation/js/recommendation.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<section class="container rec-page">
+    <div class="eyebrow"><span class="small-line"></span>Plant Recommendation</div>
+    <h1>Find your <i>plant match.</i></h1>
+    <p class="rec-lead">Ceritain sedikit soal tempat dan kebiasaanmu, nanti kami cocokin sama tanaman yang paling pas.</p>
+
+    {% if user.is_authenticated %}
+    <p><a href="{% url 'recommendation:history' %}">Lihat riwayat rekomendasimu</a></p>
+    {% else %}
+    <p class="rec-guest-note">Kamu bisa lihat pertanyaannya dulu, tapi butuh login buat nyimpen dan lihat hasil rekomendasi.</p>
+    {% endif %}
+
+    {% include 'recommendation/_messages.html' %}
+    {% url 'recommendation:create' as create_url %}
+    {% include 'recommendation/_form.html' with action=create_url submit_label="Get Your Match" %}
+</section>
+{% endblock %}
+

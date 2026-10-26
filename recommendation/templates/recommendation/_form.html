@@ -1,0 +1,41 @@
+{% load static %}
+<form method="post" action="{{ action }}" class="rec-form card" data-ajax-form novalidate>
+    {% csrf_token %}
+
+    <p class="rec-error" data-error-for="__all__">{{ form.non_field_errors|join:" " }}</p>
+
+    <div class="rec-field">
+        <label for="{{ form.location_name.id_for_label }}">{{ form.location_name.label }}</label>
+        {{ form.location_name }}
+        <small class="muted">Kami pakai lokasi ini buat ambil suhu dan kelembapan dari Open-Meteo.</small>
+        <p class="rec-error" data-error-for="location_name">{{ form.location_name.errors|join:" " }}</p>
+    </div>
+
+    {% for field in form %}
+        {% if field.name != "location_name" %}
+        <fieldset class="rec-field">
+            <legend>{{ field.label }}</legend>
+            <div class="rec-choices">
+                {% for choice in field %}
+                <label class="rec-choice">
+                    {{ choice.tag }}
+                    <span>{{ choice.choice_label }}</span>
+                </label>
+                {% endfor %}
+            </div>
+            <p class="rec-error" data-error-for="{{ field.name }}">{{ field.errors|join:" " }}</p>
+        </fieldset>
+        {% endif %}
+    {% endfor %}
+
+    <div class="rec-actions">
+        {% if user.is_authenticated %}
+        <button type="submit" class="button--accent" data-submit-label="{{ submit_label }}">{{ submit_label }}</button>
+        {% else %}
+        <a href="/login/?next={{ request.path|urlencode }}" class="button--accent">Login dulu buat dapet rekomendasi</a>
+        {% endif %}
+        {% if cancel_url %}
+        <a href="{{ cancel_url }}" class="button--secondary">Batal</a>
+        {% endif %}
+    </div>
+</form>

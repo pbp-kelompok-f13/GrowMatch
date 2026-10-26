@@ -1,0 +1,155 @@
+.rec-page h1 {
+    margin: 0.5em 0 0.25em;
+}
+
+.rec-page h2 {
+    margin: 1.5em 0 0.75em;
+}
+
+.rec-lead {
+    max-width: var(--content-width);
+    font-size: 1.125rem;
+}
+
+.rec-guest-note {
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius);
+    background: var(--secondary-10);
+    max-width: var(--content-width);
+}
+
+.rec-form {
+    max-width: var(--content-width);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.rec-field {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.rec-field legend {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.rec-choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.rec-choice {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-max);
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.rec-choice:has(input:checked) {
+    border-color: var(--secondary-base);
+    background: var(--secondary-10);
+}
+
+.rec-error {
+    color: var(--accent-70);
+    font-size: 0.875rem;
+    margin: 0.25rem 0 0;
+}
+
+.rec-error:empty {
+    display: none;
+}
+
+.rec-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.rec-actions form {
+    margin: 0;
+}
+
+.rec-delete {
+    color: var(--accent-70);
+}
+
+.rec-messages {
+    list-style: none;
+    padding: 0;
+    max-width: var(--content-width);
+}
+
+.rec-message {
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius);
+    background: var(--secondary-10);
+    margin-bottom: 0.5rem;
+}
+
+.rec-message--warning {
+    background: var(--accent-10);
+}
+
+.rec-summary {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.25rem 1rem;
+    margin: 0 0 0.75rem;
+}
+
+.rec-summary dt {
+    font-weight: 600;
+}
+
+.rec-summary dd {
+    margin: 0;
+}
+
+.rec-empty {
+    max-width: var(--content-width);
+}
+
+.rec-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.rec-filter {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.rec-filter a {
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-max);
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.rec-filter a[aria-current="page"] {
+    background: var(--primary-50);
+    border-color: var(--primary-50);
+    color: var(--paper);
+}
+
+.rec-card h3 a {
+    color: var(--ink);
+}

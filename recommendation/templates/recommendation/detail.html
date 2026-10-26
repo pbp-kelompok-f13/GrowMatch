@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}GrowMatch - Hasil Rekomendasi{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'recommendation/css/recommendation.css' %}">
+    <script src="{% static 'recommendation/js/recommendation.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<section class="container rec-page">
+    <div class="eyebrow"><span class="small-line"></span>Your Match</div>
+    <h1>Untuk <i>{{ recommendation.location_name }}</i></h1>
+
+    {% include 'recommendation/_messages.html' %}
+
+    <div class="grid">
+        <div class="card">
+            <h3>Preferensimu</h3>
+            <dl class="rec-summary">
+                <dt>Ruang</dt><dd>{{ recommendation.get_space_type_display }}</dd>
+                <dt>Penyiraman</dt><dd>{{ recommendation.get_watering_frequency_display }}</dd>
+                <dt>Pengalaman</dt><dd>{{ recommendation.get_experience_level_display }}</dd>
+            </dl>
+        </div>
+        <div class="card">
+            <h3>Kondisi lingkungan</h3>
+            {% if recommendation.has_weather %}
+            <dl class="rec-summary">
+                <dt>Suhu</dt><dd>{{ recommendation.temperature }}°C</dd>
+                <dt>Kelembapan</dt><dd>{{ recommendation.humidity }}%</dd>
+            </dl>
+            <small class="muted">Sumber: Open-Meteo, diperbarui {{ recommendation.updated_at|date:"d M Y H:i" }}</small>
+            {% else %}
+            <p class="muted">Data cuaca belum tersedia. Coba edit dan simpan ulang buat ambil data terbaru.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <h2>Tanaman yang <i>cocok</i></h2>
+    <div class="card rec-empty">
+        <p>Daftar tanaman bakal muncul di sini setelah katalog tanaman tersambung.</p>
+    </div>
+
+    <div class="rec-actions">
+        <a href="{% url 'recommendation:edit' recommendation.pk %}" class="button">Edit preferensi</a>
+        <a href="{% url 'recommendation:history' %}" class="button--secondary">Riwayat</a>
+        {% include 'recommendation/_delete_form.html' %}
+    </div>
+</section>
+{% endblock %}
+

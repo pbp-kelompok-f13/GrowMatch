@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}GrowMatch - Edit Rekomendasi{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'recommendation/css/recommendation.css' %}">
+    <script src="{% static 'recommendation/js/recommendation.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<section class="container rec-page">
+    <div class="eyebrow"><span class="small-line"></span>Plant Recommendation</div>
+    <h1>Ubah <i>preferensimu.</i></h1>
+    <p class="rec-lead">Data cuaca bakal diambil ulang dari lokasi yang baru.</p>
+
+    {% include 'recommendation/_messages.html' %}
+    {% url 'recommendation:edit' recommendation.pk as edit_url %}
+    {% url 'recommendation:detail' recommendation.pk as detail_url %}
+    {% include 'recommendation/_form.html' with action=edit_url submit_label="Simpan perubahan" cancel_url=detail_url %}
+</section>
+{% endblock %}
+
