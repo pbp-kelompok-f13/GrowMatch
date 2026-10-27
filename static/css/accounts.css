@@ -1,0 +1,426 @@
+.auth-page {
+    --field-border: #8fb09b;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    min-height: calc(100vh - 40px);
+    background: var(--paper);
+}
+
+/* Reset margin/padding atas dari style global supaya tidak ada ruang kosong */
+.auth-page h1,
+.auth-page h2,
+.auth-page p {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* ---------- Panel kiri ---------- */
+
+.auth-intro {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: clamp(36px, 5vw, 80px);
+    overflow: hidden;
+    isolation: isolate;
+    background:
+        radial-gradient(circle at 80% 15%, rgba(255, 255, 255, 0.07), transparent 45%),
+        var(--primary-base);
+    color: var(--paper);
+}
+
+.auth-intro-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 560px;
+    margin-inline: auto;
+}
+
+.auth-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    color: var(--paper);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+}
+
+.auth-eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 2px;
+    background: currentColor;
+    opacity: 0.7;
+}
+
+.auth-intro h1 {
+    margin-bottom: 24px;
+    color: var(--paper);
+    font-size: clamp(2.6rem, 4vw, 4.2rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+}
+
+.auth-intro h1 em {
+    display: block;
+    margin-top: 0;
+    color: var(--paper);
+    font-style: italic;
+    line-height: 1.08;
+}
+
+.auth-description {
+    max-width: 440px;
+    margin-bottom: 32px;
+    color: var(--paper);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.auth-tagline {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--paper);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.auth-tagline .material-symbols-outlined {
+    font-size: 32px;
+}
+
+.auth-leaf-decoration {
+    position: absolute;
+    z-index: 1;
+    right: -140px;
+    bottom: -200px;
+    width: 600px;
+    height: 600px;
+    pointer-events: none;
+}
+
+.leaf-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--secondary-base);
+}
+
+.leaf-circle-one {
+    inset: 0;
+    opacity: 0.18;
+}
+
+.leaf-circle-two {
+    inset: 90px;
+    opacity: 0.24;
+}
+
+.leaf-icon {
+    position: absolute;
+    right: 110px;
+    bottom: 100px;
+    color: var(--secondary-base);
+    font-size: 300px;
+    opacity: 0.95;
+    transform: rotate(-28deg);
+}
+
+/* ---------- Kartu form ---------- */
+
+.auth-form-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px clamp(24px, 4vw, 64px);
+    background: var(--paper);
+}
+
+.auth-card {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 500px;
+    padding: clamp(24px, 2.4vw, 36px);
+    border: 1.5px solid var(--line);
+    border-radius: 24px;
+    background: #ffffff;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.07);
+}
+
+.auth-card h2 {
+    margin-bottom: 8px;
+    color: var(--ink);
+    font-size: clamp(1.8rem, 2.3vw, 2.4rem);
+    line-height: 1.15;
+}
+
+.auth-card h2 em {
+    font-style: italic;
+}
+
+.auth-subtitle {
+    margin-bottom: 22px;
+    color: var(--ink);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.form-field {
+    margin-bottom: 18px;
+}
+
+.form-field > label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--ink);
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.form-field input {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    padding: 11px 14px;
+    border: 1.5px solid var(--field-border);
+    border-radius: 10px;
+    background: #ffffff;
+    color: var(--ink);
+    font: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-field input:hover {
+    border-color: var(--primary-base);
+}
+
+.form-field input:focus {
+    outline: none;
+    border-color: var(--primary-base);
+    box-shadow: 0 0 0 3px rgba(50, 100, 70, 0.18);
+}
+
+.field-help,
+.password-strength small {
+    display: block;
+    margin-top: 7px;
+    color: var(--ink);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 52px;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.password-toggle:hover {
+    background: var(--paper);
+}
+
+.password-toggle:focus-visible {
+    outline: 3px solid rgba(50, 100, 70, 0.35);
+    outline-offset: 1px;
+}
+
+.password-toggle .material-symbols-outlined {
+    font-size: 21px;
+}
+
+/* ---------- Kekuatan & aturan password ---------- */
+
+.password-strength {
+    margin-top: 12px;
+}
+
+.strength-track {
+    height: 6px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--line);
+}
+
+#strength-bar {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--primary-base);
+    transition: width 0.25s ease, background-color 0.25s ease;
+}
+
+#strength-bar[data-level="1"] { background: #c0392b; }
+#strength-bar[data-level="2"] { background: #d98a1f; }
+#strength-bar[data-level="3"] { background: #7c9b2f; }
+#strength-bar[data-level="4"] { background: var(--primary-base); }
+
+.password-rules {
+    display: grid;
+    gap: 6px;
+    margin: 10px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.password-rules li {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    color: var(--ink);
+    font-size: 0.8125rem;
+    line-height: 1.45;
+}
+
+.password-rules li::before {
+    content: "○";
+    flex-shrink: 0;
+    color: var(--field-border);
+}
+
+.password-rules li.valid::before {
+    content: "✓";
+    color: var(--primary-base);
+    font-weight: 700;
+}
+
+.password-rules li.valid {
+    font-weight: 600;
+}
+
+/* ---------- Error & status ---------- */
+
+.field-error,
+.form-errors {
+    margin-top: 7px;
+    color: #b42318;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+}
+
+.password-match {
+    color: var(--primary-base);
+    font-weight: 600;
+}
+
+.password-mismatch {
+    color: #b42318;
+    font-weight: 600;
+}
+
+.auth-card .auth-submit {
+    width: 100%;
+    min-height: 50px;
+    margin-top: 8px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.auth-footer {
+    margin-top: 20px;
+    margin-bottom: 0;
+    color: var(--ink);
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.auth-footer a {
+    color: var(--primary-base);
+    font-weight: 700;
+    text-underline-offset: 3px;
+}
+
+@media (min-width: 761px) {
+    .auth-page {
+        min-height: calc(100vh - 40px);
+    }
+}
+
+@media (max-width: 760px) {
+    .auth-page {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .auth-intro {
+        min-height: 400px;
+        padding: 48px 28px;
+    }
+
+    .auth-intro h1 {
+        font-size: clamp(2.5rem, 9vw, 3.5rem);
+    }
+
+    .auth-leaf-decoration {
+        right: -220px;
+        bottom: -260px;
+        transform: scale(0.8);
+    }
+
+    .auth-form-section {
+        padding: 32px 18px;
+    }
+
+    .auth-card {
+        max-width: 500px;
+        padding: 28px 22px;
+    }
+}
+
+.auth-page h1,
+.auth-page h2,
+.auth-page p {
+    margin-top: unset;
+    padding-top: unset;
+}
+.auth-page :where(h1, h2, p) {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.leaf-icon {
+    color: var(--paper);
+    opacity: 0.18;
+}
+
+.strength-track {
+    height: 5px;
+    background: #e6ece8;
+}
+
+.password-rules li::before {
+    content: "radio_button_unchecked";
+    font-family: "Material Symbols Outlined";
+    font-size: 18px;
+    line-height: 1;
+    color: var(--field-border);
+}
+.password-rules li.valid::before {
+    content: "check_circle";
+    color: var(--primary-base);
+    font-weight: normal;
+}
