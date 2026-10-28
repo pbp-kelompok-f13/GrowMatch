@@ -8,6 +8,7 @@ from recommendation.views import (
     show_history,
     show_json,
     show_json_by_id,
+    show_plants_json,
     show_recommendation_form,
 )
 
@@ -19,6 +20,7 @@ urlpatterns = [
     path("history/", show_history, name="history"),
     path("json/", show_json, name="json"),
     path("json/<uuid:pk>/", show_json_by_id, name="json_by_id"),
+    path("json/<uuid:pk>/plants/", show_plants_json, name="plants_json"),
     path("<uuid:pk>/", show_detail, name="detail"),
     path("<uuid:pk>/edit/", edit_recommendation, name="edit"),
     path("<uuid:pk>/delete/", delete_recommendation, name="delete"),

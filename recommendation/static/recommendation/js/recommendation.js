@@ -69,7 +69,73 @@ async function submitDelete(event) {
     }
 }
 
+function renderPlantCard(plant) {
+    const card = document.createElement("article");
+    card.className = "card rec-plant";
+
+    if (plant.image_url) {
+        const img = document.createElement("img");
+        img.src = plant.image_url;
+        img.alt = plant.name;
+        img.loading = "lazy";
+        card.append(img);
+    }
+
+    const match = document.createElement("span");
+    match.className = "rec-match";
+    match.textContent = `${plant.match_percent}% match`;
+
+    const name = document.createElement("h3");
+    name.textContent = plant.name;
+    card.append(match, name);
+
+    if (plant.scientific_name) {
+        const scientific = document.createElement("p");
+        scientific.className = "muted";
+        const italic = document.createElement("i");
+        italic.textContent = plant.scientific_name;
+        scientific.append(italic);
+        card.append(scientific);
+    }
+
+    const reasons = document.createElement("ul");
+    reasons.className = "rec-reasons";
+    plant.reasons.forEach((reason) => {
+        const item = document.createElement("li");
+        item.textContent = reason;
+        reasons.append(item);
+    });
+    card.append(reasons);
+    return card;
+}
+
+async function filterPlants(form) {
+    const params = new URLSearchParams(new FormData(form));
+    const list = document.querySelector("[data-plant-list]");
+    const empty = document.querySelector("[data-plant-empty]");
+
+    list.setAttribute("aria-busy", "true");
+    try {
+        const response = await fetch(`${form.dataset.jsonUrl}?${params}`, { headers: AJAX_HEADERS });
+        if (!response.ok) throw new Error(response.statusText);
+        const plants = await response.json();
+        list.replaceChildren(...plants.map(renderPlantCard));
+        empty.hidden = plants.length > 0;
+        window.history.replaceState(null, "", `?${params}`);
+    } catch (error) {
+        window.alert("Gagal memuat tanaman. Coba lagi.");
+    }
+    list.removeAttribute("aria-busy");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("[data-plant-filter]").forEach((form) => {
+        form.addEventListener("change", () => filterPlants(form));
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            filterPlants(form);
+        });
+    });
     document.querySelectorAll("[data-ajax-form]").forEach((form) => {
         form.addEventListener("submit", submitRecommendationForm);
     });

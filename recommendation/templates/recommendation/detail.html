@@ -39,9 +39,48 @@
     </div>
 
     <h2>Tanaman yang <i>cocok</i></h2>
-    <div class="card rec-empty">
-        <p>Daftar tanaman bakal muncul di sini setelah katalog tanaman tersambung.</p>
+
+    <form method="get" class="rec-plant-filter" data-plant-filter data-json-url="{% url 'recommendation:plants_json' recommendation.pk %}">
+        <div>
+            <label for="filter-sunlight">Cahaya</label>
+            <select name="sunlight" id="filter-sunlight">
+                <option value="">Semua</option>
+                {% for value, label in sunlight_choices %}
+                <option value="{{ value }}" {% if filters.sunlight == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="filter-difficulty">Perawatan</label>
+            <select name="difficulty" id="filter-difficulty">
+                <option value="">Semua</option>
+                {% for value, label in difficulty_choices %}
+                <option value="{{ value }}" {% if filters.difficulty == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <noscript><button type="submit" class="button">Terapkan</button></noscript>
+    </form>
+
+    <div class="grid" data-plant-list>
+        {% for match in matches %}
+        <article class="card rec-plant">
+            {% if match.plant.image_url %}
+            <img src="{{ match.plant.image_url }}" alt="{{ match.plant.name }}" loading="lazy">
+            {% endif %}
+            <span class="rec-match">{{ match.match_percent }}% match</span>
+            <h3>{{ match.plant.name }}</h3>
+            {% if match.plant.scientific_name %}<p class="muted"><i>{{ match.plant.scientific_name }}</i></p>{% endif %}
+            <ul class="rec-reasons">
+                {% for reason in match.reasons %}<li>{{ reason }}</li>{% endfor %}
+            </ul>
+        </article>
+        {% endfor %}
     </div>
+
+    <p class="card rec-empty" data-plant-empty {% if matches %}hidden{% endif %}>
+        Belum ada tanaman yang cocok{% if filters.sunlight or filters.difficulty %} sama filter ini{% endif %}.
+    </p>
 
     <div class="rec-actions">
         <a href="{% url 'recommendation:edit' recommendation.pk %}" class="button">Edit preferensi</a>

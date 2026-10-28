@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'recommendation',
+    'plant_catalog',
 ]
 
 MIDDLEWARE = [

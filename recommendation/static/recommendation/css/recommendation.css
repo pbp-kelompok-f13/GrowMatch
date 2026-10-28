@@ -153,3 +153,53 @@
 .rec-card h3 a {
     color: var(--ink);
 }
+
+.rec-plant-filter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.rec-plant-filter > div {
+    min-width: 12rem;
+}
+
+.rec-plant {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.rec-plant img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: calc(var(--radius-card) - 0.5rem);
+    margin-bottom: 0.75rem;
+}
+
+.rec-plant h3 {
+    margin-bottom: 0;
+}
+
+.rec-match {
+    align-self: flex-start;
+    padding: 0.15rem 0.75rem;
+    border-radius: var(--radius-max);
+    background: var(--secondary-10);
+    color: var(--secondary-70);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.rec-reasons {
+    margin: 0.5rem 0 0;
+    padding-left: 1.1rem;
+    font-size: 0.9rem;
+}
+
+[data-plant-list][aria-busy="true"] {
+    opacity: 0.5;
+}

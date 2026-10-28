@@ -7,6 +7,7 @@ from django.views.decorators.http import require_GET, require_POST
 
 from recommendation.forms import RecommendationRequestForm
 from recommendation.models import RecommendationRequest
+from recommendation.scoring import DIFFICULTY_FILTERS, SUNLIGHT_FILTERS, match_to_dict, recommend_plants
 from recommendation.weather import LocationNotFound, apply_location_and_weather
 
 LOGIN_URL = "/login/"
@@ -42,6 +43,15 @@ def save_recommendation_form(request, form):
     if not weather_ok:
         messages.warning(request, WEATHER_UNAVAILABLE)
     return recommendation
+
+
+def get_plant_filters(request):
+    sunlight = request.GET.get("sunlight", "")
+    difficulty = request.GET.get("difficulty", "")
+    return {
+        "sunlight": sunlight if sunlight in SUNLIGHT_FILTERS else "",
+        "difficulty": difficulty if difficulty in DIFFICULTY_FILTERS else "",
+    }
 
 
 def form_response(request, form, recommendation, template, context):
@@ -91,7 +101,14 @@ def show_history(request):
 @require_GET
 def show_detail(request, pk):
     recommendation = get_own_recommendation(request, pk)
-    return render(request, "recommendation/detail.html", {"recommendation": recommendation})
+    filters = get_plant_filters(request)
+    return render(request, "recommendation/detail.html", {
+        "recommendation": recommendation,
+        "matches": recommend_plants(recommendation, **filters),
+        "filters": filters,
+        "sunlight_choices": [(key, label) for key, (label, _) in SUNLIGHT_FILTERS.items()],
+        "difficulty_choices": [(key, label) for key, (label, _) in DIFFICULTY_FILTERS.items()],
+    })
 
 
 @login_required(login_url=LOGIN_URL)
@@ -131,3 +148,11 @@ def show_json(request):
 def show_json_by_id(request, pk):
     recommendation = get_own_recommendation(request, pk)
     return JsonResponse(recommendation.to_dict())
+
+
+@login_required(login_url=LOGIN_URL)
+@require_GET
+def show_plants_json(request, pk):
+    recommendation = get_own_recommendation(request, pk)
+    matches = recommend_plants(recommendation, **get_plant_filters(request))
+    return JsonResponse([match_to_dict(match) for match in matches], safe=False)

@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 
-from recommendation import weather
+from plant_catalog.models import Plant
+from recommendation import scoring, weather
 from recommendation.forms import RecommendationRequestForm
 from recommendation.models import RecommendationRequest
 
@@ -330,3 +331,158 @@ class OwnRecommendationTest(TestCase):
     def test_json_by_id(self):
         data = self.client.get(reverse("recommendation:json_by_id", args=[self.mine.pk])).json()
         self.assertEqual(data["location_name"], "Depok, Indonesia")
+
+
+def make_plant(name, **kwargs):
+    data = {"watering": "Average", "indoor": True, "difficulty": "Low", "sunlight": "part shade"}
+    data.update(kwargs)
+    return Plant.objects.create(name=name, **data)
+
+
+class ScoringRuleTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user("deo")
+        self.recommendation = make_recommendation(self.user)
+
+    def test_perfect_indoor_match(self):
+        plant = make_plant("Pothos")
+        score, reasons = scoring.score_plant(self.recommendation, plant)
+        self.assertEqual(score, scoring.MAX_SCORE)
+        self.assertIn("Perawatannya mudah", reasons)
+        self.assertIn("Tahan cahaya redup dalam ruangan", reasons)
+
+    def test_watering_distance(self):
+        self.recommendation.watering_frequency = "frequent"
+        cases = {"Frequent": 3, "average": 1.5, "Minimum": 0, "None": 0, "": 1.5}
+        for watering, expected in cases.items():
+            plant = Plant(name="x", watering=watering)
+            self.assertEqual(scoring.watering_points(self.recommendation, plant)[0], expected, watering)
+
+    def test_space_indoor(self):
+        cases = {True: 3, None: 1, False: 0}
+        for indoor, expected in cases.items():
+            plant = Plant(name="x", indoor=indoor)
+            self.assertEqual(scoring.space_points(self.recommendation, plant)[0], expected)
+
+    def test_space_outdoor(self):
+        self.recommendation.space_type = "outdoor"
+        cases = {False: 3, None: 2, True: 1}
+        for indoor, expected in cases.items():
+            plant = Plant(name="x", indoor=indoor)
+            self.assertEqual(scoring.space_points(self.recommendation, plant)[0], expected)
+        reason = scoring.space_points(self.recommendation, Plant(name="x", indoor=False))[1]
+        self.assertEqual(reason, "Cocok ditanam di luar ruangan")
+
+    def test_experience(self):
+        self.assertEqual(scoring.experience_points(self.recommendation, Plant(name="x", difficulty="High"))[0], 0)
+        self.assertEqual(scoring.experience_points(self.recommendation, Plant(name="x", difficulty=""))[0], 1.5)
+        self.recommendation.experience_level = "expert"
+        points, reason = scoring.experience_points(self.recommendation, Plant(name="x", difficulty="High"))
+        self.assertEqual((points, reason), (3, "Sesuai sama pengalaman kamu"))
+
+    def test_weather_outdoor_hot_full_sun(self):
+        self.recommendation.space_type = "outdoor"
+        points, reason = scoring.weather_points(self.recommendation, Plant(name="x", sunlight="Full sun"))
+        self.assertEqual(points, 1)
+        self.assertIn("30.5°C", reason)
+
+    def test_weather_outdoor_cool_or_unknown(self):
+        self.recommendation.space_type = "outdoor"
+        plant = Plant(name="x", sunlight="full sun")
+        self.recommendation.temperature = 18
+        self.assertEqual(scoring.weather_points(self.recommendation, plant), (0, None))
+        self.recommendation.temperature = None
+        self.assertEqual(scoring.weather_points(self.recommendation, plant), (0, None))
+
+    def test_weather_indoor_bright_plant(self):
+        self.assertEqual(scoring.weather_points(self.recommendation, Plant(name="x", sunlight="full sun")), (0, None))
+
+
+class RecommendPlantsTest(TestCase):
+    def setUp(self):
+        self.recommendation = make_recommendation(User.objects.create_user("deo"))
+        self.pothos = make_plant("Pothos")
+        self.fern = make_plant("Fern", watering="Frequent", difficulty="Medium")
+        self.cactus = make_plant("Cactus", indoor=False, watering="Minimum", difficulty="High", sunlight="full sun")
+
+    def test_sorted_by_score(self):
+        names = [match["plant"].name for match in scoring.recommend_plants(self.recommendation)]
+        self.assertEqual(names, ["Pothos", "Fern"])
+
+    def test_zero_score_excluded(self):
+        names = [match["plant"].name for match in scoring.recommend_plants(self.recommendation)]
+        self.assertNotIn("Cactus", names)
+
+    def test_match_percent(self):
+        match = scoring.recommend_plants(self.recommendation)[0]
+        self.assertEqual(match["match_percent"], 100)
+
+    def test_limit(self):
+        self.assertEqual(len(scoring.recommend_plants(self.recommendation, limit=1)), 1)
+
+    def test_filter_sunlight(self):
+        self.recommendation.space_type = "outdoor"
+        matches = scoring.recommend_plants(self.recommendation, sunlight="full_sun")
+        self.assertEqual([match["plant"] for match in matches], [self.cactus])
+
+    def test_filter_difficulty(self):
+        matches = scoring.recommend_plants(self.recommendation, difficulty="medium")
+        self.assertEqual([match["plant"] for match in matches], [self.fern])
+
+    def test_unknown_filters_ignored(self):
+        self.assertEqual(len(scoring.recommend_plants(self.recommendation, sunlight="moon", difficulty="x")), 2)
+
+    def test_match_to_dict(self):
+        data = scoring.match_to_dict(scoring.recommend_plants(self.recommendation)[0])
+        self.assertEqual(data["id"], str(self.pothos.id))
+        self.assertEqual(data["match_percent"], 100)
+        self.assertIsInstance(data["reasons"], list)
+
+
+class PlantResultViewTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user("deo")
+        self.recommendation = make_recommendation(self.user)
+        self.pothos = make_plant("Pothos", image_url="https://example.com/pothos.jpg", scientific_name="Epipremnum")
+        self.fern = make_plant("Fern", difficulty="Medium")
+        self.client.force_login(self.user)
+        self.detail_url = reverse("recommendation:detail", args=[self.recommendation.pk])
+        self.json_url = reverse("recommendation:plants_json", args=[self.recommendation.pk])
+
+    def test_detail_shows_matches(self):
+        response = self.client.get(self.detail_url)
+        self.assertContains(response, "Pothos")
+        self.assertContains(response, "100% match")
+        self.assertContains(response, "https://example.com/pothos.jpg")
+
+    def test_detail_filter(self):
+        response = self.client.get(self.detail_url, {"difficulty": "medium"})
+        self.assertEqual([match["plant"] for match in response.context["matches"]], [self.fern])
+        self.assertEqual(response.context["filters"], {"sunlight": "", "difficulty": "medium"})
+
+    def test_detail_invalid_filter_ignored(self):
+        response = self.client.get(self.detail_url, {"difficulty": "god", "sunlight": "moon"})
+        self.assertEqual(response.context["filters"], {"sunlight": "", "difficulty": ""})
+        self.assertEqual(len(response.context["matches"]), 2)
+
+    def test_detail_empty_filter_result(self):
+        response = self.client.get(self.detail_url, {"sunlight": "full_sun"})
+        self.assertContains(response, "Belum ada tanaman yang cocok sama filter ini")
+
+    def test_plants_json(self):
+        data = self.client.get(self.json_url).json()
+        self.assertEqual([plant["name"] for plant in data], ["Pothos", "Fern"])
+
+    def test_plants_json_filter(self):
+        data = self.client.get(self.json_url, {"difficulty": "low"}).json()
+        self.assertEqual([plant["name"] for plant in data], ["Pothos"])
+
+    def test_plants_json_requires_owner(self):
+        other = make_recommendation(User.objects.create_user("aisyah"))
+        response = self.client.get(reverse("recommendation:plants_json", args=[other.pk]))
+        self.assertEqual(response.status_code, 404)
+
+    def test_plants_json_requires_login(self):
+        self.client.logout()
+        response = self.client.get(self.json_url)
+        self.assertEqual(response.status_code, 302)
