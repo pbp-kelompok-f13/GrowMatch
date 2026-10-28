@@ -159,7 +159,7 @@ class GuestAccessTest(TestCase):
         response = self.client.get(reverse("recommendation:form"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "recommendation/form.html")
-        self.assertContains(response, "Login dulu")
+        self.assertContains(response, "Log in to get your match")
         self.assertNotContains(response, 'type="submit"')
 
     def test_protected_pages_redirect_to_login(self):
@@ -214,7 +214,7 @@ class CreateRecommendationTest(TestCase):
         mock_apply.return_value = False
         response = self.client.post(self.url, VALID_DATA, follow=True)
         self.assertEqual(RecommendationRequest.objects.count(), 1)
-        self.assertContains(response, "Data cuaca lagi nggak bisa diambil")
+        self.assertContains(response, "Weather data is unavailable right now")
 
     def test_invalid_form(self, mock_apply):
         response = self.client.post(self.url, {**VALID_DATA, "space_type": ""})
@@ -267,7 +267,7 @@ class OwnRecommendationTest(TestCase):
     def test_history_empty_filter_result(self):
         self.outdoor.delete()
         response = self.client.get(reverse("recommendation:history"), {"space_type": "outdoor"})
-        self.assertContains(response, "Belum ada rekomendasi untuk filter ini")
+        self.assertContains(response, "No recommendations yet for this filter")
 
     def test_detail(self):
         response = self.client.get(reverse("recommendation:detail", args=[self.mine.pk]))
@@ -277,7 +277,7 @@ class OwnRecommendationTest(TestCase):
     def test_detail_without_weather(self):
         recommendation = make_recommendation(self.user, temperature=None, humidity=None)
         response = self.client.get(reverse("recommendation:detail", args=[recommendation.pk]))
-        self.assertContains(response, "Data cuaca belum tersedia")
+        self.assertContains(response, "Weather data is not available yet")
 
     def test_cannot_access_others(self):
         for name in ["detail", "edit", "json_by_id"]:
@@ -348,8 +348,8 @@ class ScoringRuleTest(TestCase):
         plant = make_plant("Pothos")
         score, reasons = scoring.score_plant(self.recommendation, plant)
         self.assertEqual(score, scoring.MAX_SCORE)
-        self.assertIn("Perawatannya mudah", reasons)
-        self.assertIn("Tahan cahaya redup dalam ruangan", reasons)
+        self.assertIn("Easy to care for", reasons)
+        self.assertIn("Tolerates low indoor light", reasons)
 
     def test_watering_distance(self):
         self.recommendation.watering_frequency = "frequent"
@@ -371,14 +371,14 @@ class ScoringRuleTest(TestCase):
             plant = Plant(name="x", indoor=indoor)
             self.assertEqual(scoring.space_points(self.recommendation, plant)[0], expected)
         reason = scoring.space_points(self.recommendation, Plant(name="x", indoor=False))[1]
-        self.assertEqual(reason, "Cocok ditanam di luar ruangan")
+        self.assertEqual(reason, "Thrives outdoors")
 
     def test_experience(self):
         self.assertEqual(scoring.experience_points(self.recommendation, Plant(name="x", difficulty="High"))[0], 0)
         self.assertEqual(scoring.experience_points(self.recommendation, Plant(name="x", difficulty=""))[0], 1.5)
         self.recommendation.experience_level = "expert"
         points, reason = scoring.experience_points(self.recommendation, Plant(name="x", difficulty="High"))
-        self.assertEqual((points, reason), (3, "Sesuai sama pengalaman kamu"))
+        self.assertEqual((points, reason), (3, "Matches your experience"))
 
     def test_weather_outdoor_hot_full_sun(self):
         self.recommendation.space_type = "outdoor"
@@ -467,7 +467,7 @@ class PlantResultViewTest(TestCase):
 
     def test_detail_empty_filter_result(self):
         response = self.client.get(self.detail_url, {"sunlight": "full_sun"})
-        self.assertContains(response, "Belum ada tanaman yang cocok sama filter ini")
+        self.assertContains(response, "No matching plants yet for these filters")
 
     def test_plants_json(self):
         data = self.client.get(self.json_url).json()

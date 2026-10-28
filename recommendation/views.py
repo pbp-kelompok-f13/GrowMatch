@@ -11,7 +11,7 @@ from recommendation.scoring import DIFFICULTY_FILTERS, SUNLIGHT_FILTERS, match_t
 from recommendation.weather import LocationNotFound, apply_location_and_weather
 
 LOGIN_URL = "/login/"
-WEATHER_UNAVAILABLE = "Data cuaca lagi nggak bisa diambil, rekomendasi tetap disimpan tanpa data cuaca."
+WEATHER_UNAVAILABLE = "Weather data is unavailable right now, so your recommendation was saved without it."
 
 
 def is_ajax(request):
@@ -36,7 +36,7 @@ def save_recommendation_form(request, form):
     try:
         weather_ok = apply_location_and_weather(recommendation)
     except LocationNotFound:
-        form.add_error("location_name", "Lokasi tidak ditemukan. Coba tulis nama kota lain.")
+        form.add_error("location_name", "Location not found. Try another city name.")
         return None
 
     recommendation.save()
@@ -132,7 +132,7 @@ def delete_recommendation(request, pk):
 
     if is_ajax(request):
         return JsonResponse({"ok": True})
-    messages.success(request, "Rekomendasi dihapus.")
+    messages.success(request, "Recommendation deleted.")
     return redirect("recommendation:history")
 
 

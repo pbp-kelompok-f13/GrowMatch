@@ -11,14 +11,14 @@ class RecommendationRequest(models.Model):
     ]
     # Nilai disamakan dengan field "watering" di Perenual API
     WATERING_CHOICES = [
-        ("frequent", "Sering (hampir setiap hari)"),
-        ("average", "Sedang (2-3 kali seminggu)"),
-        ("minimum", "Jarang (seminggu sekali atau kurang)"),
+        ("frequent", "Often (almost every day)"),
+        ("average", "Sometimes (2-3 times a week)"),
+        ("minimum", "Rarely (once a week or less)"),
     ]
     EXPERIENCE_CHOICES = [
-        ("beginner", "Pemula"),
-        ("intermediate", "Menengah"),
-        ("expert", "Berpengalaman"),
+        ("beginner", "Beginner"),
+        ("intermediate", "Intermediate"),
+        ("expert", "Experienced"),
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

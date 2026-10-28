@@ -14,11 +14,11 @@
     <div class="rec-hero">
         <h1>Find your<br><i>plant match</i></h1>
         <div class="rec-hero-side">
-            <p>Ceritain sedikit soal tempat dan kebiasaanmu, nanti kami cocokin sama tanaman yang paling pas.</p>
+            <p>Tell us a little about your space and habits, and we will match you with the plants that fit best.</p>
             {% if user.is_authenticated %}
-            <a href="{% url 'recommendation:history' %}" class="rec-hero-link">Lihat riwayat rekomendasimu <span aria-hidden="true">↗</span></a>
+            <a href="{% url 'recommendation:history' %}" class="rec-hero-link">See your past matches <span aria-hidden="true">↗</span></a>
             {% else %}
-            <p class="rec-guest-note">Kamu bisa lihat pertanyaannya dulu, tapi butuh login buat nyimpen dan lihat hasil rekomendasi.</p>
+            <p class="rec-guest-note">You can look at the questions first, but you need to log in to save and see your matches.</p>
             {% endif %}
         </div>
     </div>

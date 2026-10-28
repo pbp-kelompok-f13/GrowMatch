@@ -42,11 +42,11 @@
         {% if user.is_authenticated %}
         <button type="submit" class="button--accent" data-submit-label="{{ submit_label }}">{{ submit_label }} <span aria-hidden="true">→</span></button>
         {% else %}
-        <a href="/login/?next={{ request.path|urlencode }}" class="button--accent">Login dulu buat dapet rekomendasi <span aria-hidden="true">→</span></a>
+        <a href="/login/?next={{ request.path|urlencode }}" class="button--accent">Log in to get your match <span aria-hidden="true">→</span></a>
         {% endif %}
         {% if cancel_url %}
-        <a href="{{ cancel_url }}" class="button--secondary">Batal</a>
+        <a href="{{ cancel_url }}" class="button--secondary">Cancel</a>
         {% endif %}
-        <small class="muted">Preferensi ini bisa kamu ubah lagi kapan aja.</small>
+        <small class="muted">You can change these answers anytime.</small>
     </div>
 </form>

@@ -8,13 +8,13 @@ class RecommendationRequestForm(forms.ModelForm):
         model = RecommendationRequest
         fields = ["location_name", "space_type", "watering_frequency", "experience_level"]
         labels = {
-            "location_name": "Kota tempat tinggal",
-            "space_type": "Tanamannya mau ditaruh di mana?",
-            "watering_frequency": "Seberapa sering kamu bisa menyiram?",
-            "experience_level": "Pengalaman merawat tanaman",
+            "location_name": "Your city",
+            "space_type": "Where will your plants live?",
+            "watering_frequency": "How often can you water them?",
+            "experience_level": "Plant care experience",
         }
         widgets = {
-            "location_name": forms.TextInput(attrs={"placeholder": "Contoh: Depok"}),
+            "location_name": forms.TextInput(attrs={"placeholder": "e.g. Depok"}),
             "space_type": forms.RadioSelect,
             "watering_frequency": forms.RadioSelect,
             "experience_level": forms.RadioSelect,
@@ -23,20 +23,20 @@ class RecommendationRequestForm(forms.ModelForm):
     # Judul, deskripsi, dan ikon untuk tiap pilihan di tampilan kartu
     OPTION_DETAILS = {
         "space_type": {
-            "indoor": ("Indoor", "Di dalam rumah, kamar, atau kantor", "home"),
-            "outdoor": ("Outdoor", "Teras, balkon, atau halaman", "sun"),
+            "indoor": ("Indoor", "Inside your home, bedroom, or office", "home"),
+            "outdoor": ("Outdoor", "Porch, balcony, or garden", "sun"),
         },
         "watering_frequency": {
-            "frequent": ("Sering", "Hampir setiap hari", "drop-3"),
-            "average": ("Sedang", "2-3 kali seminggu", "drop-2"),
-            "minimum": ("Jarang", "Seminggu sekali atau kurang", "drop-1"),
+            "frequent": ("Often", "Almost every day", "drop-3"),
+            "average": ("Sometimes", "2-3 times a week", "drop-2"),
+            "minimum": ("Rarely", "Once a week or less", "drop-1"),
         },
     }
     STEP_HELP = {
-        "location_name": "Kami pakai lokasi ini buat ambil suhu dan kelembapan dari Open-Meteo.",
-        "space_type": "Pilih tempat tanamanmu bakal tumbuh.",
-        "watering_frequency": "Jujur aja, nggak ada jawaban yang salah.",
-        "experience_level": "Biar tanaman yang muncul sesuai kemampuanmu.",
+        "location_name": "We use this to get temperature and humidity from Open-Meteo.",
+        "space_type": "Pick where your plants will grow.",
+        "watering_frequency": "Be honest, there is no wrong answer.",
+        "experience_level": "So we only suggest plants you can handle.",
     }
 
     def steps(self):
@@ -66,5 +66,5 @@ class RecommendationRequestForm(forms.ModelForm):
     def clean_location_name(self):
         location_name = self.cleaned_data["location_name"].strip()
         if len(location_name) < 2:
-            raise forms.ValidationError("Nama lokasi minimal 2 karakter.")
+            raise forms.ValidationError("Location must be at least 2 characters.")
         return location_name

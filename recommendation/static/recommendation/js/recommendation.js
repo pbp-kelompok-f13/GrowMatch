@@ -18,7 +18,7 @@ async function submitRecommendationForm(event) {
 
     const originalLabel = button.innerHTML;
     button.disabled = true;
-    button.textContent = "Mencocokkan...";
+    button.textContent = "Matching...";
     showErrors(form, {});
 
     try {
@@ -34,7 +34,7 @@ async function submitRecommendationForm(event) {
         }
         showErrors(form, data.errors || {});
     } catch (error) {
-        showErrors(form, { __all__: ["Gagal mengirim data. Cek koneksimu lalu coba lagi."] });
+        showErrors(form, { __all__: ["Could not send your answers. Check your connection and try again."] });
     }
 
     button.disabled = false;
@@ -44,7 +44,7 @@ async function submitRecommendationForm(event) {
 async function submitDelete(event) {
     event.preventDefault();
     const form = event.currentTarget;
-    if (!window.confirm("Hapus rekomendasi ini?")) return;
+    if (!window.confirm("Delete this recommendation?")) return;
 
     try {
         const response = await fetch(form.action, {
@@ -54,7 +54,7 @@ async function submitDelete(event) {
         });
         if (!response.ok) throw new Error(response.statusText);
     } catch (error) {
-        window.alert("Gagal menghapus. Coba lagi.");
+        window.alert("Could not delete. Please try again.");
         return;
     }
 
@@ -124,7 +124,7 @@ async function filterPlants(form) {
         empty.hidden = plants.length > 0;
         window.history.replaceState(null, "", `?${params}`);
     } catch (error) {
-        window.alert("Gagal memuat tanaman. Coba lagi.");
+        window.alert("Could not load plants. Please try again.");
     }
     list.removeAttribute("aria-busy");
 }

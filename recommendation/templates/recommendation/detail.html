@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}GrowMatch - Hasil Rekomendasi{% endblock %}
+{% block title %}GrowMatch - Your Match{% endblock %}
 
 {% block style %}
     <link rel="stylesheet" href="{% static 'recommendation/css/recommendation.css' %}">
@@ -11,55 +11,55 @@
 {% block content %}
 <section class="container rec-page">
     <div class="eyebrow"><span class="small-line"></span>Your Match</div>
-    <h1>Untuk <i>{{ recommendation.location_name }}</i></h1>
+    <h1>For <i>{{ recommendation.location_name }}</i></h1>
 
     {% include 'recommendation/_messages.html' %}
 
     <div class="grid">
         <div class="card">
-            <h3>Preferensimu</h3>
+            <h3>Your preferences</h3>
             <dl class="rec-summary">
-                <dt>Ruang</dt><dd>{{ recommendation.get_space_type_display }}</dd>
-                <dt>Penyiraman</dt><dd>{{ recommendation.get_watering_frequency_display }}</dd>
-                <dt>Pengalaman</dt><dd>{{ recommendation.get_experience_level_display }}</dd>
+                <dt>Space</dt><dd>{{ recommendation.get_space_type_display }}</dd>
+                <dt>Watering</dt><dd>{{ recommendation.get_watering_frequency_display }}</dd>
+                <dt>Experience</dt><dd>{{ recommendation.get_experience_level_display }}</dd>
             </dl>
         </div>
         <div class="card">
-            <h3>Kondisi lingkungan</h3>
+            <h3>Local conditions</h3>
             {% if recommendation.has_weather %}
             <dl class="rec-summary">
-                <dt>Suhu</dt><dd>{{ recommendation.temperature }}°C</dd>
-                <dt>Kelembapan</dt><dd>{{ recommendation.humidity }}%</dd>
+                <dt>Temperature</dt><dd>{{ recommendation.temperature }}°C</dd>
+                <dt>Humidity</dt><dd>{{ recommendation.humidity }}%</dd>
             </dl>
-            <small class="muted">Sumber: Open-Meteo, diperbarui {{ recommendation.updated_at|date:"d M Y H:i" }}</small>
+            <small class="muted">Source: Open-Meteo, updated {{ recommendation.updated_at|date:"d M Y H:i" }}</small>
             {% else %}
-            <p class="muted">Data cuaca belum tersedia. Coba edit dan simpan ulang buat ambil data terbaru.</p>
+            <p class="muted">Weather data is not available yet. Edit and save again to fetch the latest data.</p>
             {% endif %}
         </div>
     </div>
 
-    <h2>Tanaman yang <i>cocok</i></h2>
+    <h2>Plants that <i>match</i></h2>
 
     <form method="get" class="rec-plant-filter" data-plant-filter data-json-url="{% url 'recommendation:plants_json' recommendation.pk %}">
         <div>
-            <label for="filter-sunlight">Cahaya</label>
+            <label for="filter-sunlight">Sunlight</label>
             <select name="sunlight" id="filter-sunlight">
-                <option value="">Semua</option>
+                <option value="">All</option>
                 {% for value, label in sunlight_choices %}
                 <option value="{{ value }}" {% if filters.sunlight == value %}selected{% endif %}>{{ label }}</option>
                 {% endfor %}
             </select>
         </div>
         <div>
-            <label for="filter-difficulty">Perawatan</label>
+            <label for="filter-difficulty">Care level</label>
             <select name="difficulty" id="filter-difficulty">
-                <option value="">Semua</option>
+                <option value="">All</option>
                 {% for value, label in difficulty_choices %}
                 <option value="{{ value }}" {% if filters.difficulty == value %}selected{% endif %}>{{ label }}</option>
                 {% endfor %}
             </select>
         </div>
-        <noscript><button type="submit" class="button">Terapkan</button></noscript>
+        <noscript><button type="submit" class="button">Apply</button></noscript>
     </form>
 
     <div class="grid" data-plant-list>
@@ -79,12 +79,12 @@
     </div>
 
     <p class="card rec-empty" data-plant-empty {% if matches %}hidden{% endif %}>
-        Belum ada tanaman yang cocok{% if filters.sunlight or filters.difficulty %} sama filter ini{% endif %}.
+        No matching plants yet{% if filters.sunlight or filters.difficulty %} for these filters{% endif %}.
     </p>
 
     <div class="rec-actions">
-        <a href="{% url 'recommendation:edit' recommendation.pk %}" class="button">Edit preferensi</a>
-        <a href="{% url 'recommendation:history' %}" class="button--secondary">Riwayat</a>
+        <a href="{% url 'recommendation:edit' recommendation.pk %}" class="button">Edit preferences</a>
+        <a href="{% url 'recommendation:history' %}" class="button--secondary">History</a>
         {% include 'recommendation/_delete_form.html' %}
     </div>
 </section>

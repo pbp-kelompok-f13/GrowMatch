@@ -18,12 +18,12 @@ EXPERIENCE_POINTS = {
 SUNLIGHT_FILTERS = {
     "full_sun": ("Full sun", "full sun"),
     "part_shade": ("Part shade", "part"),
-    "shade": ("Teduh", "shade"),
+    "shade": ("Shade", "shade"),
 }
 DIFFICULTY_FILTERS = {
-    "low": ("Mudah", ("low",)),
-    "medium": ("Sedang", ("medium", "moderate")),
-    "high": ("Sulit", ("high",)),
+    "low": ("Easy", ("low",)),
+    "medium": ("Medium", ("medium", "moderate")),
+    "high": ("Hard", ("high",)),
 }
 
 HOT_TEMPERATURE = 24
@@ -39,17 +39,17 @@ def watering_points(recommendation, plant):
         return 1.5, None
     diff = abs(WATERING_LEVEL[recommendation.watering_frequency] - plant_level)
     points = {0: 3, 1: 1.5}.get(diff, 0)
-    reason = "Kebutuhan airnya pas sama jadwal siram kamu" if diff == 0 else None
+    reason = "Fits your watering schedule" if diff == 0 else None
     return points, reason
 
 
 def space_points(recommendation, plant):
     if recommendation.space_type == "indoor":
         points = {True: 3, None: 1, False: 0}[plant.indoor]
-        reason = "Bisa tumbuh di dalam ruangan" if plant.indoor else None
+        reason = "Grows well indoors" if plant.indoor else None
     else:
         points = {False: 3, None: 2, True: 1}[plant.indoor]
-        reason = "Cocok ditanam di luar ruangan" if plant.indoor is False else None
+        reason = "Thrives outdoors" if plant.indoor is False else None
     return points, reason
 
 
@@ -58,9 +58,9 @@ def experience_points(recommendation, plant):
     points = EXPERIENCE_POINTS[recommendation.experience_level].get(difficulty, 1.5)
     reason = None
     if difficulty == "low":
-        reason = "Perawatannya mudah"
+        reason = "Easy to care for"
     elif points == 3 and difficulty:
-        reason = "Sesuai sama pengalaman kamu"
+        reason = "Matches your experience"
     return points, reason
 
 
@@ -68,11 +68,11 @@ def weather_points(recommendation, plant):
     sunlight = normalize(plant.sunlight)
     if recommendation.space_type == "indoor":
         if "shade" in sunlight or "filtered" in sunlight:
-            return 1, "Tahan cahaya redup dalam ruangan"
+            return 1, "Tolerates low indoor light"
         return 0, None
     if recommendation.temperature is not None and recommendation.temperature >= HOT_TEMPERATURE:
         if "full sun" in sunlight:
-            return 1, f"Kuat di cuaca panas ({recommendation.temperature:g}°C)"
+            return 1, f"Handles hot weather ({recommendation.temperature:g}°C)"
     return 0, None
 
 
