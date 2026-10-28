@@ -21,12 +21,12 @@ def add_plant_review(request, plant_id):
             review.user = request.user
             review.save()
 
-            return redirect("plant_review", plant_id=plant.pk)
+            return redirect("main:plant_review", plant_id=plant.pk)
 
     else:
         form = PlantReviewForm()
 
-    return render(request, "plants/review_form.html", {
+    return render(request, "review_form.html", {
         "form": form,
         "plant": plant
     })
@@ -47,16 +47,17 @@ def edit_plant_review(request, review_id):
             form.save()
 
             return redirect(
-                "plant_review",
+                "main:plant_review",
                 plant_id=review.plant_id
             )
 
     else:
         form = PlantReviewForm(instance=review)
 
-    return render(request, "plants/edit_review.html", {
+    return render(request, "review_form.html", {
         "form": form,
-        "review": review
+        "review": review,
+        "plant": review.plant,
     })
 
 
@@ -72,5 +73,5 @@ def delete_plant_review(request, review_id):
     plant_id = review.plant_id
     review.delete()
 
-    return redirect("plant_review", plant_id=plant_id)
+    return redirect("main:plant_review", plant_id=plant_id)
 
