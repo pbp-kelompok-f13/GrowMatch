@@ -23,6 +23,9 @@ class Command(BaseCommand):
             raise CommandError("Free Plan hanya mendukung detail species ID 1-3000")
 
         for plant_id in ids:
+            if Plant.objects.filter(perenual_id=plant_id).exists():
+                self.stdout.write(f"Skip ID {plant_id}: sudah ada di database")
+                continue
             try:
                 response = requests.get(
                     f"https://perenual.com/api/v2/species/details/{plant_id}",
@@ -78,7 +81,10 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS(f"Imported: {name} (ID {plant_id})"))
 
             except requests.RequestException as error:
-                self.stdout.write(self.style.ERROR(f"Failed ID {plant_id}: {error}"))
-                if getattr(error.response, "status_code", None) == 429:
-                    self.stdout.write("API limit reached. Stopping import.")
+                status = getattr(error.response, "status_code", None)
+                message = f"HTTP {status}" if status is not None else type(error).__name__
+                self.stderr.write(f"Gagal ID {plant_id}: {message}")
+
+                if status in (401, 402, 403, 429):
+                    self.stderr.write("Import dihentikan. Periksa akses paket atau kuota sebelum melanjutkan.")
                     break
