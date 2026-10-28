@@ -16,6 +16,7 @@ async function submitRecommendationForm(event) {
     const button = form.querySelector("button[type=submit]");
     if (!button) return;
 
+    const originalLabel = button.innerHTML;
     button.disabled = true;
     button.textContent = "Mencocokkan...";
     showErrors(form, {});
@@ -37,7 +38,7 @@ async function submitRecommendationForm(event) {
     }
 
     button.disabled = false;
-    button.textContent = button.dataset.submitLabel;
+    button.innerHTML = originalLabel;
 }
 
 async function submitDelete(event) {
