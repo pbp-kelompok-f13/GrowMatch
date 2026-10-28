@@ -1,20 +1,20 @@
 /* Google Icons Settings */
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24;
-  font-size: 2em;
-  color: var(--green);
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    font-size: 2em;
+    color: var(--green);
 }
 
-.homepage-screen{
+.homepage-screen {
     display: flex;
     flex-direction: row;
 }
 
-.homepage-text{
+.homepage-text {
     flex: 1;
     margin: 0 12vw 5rem 0;
 }
@@ -23,12 +23,15 @@
     margin: 2rem 0;
 }
 
-h1 i, h2 i {
+h1 i,
+h2 i {
     color: var(--accent-base);
 }
-.homepage-text > * {
+
+.homepage-text>* {
     margin: 1rem 0;
 }
+
 .homepage-text p {
     color: var(--primary-50);
 }
@@ -42,7 +45,7 @@ h1 i, h2 i {
     align-items: center;
 }
 
-.homepage-additional p{
+.homepage-additional p {
     font-size: 0.9em;
     margin: auto;
     margin-left: 0;
@@ -55,10 +58,11 @@ h1 i, h2 i {
 }
 
 /* Thumbnail */
-.homepage-thumbnail{
+.homepage-thumbnail {
     flex: 1.2;
     margin: 0 auto;
 }
+
 .homepage-thumbnail img {
     object-fit: cover;
     width: 70vw;
@@ -66,28 +70,30 @@ h1 i, h2 i {
     border-radius: 15rem 15rem 2rem 2rem;
 }
 
-.homepage-additional 
-.material-symbols-outlined {
+.homepage-additional .material-symbols-outlined {
     background-color: var(--lime);
     border-radius: var(--radius);
     padding: 0.1em;
     margin: auto 0;
 }
 
-@media (max-width: 800px){
-    .homepage-screen{
+@media (max-width: 800px) {
+    .homepage-screen {
         flex-direction: column;
         margin: 1rem;
     }
-    .homepage-text{
+
+    .homepage-text {
         margin: 2rem 0 5rem 0;
     }
+
     .homepage-thumbnail img {
         width: 90vw;
         height: 60vh;
         margin-bottom: 2rem;
     }
-    .homepage-divider p:nth-child(1){
+
+    .homepage-divider p:nth-child(1) {
         display: none;
     }
 }
@@ -104,12 +110,13 @@ h1 i, h2 i {
     height: 10vh;
     width: 100vw;
 }
+
 .homepage-divider p {
     margin: auto;
     color: var(--secondary-base);
 }
 
-.match-info h2{
+.match-info h2 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -117,7 +124,7 @@ h1 i, h2 i {
     margin: 0 0 3rem 0;
 }
 
-.step-list{
+.step-list {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -135,28 +142,32 @@ h1 i, h2 i {
     color: var(--secondary-50);
     font-weight: normal;
 }
+
 .step-name {
     font-family: var(--font-subheading);
     color: var(--secondary-base);
     font-size: 1.5em;
     font-weight: bold;
 }
+
 .step-description {
     color: var(--secondary-50)
 }
 
-@media (max-width: 800px){
-    .step-list{
+@media (max-width: 800px) {
+    .step-list {
         flex-direction: column;
     }
 }
 
-.example-plants{
+.example-plants {
     background-color: var(--secondary-20);
 }
+
 .example-plants h2 {
     margin: 2rem 0 3rem 0;
 }
+
 .plant-list {
     display: flex;
     flex-direction: row;
@@ -165,6 +176,7 @@ h1 i, h2 i {
     align-items: center;
     gap: 3rem;
 }
+
 .plant {
     width: fit-content;
     position: relative;
@@ -178,12 +190,12 @@ h1 i, h2 i {
     border-radius: var(--radius);
 
     background: #06351B;
-    background: linear-gradient(0deg, 
-    rgba(6, 53, 27, 0.7) 0%, 
-    rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(0deg,
+            rgba(6, 53, 27, 0.7) 0%,
+            rgba(0, 0, 0, 0) 100%);
 }
 
-.plant img{
+.plant img {
     border-radius: var(--radius);
     height: 70vh;
     width: 30vw;
@@ -203,6 +215,7 @@ h1 i, h2 i {
     font-family: var(--font-subheading);
     font-size: 2.5em;
 }
+
 .plant p {
     color: var(--primary-10);
     font-size: 1.5em;
@@ -227,6 +240,7 @@ h1 i, h2 i {
     margin-bottom: 3em;
     align-items: center;
 }
+
 .services .header h2 {
     flex: 3;
 }
@@ -237,11 +251,12 @@ h1 i, h2 i {
 }
 
 
-@media (max-width: 800px){
+@media (max-width: 800px) {
     .plant-list {
         flex-direction: column;
 
     }
+
     .plant img {
         width: 70vw;
     }
@@ -255,6 +270,7 @@ h1 i, h2 i {
         width: 100%;
         max-width: 28rem;
     }
+
     .services .header {
         flex-direction: column;
     }
@@ -420,5 +436,3 @@ h1 i, h2 i {
         font-size: 1rem;
     }
 }
-
-
