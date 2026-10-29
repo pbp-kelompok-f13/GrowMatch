@@ -1,9 +1,11 @@
+from datetime import timedelta
 from unittest.mock import Mock, patch
 
 import requests
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
+from django.utils import timezone
 
 from plant_catalog.models import Plant
 from recommendation import scoring, weather
@@ -65,6 +67,8 @@ class RecommendationModelTest(TestCase):
     def test_ordering_newest_first(self):
         old = make_recommendation(self.user, location_name="Old")
         new = make_recommendation(self.user, location_name="New")
+        # Jam Windows kadang nggak cukup presisi, jadi selisih waktunya dibikin jelas
+        RecommendationRequest.objects.filter(pk=old.pk).update(created_at=timezone.now() - timedelta(minutes=1))
         self.assertEqual(list(RecommendationRequest.objects.all()), [new, old])
 
 
