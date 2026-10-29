@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Plant Catalog | GrowMatch{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'plant_catalog/css/catalog.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="pc-page">
+    <div class="pc-shell">
+
+        <section class="pc-hero">
+            <p class="pc-eyebrow"><span></span> Plant Library</p>
+            <h1 class="pc-title">Grow what <em>fits your life.</em></h1>
+            <p class="pc-description">Match your space, light, and care routine with something worth growing.</p>
+
+            <a href="#" class="pc-add-plant">
+                <span class="material-symbols-outlined">add</span>
+                Add plant
+            </a>
+        </section>
+
+        <form method="GET" class="pc-toolbar">
+            <div class="pc-search-row">
+                <div class="pc-search-box">
+                    <span class="material-symbols-outlined">search</span>
+                    <input type="search" name="search" value="{{ search }}" placeholder="Search plants by name..." class="pc-search-input">
+                </div>
+
+                <button type="button" class="pc-filter-toggle" id="filterToggle" aria-expanded="false">
+                    <span class="material-symbols-outlined">tune</span>
+                    <span id="filterToggleText">Filters</span>
+                </button>
+            </div>
+
+            <div class="pc-filter-panel" id="filterPanel" hidden>
+                <div class="pc-filter-field">
+                    <label for="sunlight">Light</label>
+                    <select id="sunlight" name="sunlight">
+                        <option value="">All light levels</option>
+                        {% for option in sunlight_options %}
+                            <option value="{{ option }}" {% if sunlight == option %}selected{% endif %}>{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="pc-filter-field">
+                    <label for="watering">Watering</label>
+                    <select id="watering" name="watering">
+                        <option value="">All watering needs</option>
+                        {% for option in watering_options %}
+                            <option value="{{ option }}" {% if watering == option %}selected{% endif %}>{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="pc-filter-field">
+                    <label for="difficulty">Difficulty</label>
+                    <select id="difficulty" name="difficulty">
+                        <option value="">All difficulty levels</option>
+                        {% for option in difficulty_options %}
+                            <option value="{{ option }}" {% if difficulty == option %}selected{% endif %}>{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="pc-filter-actions">
+                    <a href="{% url 'plant_catalog:catalog' %}" class="pc-reset">Reset</a>
+                    <button type="submit" class="pc-apply">Apply</button>
+                </div>
+            </div>
+        </form>
+
+        <section class="pc-results">
+            <p class="pc-results-heading"><strong>{{ plants|length }}</strong> plant{{ plants|length|pluralize }} to explore</p>
+
+            <div class="pc-grid">
+                {% for plant in plants %}
+                    <article class="pc-card">
+                        <a href="{% url 'plant_catalog:detail' plant.id %}" class="pc-card-image">
+                            {% if plant.image_url %}
+                                <img src="{{ plant.image_url }}" alt="{{ plant.name }}">
+                            {% else %}
+                                <div class="pc-placeholder">
+                                    <span class="material-symbols-outlined">eco</span>
+                                    <small>Image Unavailable</small>
+                                </div>
+                            {% endif %}
+                        </a>
+
+                        <div class="pc-card-body">
+                            <h2>{{ plant.name }}</h2>
+
+                            {% if plant.scientific_name %}
+                                <p class="pc-scientific">{{ plant.scientific_name }}</p>
+                            {% endif %}
+
+                            {% if plant.description %}
+                                <p class="pc-card-description">{{ plant.description|truncatewords:12 }}</p>
+                            {% endif %}
+
+                            <div class="pc-meta">
+                                {% if plant.sunlight %}
+                                    <span><span class="material-symbols-outlined">sunny</span>{{ plant.sunlight }}</span>
+                                {% endif %}
+
+                                {% if plant.watering %}
+                                    <span><span class="material-symbols-outlined">water_drop</span>{{ plant.watering }}</span>
+                                {% endif %}
+
+                                {% if plant.difficulty %}
+                                    <span><span class="material-symbols-outlined">eco</span>{{ plant.difficulty }}</span>
+                                {% endif %}
+
+                                {% if plant.indoor is not None %}
+                                    <span>
+                                        <span class="material-symbols-outlined">home</span>
+                                        {% if plant.indoor %}Indoor{% else %}Outdoor{% endif %}
+                                    </span>
+                                {% endif %}
+                            </div>
+
+                            <a href="{% url 'plant_catalog:detail' plant.id %}" class="pc-view-link">
+                                Meet this plant
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </a>
+                        </div>
+                    </article>
+
+                {% empty %}
+                    <div class="pc-empty">
+                        <span class="material-symbols-outlined">search_off</span>
+                        <h2>No plants found.</h2>
+                        <a href="{% url 'plant_catalog:catalog' %}">Clear filters</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<script>
+    const filterToggle = document.getElementById("filterToggle");
+    const filterToggleText = document.getElementById("filterToggleText");
+    const filterPanel = document.getElementById("filterPanel");
+
+    function setFilterOpen(open) {
+        if (open) {
+            filterPanel.removeAttribute("hidden");
+            filterToggleText.textContent = "Hide filters";
+            filterToggle.setAttribute("aria-expanded", "true");
+        } else {
+            filterPanel.setAttribute("hidden", "");
+            filterToggleText.textContent = "Filters";
+            filterToggle.setAttribute("aria-expanded", "false");
+        }
+    }
+
+    filterToggle.addEventListener("click", () => setFilterOpen(filterPanel.hasAttribute("hidden")));
+
+    const activeFilter = "{{ sunlight|escapejs }}" || "{{ watering|escapejs }}" || "{{ difficulty|escapejs }}";
+    if (activeFilter) setFilterOpen(true);
+</script>
+{% endblock %}

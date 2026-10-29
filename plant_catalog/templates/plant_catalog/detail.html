@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ plant.name }} | GrowMatch{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'plant_catalog/css/catalog.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="pc-detail-page">
+    <div class="pc-detail-shell">
+
+        <a href="{% url 'plant_catalog:catalog' %}" class="pc-back">
+            <span class="material-symbols-outlined">arrow_back</span>
+            Back to catalog
+        </a>
+
+        <section class="pc-detail-hero">
+            <div class="pc-detail-image-wrap">
+                {% if plant.image_url %}
+                    <img src="{{ plant.image_url }}" alt="{{ plant.name }}" class="pc-detail-image">
+                {% else %}
+                    <div class="pc-detail-placeholder">
+                        <span class="material-symbols-outlined">eco</span>
+                        <small>Image Unavailable</small>
+                    </div>
+                {% endif %}
+
+                {% if plant.image_attribution %}
+                    <small class="pc-attribution">{{ plant.image_attribution }}</small>
+                {% endif %}
+            </div>
+
+            <div class="pc-detail-info">
+                <p class="pc-eyebrow"><span></span> Plant profile</p>
+                <h1 class="pc-detail-title">{{ plant.name }}</h1>
+
+                {% if plant.scientific_name %}
+                    <p class="pc-detail-scientific">{{ plant.scientific_name }}</p>
+                {% endif %}
+
+                {% if plant.description %}
+                    <p class="pc-detail-description">{{ plant.description }}</p>
+                {% endif %}
+
+                <div class="pc-facts">
+                    {% if plant.sunlight %}
+                        <div class="pc-fact">
+                            <span class="material-symbols-outlined">sunny</span>
+                            <div>
+                                <small>Light</small>
+                                <strong>{{ plant.sunlight }}</strong>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if plant.watering %}
+                        <div class="pc-fact">
+                            <span class="material-symbols-outlined">water_drop</span>
+                            <div>
+                                <small>Watering</small>
+                                <strong>{{ plant.watering }}</strong>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if plant.difficulty %}
+                        <div class="pc-fact">
+                            <span class="material-symbols-outlined">eco</span>
+                            <div>
+                                <small>Difficulty</small>
+                                <strong>{{ plant.difficulty }}</strong>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if plant.indoor is not None %}
+                        <div class="pc-fact">
+                            <span class="material-symbols-outlined">home</span>
+                            <div>
+                                <small>Placement</small>
+                                <strong>{% if plant.indoor %}Indoor{% else %}Outdoor{% endif %}</strong>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <a href="#" class="pc-garden-button">
+                    <span class="material-symbols-outlined">add</span>
+                    Add to My Garden
+                </a>
+            </div>
+        </section>
+
+        <section class="pc-care">
+            <div class="pc-care-heading">
+                <p class="pc-eyebrow"><span></span> Care guide</p>
+                <h2>Keep it thriving</h2>
+                <p>Simple details for a confident care routine.</p>
+            </div>
+
+            <div class="pc-care-grid">
+                {% if plant.soil %}
+                    <div class="pc-care-item"><small>Soil</small><p>{{ plant.soil|join:", " }}</p></div>
+                {% endif %}
+
+                {% if plant.watering_interval %}
+                    <div class="pc-care-item"><small>Watering interval</small><p>{{ plant.watering_interval }}</p></div>
+                {% endif %}
+
+                {% if plant.propagation %}
+                    <div class="pc-care-item"><small>Propagation</small><p>{{ plant.propagation|join:", " }}</p></div>
+                {% endif %}
+
+                {% if plant.pruning_month %}
+                    <div class="pc-care-item"><small>Pruning months</small><p>{{ plant.pruning_month|join:", " }}</p></div>
+                {% endif %}
+
+                {% if plant.growth_rate %}
+                    <div class="pc-care-item"><small>Growth rate</small><p>{{ plant.growth_rate }}</p></div>
+                {% endif %}
+
+                {% if plant.maintenance %}
+                    <div class="pc-care-item"><small>Maintenance</small><p>{{ plant.maintenance }}</p></div>
+                {% endif %}
+            </div>
+        </section>
+
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,567 @@
+.pc-page,
+.pc-detail-page {
+    min-height: 100vh;
+    background: var(--paper);
+    color: var(--ink);
+}
+
+.pc-shell,
+.pc-detail-shell {
+    width: min(100% - 2rem, 74rem);
+    margin-inline: auto;
+}
+
+/* HERO */
+
+.pc-hero {
+    position: relative;
+    max-width: 42rem;
+    padding: 4rem 0 2.5rem;
+}
+
+.pc-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0 0 0.8rem;
+    color: var(--secondary-base);
+    font-family: var(--font-subheading);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.pc-eyebrow > span {
+    width: 1.4rem;
+    height: 2px;
+    background: var(--accent-base);
+}
+
+.pc-title {
+    margin: 0;
+    color: var(--primary-base);
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 7vw, 5.25rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+}
+
+.pc-title em {
+    display: block;
+    color: var(--accent-base);
+    font-weight: 400;
+}
+
+.pc-description {
+    max-width: 30rem;
+    margin: 1rem 0 1.5rem;
+    color: var(--primary-50);
+    line-height: 1.6;
+}
+
+.pc-add-plant {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.75rem 1.1rem;
+    border-radius: 0.8rem;
+    background: var(--accent-base);
+    color: white;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 0.45rem 1rem rgb(255 14 134 / 16%);
+}
+
+/* TOOLBAR */
+
+.pc-toolbar {
+    position: relative;
+    z-index: 2;
+    padding: 0.75rem;
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--accent-base);
+    border-radius: 1.15rem;
+    background: var(--paper);
+    box-shadow: var(--shadow);
+}
+
+.pc-search-row {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.pc-search-box {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 0.7rem;
+    min-height: 3.1rem;
+    padding: 0 1rem;
+    border: 1px solid var(--line);
+    border-radius: 0.85rem;
+}
+
+.pc-search-box > .material-symbols-outlined {
+    color: var(--primary-50);
+    font-size: 1.1rem;
+}
+
+.pc-search-input {
+    width: 100%;
+    min-height: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+}
+
+.pc-search-input:focus {
+    border: 0;
+    outline: 0;
+}
+
+.pc-filter-toggle,
+.pc-apply,
+.pc-garden-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    min-height: 3.1rem;
+    padding: 0.8rem 1.25rem;
+    border: 0;
+    border-radius: 0.8rem;
+    background: var(--accent-base);
+    color: white;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.pc-filter-panel {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+    gap: 0.85rem;
+    align-items: end;
+    margin-top: 0.8rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--line);
+}
+
+.pc-filter-field label {
+    margin-bottom: 0.3rem;
+    font-size: 0.72rem;
+}
+
+.pc-filter-field select {
+    min-height: 2.55rem;
+    padding: 0.55rem 0.7rem;
+    border-radius: 0.65rem;
+    font-size: 0.8rem;
+}
+
+.pc-filter-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.pc-reset {
+    color: var(--accent-base);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* RESULTS */
+
+.pc-results {
+    padding: 2rem 0 5rem;
+}
+
+.pc-results-heading {
+    margin: 0 0 1rem;
+    color: var(--primary-50);
+    font-size: 0.9rem;
+}
+
+.pc-results-heading strong {
+    color: var(--primary-base);
+    font-size: 1.2rem;
+}
+
+/* GRID */
+
+.pc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.2rem;
+}
+
+/* CARD */
+
+.pc-card {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 1.15rem;
+    background: var(--paper);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.pc-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
+
+.pc-card-image {
+    display: block;
+    width: 100%;
+    height: 17rem;
+    overflow: hidden;
+    background: var(--secondary-20);
+}
+
+.pc-card-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pc-placeholder,
+.pc-detail-placeholder {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    background: var(--secondary-20);
+    color: var(--primary-50);
+}
+
+.pc-card-body {
+    padding: 1rem;
+}
+
+.pc-card-body h2 {
+    margin: 0;
+    color: var(--primary-base);
+    font-family: var(--font-heading);
+    font-size: 1.45rem;
+    font-weight: 400;
+    line-height: 1.15;
+}
+
+.pc-scientific {
+    margin: 0.2rem 0 0.8rem;
+    color: var(--primary-50);
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.pc-card-description {
+    margin: 0 0 0.9rem;
+    color: var(--primary-50);
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+.pc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    padding: 0.8rem 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.pc-meta > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--primary-50);
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.pc-meta .material-symbols-outlined {
+    font-size: 0.95rem;
+}
+
+.pc-view-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.85rem;
+    color: var(--accent-base);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.pc-view-link .material-symbols-outlined {
+    font-size: 0.9rem;
+}
+
+/* DETAIL */
+
+.pc-detail-shell {
+    padding: 2.5rem 0 5rem;
+}
+
+.pc-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-bottom: 1.8rem;
+    color: var(--primary-base);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.pc-detail-hero {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.pc-detail-image {
+    display: block;
+    width: 100%;
+    height: 34rem;
+    object-fit: cover;
+    border-radius: 1.5rem 1.5rem 4rem 1.5rem;
+}
+
+.pc-detail-placeholder {
+    height: 34rem;
+    border-radius: 1.5rem 1.5rem 4rem 1.5rem;
+}
+
+.pc-attribution {
+    display: block;
+    margin-top: 0.45rem;
+    color: var(--primary-40);
+}
+
+.pc-detail-title {
+    margin: 0;
+    color: var(--primary-base);
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 6vw, 4.6rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.pc-detail-scientific {
+    margin: 0.5rem 0 1.4rem;
+    color: var(--primary-50);
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-style: italic;
+}
+
+.pc-detail-description {
+    max-width: 35rem;
+    color: var(--primary-50);
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+/* FACTS */
+
+.pc-facts {
+    margin: 1.8rem 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.pc-fact {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+}
+
+.pc-fact + .pc-fact {
+    border-top: 1px solid var(--line);
+}
+
+.pc-fact > .material-symbols-outlined {
+    display: grid;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    border-radius: 0.55rem;
+    background: var(--secondary-20);
+    color: var(--primary-base);
+}
+
+.pc-fact small,
+.pc-fact strong {
+    display: block;
+}
+
+.pc-fact small {
+    color: var(--primary-50);
+    font-size: 0.68rem;
+}
+
+.pc-fact strong {
+    font-size: 0.8rem;
+}
+
+.pc-garden-button {
+    width: 100%;
+}
+
+/* CARE */
+
+.pc-care {
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding: 2.6rem;
+    border-radius: 1.3rem;
+    background: var(--primary-base);
+    color: var(--paper);
+}
+
+.pc-care-heading h2 {
+    margin: 0 0 0.5rem;
+    color: var(--paper);
+    font-family: var(--font-heading);
+    font-size: 2.7rem;
+    font-weight: 400;
+}
+
+.pc-care-heading > p:last-child {
+    margin: 0;
+    color: var(--secondary-30);
+    font-size: 0.78rem;
+}
+
+.pc-care .pc-eyebrow {
+    color: var(--secondary-30);
+}
+
+.pc-care-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pc-care-item {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid rgb(255 255 255 / 14%);
+}
+
+.pc-care-item small {
+    color: var(--secondary-30);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.pc-care-item p {
+    margin: 0.25rem 0 0;
+    color: var(--paper);
+    font-size: 0.78rem;
+}
+
+/* EMPTY */
+
+.pc-empty {
+    grid-column: 1 / -1;
+    padding: 4rem 1rem;
+    text-align: center;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .pc-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pc-filter-panel {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pc-detail-hero,
+    .pc-care {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .pc-shell,
+    .pc-detail-shell {
+        width: min(100% - 1.5rem, 74rem);
+    }
+
+    .pc-hero {
+        padding-top: 2.5rem;
+    }
+
+    .pc-title {
+        font-size: 3.4rem;
+    }
+
+    .pc-search-row {
+        flex-direction: column;
+    }
+
+    .pc-filter-toggle {
+        width: 100%;
+    }
+
+    .pc-filter-panel,
+    .pc-grid,
+    .pc-care-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pc-filter-actions {
+        justify-content: space-between;
+    }
+
+    .pc-card-image {
+        height: 20rem;
+    }
+
+    .pc-detail-image,
+    .pc-detail-placeholder {
+        height: 25rem;
+    }
+
+    .pc-detail-hero {
+        gap: 2rem;
+    }
+
+    .pc-detail-title {
+        font-size: 3.3rem;
+    }
+
+    .pc-detail-description {
+        font-size: 0.9rem;
+    }
+
+    .pc-care {
+        padding: 1.5rem;
+    }
+
+    .pc-care-heading h2 {
+        font-size: 2.5rem;
+    }
+}
