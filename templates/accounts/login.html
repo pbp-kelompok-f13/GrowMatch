@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Login | GrowMatch{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<section class="auth-page">
+    <aside class="auth-intro">
+        <div class="auth-intro-content">
+            <p class="auth-eyebrow">URBAN FARMING &amp; BIODIVERSITY</p>
+            <h1>Welcome <em>back.</em></h1>
+            <p class="auth-description">
+                Find the right plants for your space and continue your growing journey.
+            </p>
+            <div class="auth-tagline">
+                <span class="material-symbols-outlined" aria-hidden="true">eco</span>
+                <span>Grow smarter. Live greener.</span>
+            </div>
+        </div>
+        <div class="auth-leaf-decoration" aria-hidden="true">
+            <div class="leaf-circle leaf-circle-one"></div>
+            <div class="leaf-circle leaf-circle-two"></div>
+            <span class="material-symbols-outlined leaf-icon">eco</span>
+        </div>
+    </aside>
+
+    <div class="auth-form-section">
+        <div class="auth-card">
+            <h2>Login to <em>GrowMatch</em></h2>
+            <p class="auth-subtitle">
+                Welcome back! Enter your account details below.
+            </p>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="auth-message {{ message.tags }}" role="alert">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="form-field">
+                    <label for="username">Username</label>
+                    <input
+                        type="text"
+                        name="username"
+                        id="username"
+                        autocomplete="username"
+                        autocapitalize="none"
+                        spellcheck="false"
+                        autofocus
+                        required
+                    >
+                </div>
+
+                <div class="form-field">
+                    <label for="password">Password</label>
+                    <div class="password-wrapper">
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            autocomplete="current-password"
+                            required
+                        >
+                        <button type="button"
+                                id="password-toggle"
+                                class="password-toggle"
+                                aria-label="Show password"
+                                aria-pressed="false">
+                            <span class="material-symbols-outlined" aria-hidden="true">visibility</span>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="button auth-submit">
+                    Login
+                </button>
+            </form>
+
+            <p class="auth-footer">
+                Don't have an account?
+                <a href="{% url 'accounts:register' %}">Create account</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<script>
+(function () {
+    var pw = document.getElementById("password");
+    var toggle = document.getElementById("password-toggle");
+    if (!pw || !toggle) { return; }
+
+    toggle.addEventListener("click", function () {
+        var show = pw.type === "password";
+        pw.type = show ? "text" : "password";
+        toggle.setAttribute("aria-pressed", show ? "true" : "false");
+        toggle.setAttribute("aria-label", show ? "Hide password" : "Show password");
+        toggle.querySelector(".material-symbols-outlined").textContent =
+            show ? "visibility_off" : "visibility";
+    });
+})();
+</script>
+{% endblock %}

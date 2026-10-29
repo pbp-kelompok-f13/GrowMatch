@@ -1,16 +1,15 @@
 .auth-page {
     --field-border: #8fb09b;
+    --header-offset: 40px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: stretch;
-    min-height: calc(100vh - 40px);
+    min-height: calc(100vh - var(--header-offset));
     background: var(--paper);
 }
 
-/* Reset margin/padding atas dari style global supaya tidak ada ruang kosong */
-.auth-page h1,
-.auth-page h2,
-.auth-page p {
+
+.auth-page :where(h1, h2, p) {
     margin-top: 0;
     padding-top: 0;
 }
@@ -94,13 +93,14 @@
     font-size: 32px;
 }
 
+
 .auth-leaf-decoration {
     position: absolute;
     z-index: 1;
-    right: -140px;
-    bottom: -200px;
-    width: 600px;
-    height: 600px;
+    right: -110px;
+    bottom: -160px;
+    width: 420px;
+    height: 420px;
     pointer-events: none;
 }
 
@@ -116,17 +116,17 @@
 }
 
 .leaf-circle-two {
-    inset: 90px;
+    inset: 70px;
     opacity: 0.24;
 }
 
 .leaf-icon {
     position: absolute;
-    right: 110px;
-    bottom: 100px;
-    color: var(--secondary-base);
-    font-size: 300px;
-    opacity: 0.95;
+    right: 80px;
+    bottom: 70px;
+    color: var(--paper);
+    font-size: 220px;
+    opacity: 0.18;
     transform: rotate(-28deg);
 }
 
@@ -169,6 +169,27 @@
     line-height: 1.6;
 }
 
+/* Pesan dari Django messages (error, success, dll.) */
+.auth-message {
+    margin: 0 0 18px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: #eef4f0;
+    color: var(--ink);
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.auth-message.error {
+    background: #fdecea;
+    color: #b42318;
+}
+
+.auth-message.success {
+    background: #e8f3ec;
+    color: var(--primary-base);
+}
+
 .form-field {
     margin-bottom: 18px;
 }
@@ -203,6 +224,15 @@
     outline: none;
     border-color: var(--primary-base);
     box-shadow: 0 0 0 3px rgba(50, 100, 70, 0.18);
+}
+
+/* Autofill browser jangan membuat input jadi biru */
+.form-field input:-webkit-autofill,
+.form-field input:-webkit-autofill:hover,
+.form-field input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px #ffffff inset;
+    -webkit-text-fill-color: var(--ink);
+    caret-color: var(--ink);
 }
 
 .field-help,
@@ -252,17 +282,17 @@
     font-size: 21px;
 }
 
-/* ---------- Kekuatan & aturan password ---------- */
+/* ---------- Kekuatan & aturan password (halaman register) ---------- */
 
 .password-strength {
     margin-top: 12px;
 }
 
 .strength-track {
-    height: 6px;
+    height: 5px;
     overflow: hidden;
     border-radius: 999px;
-    background: var(--line);
+    background: #e6ece8;
 }
 
 #strength-bar {
@@ -296,15 +326,17 @@
 }
 
 .password-rules li::before {
-    content: "○";
+    content: "radio_button_unchecked";
     flex-shrink: 0;
+    font-family: "Material Symbols Outlined";
+    font-size: 18px;
+    line-height: 1;
     color: var(--field-border);
 }
 
 .password-rules li.valid::before {
-    content: "✓";
+    content: "check_circle";
     color: var(--primary-base);
-    font-weight: 700;
 }
 
 .password-rules li.valid {
@@ -354,11 +386,7 @@
     text-underline-offset: 3px;
 }
 
-@media (min-width: 761px) {
-    .auth-page {
-        min-height: calc(100vh - 40px);
-    }
-}
+/* ---------- Responsif ---------- */
 
 @media (max-width: 760px) {
     .auth-page {
@@ -376,9 +404,8 @@
     }
 
     .auth-leaf-decoration {
-        right: -220px;
-        bottom: -260px;
-        transform: scale(0.8);
+        right: -170px;
+        bottom: -200px;
     }
 
     .auth-form-section {
@@ -391,36 +418,306 @@
     }
 }
 
-.auth-page h1,
-.auth-page h2,
-.auth-page p {
-    margin-top: unset;
-    padding-top: unset;
-}
-.auth-page :where(h1, h2, p) {
-    margin-top: 0;
-    padding-top: 0;
+/* ---------- Profile Page ---------- */
+
+.profile-page {
+    --field-border: #8fb09b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 100px);
+    padding: clamp(24px, 5vw, 64px) 20px;
+    background: var(--paper);
 }
 
-.leaf-icon {
+.profile-stack {
+    width: 100%;
+    max-width: 600px;
+}
+
+.profile-card {
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card, 24px);
+    background: #ffffff;
+    box-shadow: var(--shadow, 0 12px 36px rgba(0, 0, 0, 0.07));
+}
+
+/* Banner hijau dengan dekorasi, senada dengan halaman login/register */
+.profile-banner {
+    position: relative;
+    height: 140px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.08), transparent 50%),
+        var(--primary-base);
+}
+
+.profile-banner::before {
+    content: "";
+    position: absolute;
+    top: -90px;
+    right: -50px;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: var(--secondary-base);
+    opacity: 0.22;
+}
+
+.profile-banner::after {
+    content: "";
+    position: absolute;
+    bottom: -80px;
+    left: -40px;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: var(--secondary-base);
+    opacity: 0.16;
+}
+
+.profile-banner-leaf {
+    position: absolute;
+    right: 60px;
+    bottom: -10px;
     color: var(--paper);
-    opacity: 0.18;
+    font-size: 120px;
+    opacity: 0.25;
+    transform: rotate(-24deg);
 }
 
-.strength-track {
-    height: 5px;
-    background: #e6ece8;
+.profile-body {
+    padding: 0 clamp(24px, 5vw, 40px) clamp(28px, 4vw, 40px);
+    text-align: center;
 }
 
-.password-rules li::before {
-    content: "radio_button_unchecked";
-    font-family: "Material Symbols Outlined";
-    font-size: 18px;
-    line-height: 1;
-    color: var(--field-border);
-}
-.password-rules li.valid::before {
-    content: "check_circle";
+/* position + z-index supaya avatar tampil di atas banner */
+.profile-avatar {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 96px;
+    height: 96px;
+    margin: -48px auto 18px;
+    border: 5px solid #ffffff;
+    border-radius: 50%;
+    background: var(--secondary-10, #e8f3ec);
     color: var(--primary-base);
-    font-weight: normal;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.profile-card .auth-eyebrow {
+    margin-bottom: 8px;
+    color: var(--primary-base);
+    opacity: 0.8;
+}
+
+/* Garis kecil dihilangkan di sini supaya label benar-benar di tengah */
+.profile-card .auth-eyebrow::before {
+    display: none;
+}
+
+.profile-card h1 {
+    margin: 0 0 6px;
+    color: var(--primary-base);
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+}
+
+.profile-handle {
+    margin: 0 0 10px;
+    color: var(--ink);
+    font-size: 0.95rem;
+    opacity: 0.75;
+}
+
+.profile-card .auth-subtitle {
+    max-width: 440px;
+    margin: 0 auto 28px;
+    overflow-wrap: anywhere;
+}
+
+/* Daftar informasi */
+.profile-details {
+    margin: 0 0 28px;
+    padding: 0;
+    text-align: left;
+    border-top: 1px solid var(--line);
+}
+
+.profile-detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.profile-detail dt {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 10px;
+    color: var(--ink);
+    font-size: 0.9rem;
+}
+
+.profile-detail dt .material-symbols-outlined {
+    color: var(--primary-base);
+    font-size: 20px;
+}
+
+.profile-detail dd {
+    margin: 0;
+    color: var(--primary-base);
+    font-weight: 700;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.profile-empty {
+    color: var(--ink);
+    font-weight: 400;
+    opacity: 0.7;
+}
+
+/* Tombol aksi */
+.profile-actions,
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.profile-actions .button,
+.form-actions .button,
+.profile-secondary-button {
+    box-sizing: border-box;
+    flex: 1 1 180px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.profile-secondary-button {
+    padding: 0 24px;
+    border: 1.5px solid var(--primary-base);
+    background: transparent;
+    color: var(--primary-base);
+}
+
+.profile-secondary-button:hover {
+    background: var(--paper);
+}
+
+.profile-back {
+    margin: 20px 0 0;
+    font-size: 0.875rem;
+}
+
+.profile-back a {
+    color: var(--primary-base);
+    font-weight: 700;
+    text-underline-offset: 3px;
+}
+
+/* ---------- Halaman edit profil & ubah password ---------- */
+
+.edit-card {
+    max-width: 560px;
+}
+
+.edit-card h1 {
+    margin: 0 0 8px;
+    color: var(--ink);
+    font-size: clamp(1.8rem, 2.3vw, 2.4rem);
+    line-height: 1.15;
+}
+
+.edit-card .auth-subtitle {
+    margin-top: 0;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.form-field textarea {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    min-height: 110px;
+    padding: 11px 14px;
+    border: 1.5px solid var(--field-border);
+    border-radius: 10px;
+    background: #ffffff;
+    color: var(--ink);
+    font: inherit;
+    resize: vertical;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-field textarea:hover {
+    border-color: var(--primary-base);
+}
+
+.form-field textarea:focus {
+    outline: none;
+    border-color: var(--primary-base);
+    box-shadow: 0 0 0 3px rgba(50, 100, 70, 0.18);
+}
+
+.field-help ul {
+    margin: 6px 0 0;
+    padding-left: 18px;
+}
+
+.form-actions {
+    margin-top: 8px;
+}
+
+@media (max-width: 480px) {
+    .profile-banner {
+        height: 110px;
+    }
+
+    .profile-avatar {
+        width: 84px;
+        height: 84px;
+        margin-top: -42px;
+        font-size: 2.1rem;
+    }
+
+    .profile-detail {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .profile-detail dd {
+        text-align: left;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
 }
