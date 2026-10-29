@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}GrowMatch - Get Your Match{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'recommendation/css/recommendation.css' %}">
+    <script src="{% static 'recommendation/js/recommendation.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<section class="container rec-page">
+    <div class="eyebrow"><span class="small-line"></span>Plant Recommendation</div>
+    <div class="rec-hero">
+        <h1>Find your<br><i>plant match</i></h1>
+        <div class="rec-hero-side">
+            <p>Tell us a little about your space and habits, and we will match you with the plants that fit best.</p>
+            {% if user.is_authenticated %}
+            <a href="{% url 'recommendation:history' %}" class="rec-hero-link">See your past matches <span aria-hidden="true">↗</span></a>
+            {% else %}
+            <p class="rec-guest-note">You can look at the questions first, but you need to log in to save and see your matches.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    {% include 'recommendation/_messages.html' %}
+    {% url 'recommendation:create' as create_url %}
+    {% include 'recommendation/_form.html' with action=create_url submit_label="Get Your Match" %}
+</section>
+{% endblock %}
+

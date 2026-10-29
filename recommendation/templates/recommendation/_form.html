@@ -1,0 +1,52 @@
+<form method="post" action="{{ action }}" class="rec-form" data-ajax-form novalidate>
+    {% csrf_token %}
+
+    <p class="rec-error" data-error-for="__all__">{{ form.non_field_errors|join:" " }}</p>
+
+    {% for step in form.steps %}
+    {% with field=step.field %}
+    <div class="rec-step">
+        <div class="rec-step-info">
+            <span class="rec-step-number">{{ step.number }}</span>
+            {% if step.options %}
+            <p class="rec-step-title" id="{{ field.name }}-title">{{ field.label }}</p>
+            {% else %}
+            <label class="rec-step-title" for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {% endif %}
+            <small class="muted">{{ step.help }}</small>
+        </div>
+
+        <div class="rec-step-control">
+            {% if step.options %}
+            <div class="rec-options rec-options--{{ step.style }}" role="radiogroup" aria-labelledby="{{ field.name }}-title">
+                {% for option in step.options %}
+                <label class="rec-option" for="{{ option.id }}">
+                    <input type="radio" name="{{ field.html_name }}" id="{{ option.id }}" value="{{ option.value }}" {% if option.checked %}checked{% endif %}>
+                    <span class="rec-option-indicator" aria-hidden="true"></span>
+                    {% if option.icon %}{% include 'recommendation/_icon.html' with icon=option.icon %}{% endif %}
+                    <span class="rec-option-title">{{ option.title }}</span>
+                    {% if option.description %}<span class="rec-option-description">{{ option.description }}</span>{% endif %}
+                </label>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ field }}
+            {% endif %}
+            <p class="rec-error" data-error-for="{{ field.name }}">{{ field.errors|join:" " }}</p>
+        </div>
+    </div>
+    {% endwith %}
+    {% endfor %}
+
+    <div class="rec-form-footer">
+        {% if user.is_authenticated %}
+        <button type="submit" class="button--accent" data-submit-label="{{ submit_label }}">{{ submit_label }} <span aria-hidden="true">→</span></button>
+        {% else %}
+        <a href="/accounts/login/?next={{ request.path|urlencode }}" class="button--accent">Log in to get your match <span aria-hidden="true">→</span></a>
+        {% endif %}
+        {% if cancel_url %}
+        <a href="{{ cancel_url }}" class="button--secondary">Cancel</a>
+        {% endif %}
+        <small class="muted">You can change these answers anytime.</small>
+    </div>
+</form>

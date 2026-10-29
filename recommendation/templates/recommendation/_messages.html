@@ -1,0 +1,7 @@
+{% if messages %}
+<ul class="rec-messages">
+    {% for message in messages %}
+    <li class="rec-message rec-message--{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}

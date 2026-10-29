@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'recommendation',
     'plant_catalog',
     'reviews.apps.ReviewsConfig',
 ]
