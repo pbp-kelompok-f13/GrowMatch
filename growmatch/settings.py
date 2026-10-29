@@ -44,7 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+<<<<<<< HEAD
     'plant_catalog',
+=======
+    'reviews.apps.ReviewsConfig',
+>>>>>>> plant-review
 ]
 
 MIDDLEWARE = [
