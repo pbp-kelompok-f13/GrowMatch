@@ -160,6 +160,7 @@ class GuestAccessTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "recommendation/form.html")
         self.assertContains(response, "Log in to get your match")
+        self.assertContains(response, 'href="/accounts/login/?next=/recommendation/"')
         self.assertNotContains(response, 'type="submit"')
 
     def test_protected_pages_redirect_to_login(self):
@@ -174,7 +175,7 @@ class GuestAccessTest(TestCase):
         for url in urls:
             response = self.client.get(url)
             self.assertEqual(response.status_code, 302, url)
-            self.assertTrue(response.url.startswith("/login/"), url)
+            self.assertTrue(response.url.startswith("/accounts/login/"), url)
 
     def test_guest_cannot_create_or_delete(self):
         recommendation = make_recommendation(User.objects.create_user("other"))

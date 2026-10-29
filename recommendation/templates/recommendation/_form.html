@@ -42,7 +42,7 @@
         {% if user.is_authenticated %}
         <button type="submit" class="button--accent" data-submit-label="{{ submit_label }}">{{ submit_label }} <span aria-hidden="true">→</span></button>
         {% else %}
-        <a href="/login/?next={{ request.path|urlencode }}" class="button--accent">Log in to get your match <span aria-hidden="true">→</span></a>
+        <a href="/accounts/login/?next={{ request.path|urlencode }}" class="button--accent">Log in to get your match <span aria-hidden="true">→</span></a>
         {% endif %}
         {% if cancel_url %}
         <a href="{{ cancel_url }}" class="button--secondary">Cancel</a>

@@ -10,7 +10,7 @@ from recommendation.models import RecommendationRequest
 from recommendation.scoring import DIFFICULTY_FILTERS, SUNLIGHT_FILTERS, match_to_dict, recommend_plants
 from recommendation.weather import LocationNotFound, apply_location_and_weather
 
-LOGIN_URL = "/login/"
+LOGIN_URL = "/accounts/login/"
 WEATHER_UNAVAILABLE = "Weather data is unavailable right now, so your recommendation was saved without it."
 
 
