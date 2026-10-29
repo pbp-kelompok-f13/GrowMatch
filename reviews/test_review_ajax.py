@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
-from .models import Plant, PlantReview
+from main.models import Plant, PlantReview
 
 
 class PlantReviewAjaxTests(TestCase):
@@ -12,7 +12,7 @@ class PlantReviewAjaxTests(TestCase):
         )
         self.plant = Plant.objects.create()
         self.client.force_login(self.user)
-        self.create_url = reverse("main:plant_review", args=[self.plant.pk])
+        self.create_url = reverse("reviews:plant_review", args=[self.plant.pk])
         self.ajax = {"HTTP_X_REQUESTED_WITH": "XMLHttpRequest"}
 
     def test_create_review_ajax(self):
@@ -36,7 +36,7 @@ class PlantReviewAjaxTests(TestCase):
             plant=self.plant, user=self.user, rating=3, comment="Before"
         )
         response = self.client.post(
-            reverse("main:edit_plant_review", args=[review.pk]),
+            reverse("reviews:edit_plant_review", args=[review.pk]),
             {"rating": 4, "comment": "After"},
             **self.ajax,
         )
@@ -50,7 +50,7 @@ class PlantReviewAjaxTests(TestCase):
             plant=self.plant, user=self.user, rating=3
         )
         response = self.client.post(
-            reverse("main:delete_plant_review", args=[review.pk]), **self.ajax
+            reverse("reviews:delete_plant_review", args=[review.pk]), **self.ajax
         )
         self.assertEqual(response.status_code, 200)
         self.assertFalse(PlantReview.objects.filter(pk=review.pk).exists())

@@ -35,8 +35,8 @@
         <article id="review-{{ review.pk }}" class="review-card"
                  data-review-id="{{ review.pk }}"
                  data-rating="{{ review.rating }}"
-                 data-edit-url="{% url 'main:edit_plant_review' review.pk %}"
-                 data-delete-url="{% url 'main:delete_plant_review' review.pk %}">
+                 data-edit-url="{% url 'reviews:edit_plant_review' review.pk %}"
+                 data-delete-url="{% url 'reviews:delete_plant_review' review.pk %}">
             <div class="review-card-top">
                 <div>
                     <strong class="review-author">{{ review.user.username }}</strong>
@@ -75,9 +75,9 @@
     <p class="review-modal-subtitle">How has this plant treated you? Your experience could help someone else grow.</p>
 
     <form id="review-form" method="post"
-          data-create-url="{% url 'main:plant_review' plant.pk %}"
+          data-create-url="{% url 'reviews:plant_review' plant.pk %}"
           {% if editing_review %}data-initial-edit-id="{{ editing_review.pk }}"{% endif %}
-          action="{% if editing_review %}{% url 'main:edit_plant_review' editing_review.pk %}{% else %}{% url 'main:plant_review' plant.pk %}{% endif %}">
+          action="{% if editing_review %}{% url 'reviews:edit_plant_review' editing_review.pk %}{% else %}{% url 'reviews:plant_review' plant.pk %}{% endif %}">
         {% csrf_token %}
         <fieldset class="review-fieldset">
             <legend>Your rating <span aria-hidden="true">*</span></legend>

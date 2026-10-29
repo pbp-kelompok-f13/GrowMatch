@@ -4,7 +4,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 from .forms import PlantReviewForm
-from .models import Plant, PlantReview
+from main.models import Plant, PlantReview
 
 
 class PlantReviewFormTests(TestCase):
@@ -86,7 +86,7 @@ class PlantReviewViewTests(TestCase):
     def test_add_review_requires_login(self):
         self.client.logout()
         response = self.client.get(
-            reverse("main:plant_review", args=[self.plant.pk])
+            reverse("reviews:plant_review", args=[self.plant.pk])
         )
 
         self.assertEqual(response.status_code, 302)
@@ -94,7 +94,7 @@ class PlantReviewViewTests(TestCase):
 
     def test_add_review_get_displays_form_and_plant(self):
         response = self.client.get(
-            reverse("main:plant_review", args=[self.plant.pk])
+            reverse("reviews:plant_review", args=[self.plant.pk])
         )
 
         self.assertEqual(response.status_code, 200)
@@ -104,7 +104,7 @@ class PlantReviewViewTests(TestCase):
 
     def test_add_review_post_creates_review_and_redirects(self):
         response = self.client.post(
-            reverse("main:plant_review", args=[self.plant.pk]),
+            reverse("reviews:plant_review", args=[self.plant.pk]),
             {
                 "rating": 5,
                 "comment": "This plant is thriving!"
@@ -113,7 +113,7 @@ class PlantReviewViewTests(TestCase):
 
         self.assertRedirects(
             response,
-            reverse("main:plant_review", args=[self.plant.pk])
+            reverse("reviews:plant_review", args=[self.plant.pk])
         )
         self.assertTrue(
             PlantReview.objects.filter(
@@ -133,7 +133,7 @@ class PlantReviewViewTests(TestCase):
         )
 
         response = self.client.post(
-            reverse("main:edit_plant_review", args=[review.pk]),
+            reverse("reviews:edit_plant_review", args=[review.pk]),
             {
                 "rating": 4,
                 "comment": "Updated review"
@@ -142,7 +142,7 @@ class PlantReviewViewTests(TestCase):
 
         self.assertRedirects(
             response,
-            reverse("main:plant_review", args=[self.plant.pk])
+            reverse("reviews:plant_review", args=[self.plant.pk])
         )
         review.refresh_from_db()
         self.assertEqual(review.rating, 4)
@@ -157,12 +157,12 @@ class PlantReviewViewTests(TestCase):
         )
 
         response = self.client.post(
-            reverse("main:delete_plant_review", args=[review.pk])
+            reverse("reviews:delete_plant_review", args=[review.pk])
         )
 
         self.assertRedirects(
             response,
-            reverse("main:plant_review", args=[self.plant.pk])
+            reverse("reviews:plant_review", args=[self.plant.pk])
         )
         self.assertFalse(PlantReview.objects.filter(pk=review.pk).exists())
 
@@ -189,7 +189,7 @@ class PlantReviewOwnershipTests(TestCase):
         self.client.force_login(self.other_user)
 
         response = self.client.get(
-            reverse("main:edit_plant_review", args=[self.review.pk])
+            reverse("reviews:edit_plant_review", args=[self.review.pk])
         )
 
         self.assertEqual(response.status_code, 404)
@@ -198,7 +198,7 @@ class PlantReviewOwnershipTests(TestCase):
         self.client.force_login(self.other_user)
 
         response = self.client.post(
-            reverse("main:delete_plant_review", args=[self.review.pk])
+            reverse("reviews:delete_plant_review", args=[self.review.pk])
         )
 
         self.assertEqual(response.status_code, 404)
