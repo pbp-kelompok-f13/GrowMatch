@@ -1,0 +1,1747 @@
+[
+{
+    "model": "plant_catalog.plant",
+    "pk": "01d165a0-3f60-4b2b-8e68-dc55f6ca48c4",
+    "fields": {
+        "perenual_id": 1315,
+        "name": "Chinese mustard",
+        "scientific_name": "Brassica juncea",
+        "description": "The Chinese mustard (Brassica juncea) is a popular and invaluable plant species due to its amazing versatility. Its tender leaves can be used as a salad green or sautéed, while the seeds and pods can be used for pickling, oil production and spice powders. Chinese mustard is a valuable source of vitamins and minerals, and its pungent mustard flavor is an ideal addition to many dishes. It is easy to grow and quick to mature, with an impressive tolerance for frost and drought. Chinese mustard is an iconic plant in many of our kitchens, providing us with delicious and nutritious dishes.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1315_brassica_juncea/regular/48139869301_b604032873_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160204Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=37cc05edfe2616aa20af5c5257b7145d8c931791eac09b9a80911c58ee375eff",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun, part shade",
+        "watering": "Average",
+        "watering_interval": "3-4 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Layering Propagation",
+            "Division",
+            "Grafting Propagation"
+        ],
+        "pruning_month": [],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:58:25.042Z",
+        "updated_at": "2026-10-27T14:58:25.042Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "02eb7362-f7b4-4203-a093-2a432e075692",
+    "fields": {
+        "perenual_id": 543,
+        "name": "maidenhair fern",
+        "scientific_name": "Adiantum capillus-veneris",
+        "description": "The maidenhair fern (Adiantum capillus-veneris) is a beautiful and unique species of fern with feathery, wispy fronds that give an air of delicacy and grace to any space. Its elegant fronds are complemented by lovely fan-like foliage made up of numerous small leaflets, giving it an exquisite lacy appearance that adds beauty to any garden. Its hardy nature also makes it a great choice for those looking for something that can tolerate a variety of temperatures, thriving in colder climates despite its tropical look. It's an amazing plant species that's sure to be a stunning addition to any outdoor area.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/543_adiantum_capillus-veneris/regular/49636882698_cb4fa4c685_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160128Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=abc73f7bc21dff54f352f68caf82d7d6fbcf986ce6c391fa632bb858b90e913c",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "part shade, part sun/part shade",
+        "watering": "Average",
+        "watering_interval": "2-3 days",
+        "difficulty": "Medium",
+        "soil": [
+            "Clay",
+            " Sand"
+        ],
+        "propagation": [
+            "Division",
+            "Cutting",
+            "Spore Propagation",
+            "Layering Propagation"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "March",
+            "April",
+            "May"
+        ],
+        "growth_rate": "",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:56:57.834Z",
+        "updated_at": "2026-10-27T14:56:57.834Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "05f4c636-6046-4c0b-887d-bbe108e64cd6",
+    "fields": {
+        "perenual_id": 621,
+        "name": "floss flower",
+        "scientific_name": "Ageratum houstonianum",
+        "description": "Floss flower (Ageratum houstonianum) is an amazing species of flower due to its beautiful and lively display of bloom. It has petite, fluffy flowers that come in a range of vibrant colors, including blue, purple and white. The blooms look like miniature puffs of cotton candy, adding a whimsical and delicate feel to any garden. The floss flower grows well in temperatures from 65-70 degrees Fahrenheit and requires minimal maintenance. Its prolific blooms are known to last for months and can provide exceptional color to a garden for most of the growing season.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/621_ageratum_houstonianum/regular/51344979097_90743ec1fc_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160219Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=e33d155fb4bc644953f18ebc20a48b8d9fd8b0973138e91500a51b25a516baf1",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "part sun/part shade, full sun",
+        "watering": "Average",
+        "watering_interval": "3-4 days",
+        "difficulty": "Medium",
+        "soil": [
+            "Well-drained"
+        ],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Division",
+            "Layering Propagation"
+        ],
+        "pruning_month": [
+            "May",
+            "June",
+            "July"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T15:00:06.392Z",
+        "updated_at": "2026-10-27T15:00:06.392Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "0a30b5c1-5678-447e-a3b2-4cbd7733dd30",
+    "fields": {
+        "perenual_id": 1209,
+        "name": "begonia",
+        "scientific_name": "Begonia 'Gryphon'",
+        "description": "The begonia 'Gryphon' is a truly amazing plant. It has a unique feathery, rose-like foliage with purple, cream and green coloration. Its deep pink, double flowers bloom from summer to fall, their petals kissed with yellow stamens for maximum impact. This Begonia can tolerate full shade and make an ideal companion for hostas and ferns. It is exceptionally hardy, being drought and humidity tolerant, and once established, it’s mostly carefree. A real show-stopper in the garden, Begonia 'Gryphon' is sure to attract plenty of attention and appreciation.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1209_begonia_gryphon/regular/9656051530_21f82c3dc7_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160151Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=b27a40fe7042ca3fcbef3878b209222da7bc903a82f7296eb690e655ce4e6ad1",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "part sun/part shade, full sun",
+        "watering": "Average",
+        "watering_interval": "5-7 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Stem Propagation",
+            "Leaf Cutting",
+            "Division",
+            "Air Layering Propagation",
+            "Grafting Propagation"
+        ],
+        "pruning_month": [
+            "May",
+            "June",
+            "July",
+            "August"
+        ],
+        "growth_rate": "High",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T14:57:22.102Z",
+        "updated_at": "2026-10-27T14:57:22.102Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "0fe228ea-e991-41d8-814e-b5b74bc730ee",
+    "fields": {
+        "perenual_id": 711,
+        "name": "Amazonian elephant's ear",
+        "scientific_name": "Alocasia amazonica 'Polly'",
+        "description": "The Amazonian elephant’s ear (Alocasia amazonica 'Polly') is a unique and stunning plant that demands attention! Its lush, velvety leaves are an eye-catching bright green, with prominent ivory undersides. The deep purple veins running through the foliage lend a striking contrast. With large and distinctive heart-shaped leaves resembling an elephant’s ear, it establishes a striking presence in any room or garden. Its tall, glossy stems create a strikingly elegant look. No wonder it’s the preferred choice of gardeners! Its easy to care for and its exotic beauty will never go out of style.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/711_alocasia_amazonica_polly/regular/pexels-photo-12419491.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160136Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=db15fc33d129eb9c56bd93c3794147c975742bf0ddeff9b9e22cc5eec2e249e6",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "part shade",
+        "watering": "Frequent",
+        "watering_interval": "7-10 days",
+        "difficulty": "High",
+        "soil": [],
+        "propagation": [
+            "Division",
+            "Air Layering Propagation",
+            "Stem Propagation",
+            "Offsets",
+            "Seed Propagation"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August"
+        ],
+        "growth_rate": "High",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T14:57:06.233Z",
+        "updated_at": "2026-10-27T14:57:06.233Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "11d166f0-afda-43b9-a05b-a15305d4e189",
+    "fields": {
+        "perenual_id": 1332,
+        "name": "Chinese cabbage",
+        "scientific_name": "Brassica rapa (Pekinensis Group)",
+        "description": "Chinese cabbage, or Brassica rapa, is an amazing vegetable that provides a variety of health benefits and delicious flavour. It is rich in vitamin C, dietary fibre and iron, contributing to its impressive nutritional profile. With its crunchy texture, sweet yet slightly bitter flavour, and ability to be steamed, stir-fried, or eaten raw, Chinese cabbage is incredibly versatile and can be added to many recipes. The leaves of Chinese cabbage have a unique flavour that makes salads even more dynamic. It is also a great source of antioxidants, which makes it even more beneficial to include in your diet. As a result, Chinese cabbage is a great choice for health-conscious eaters.",
+        "image_url": "",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun",
+        "watering": "Average",
+        "watering_interval": "2-3 days",
+        "difficulty": "",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Layering Propagation",
+            "Division",
+            "Grafting Propagation"
+        ],
+        "pruning_month": [
+            "May"
+        ],
+        "growth_rate": "High",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T14:58:39.533Z",
+        "updated_at": "2026-10-27T14:58:39.534Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "15346ec6-c44e-4ee7-8609-4000cfbd368a",
+    "fields": {
+        "perenual_id": 1335,
+        "name": "tat soi",
+        "scientific_name": "Brassica rapa var. rosularis",
+        "description": "Tat soi (Brassica rapa var. rosularis) is an amazing plant that has many advantageous qualities. It boasts an incredible nutty and sweet flavor, is remarkably easy to grow in cooler temperatures, matures quickly, and has a long harvesting period. The spoon-shaped leaves are rich in vitamins, minerals, and antioxidants, making it an excellent addition to salads, stir-fries, and soups. Its unique taste and texture also make it an attractive garnish for cooked dishes, and its leaves retain their color and texture even when cooked. With its ease of cultivation, delicious flavor profile, health properties, and impressive versatility, anyone can appreciate tat soi.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1335_brassica_rapa_var_rosularis/regular/24605859029_ae624b33f6_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160218Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=5a7fcfc6b0ee64b3b27bb56b79f9b8c2465af4e2ebe71e65d94a64ebaa54ec51",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun, part shade",
+        "watering": "Average",
+        "watering_interval": "3-4 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Division",
+            "Layering Propagation"
+        ],
+        "pruning_month": [],
+        "growth_rate": "Low",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T14:58:40.522Z",
+        "updated_at": "2026-10-27T14:58:40.522Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "1a61f736-b65a-4e8d-bf2b-a8283efc48f4",
+    "fields": {
+        "perenual_id": 1330,
+        "name": "pak-choi",
+        "scientific_name": "Brassica rapa (Chinensis Group)",
+        "description": "Pak choi (Brassica rapa (Chinensis Group)) is an incredibly versatile and nutritious Asian leafy green. It has a mild, sweet flavor and can be eaten raw or cooked. It is high in calcium, vitamin A, vitamin C and vitamin K as well as a good source of dietary fiber. It is a hardy and fast growing plant, making it a great addition for a beginner gardener. Pak choi is also relatively drought tolerant and its leaves can be harvested within weeks of planting. Its bright green leaves make it a beautiful addition to any garden or plate!",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1330_brassica_rapa_chinensis_group/regular/2560px-Starr_080607-7271_Brassica_campestris_var._chinensis.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160216Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=15fdbceb6d987b908952e42c55f143f3d8258145775fd0f82d46c1ecb9ce3654",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun, part shade",
+        "watering": "Average",
+        "watering_interval": "3-4 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Division",
+            "Layering Propagation"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T14:58:38.490Z",
+        "updated_at": "2026-10-27T14:58:38.490Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "1ee718c3-e82e-4195-8caa-f74f119b6f6a",
+    "fields": {
+        "perenual_id": 1313,
+        "name": "Swan River daisy",
+        "scientific_name": "Brachyscome (group)",
+        "description": "The Swan River Daisy is an amazing flowering plant indigenous to Australia. Its showy, daisy-like flowers grow in gorgeous colors such as purple, pink, white, and yellow. Its thin, upright stems give the daisy an elegant and graceful appearance, making it a perfect choice for any garden. Its tolerance of both dry and wet conditions and its ability to tolerate different temperatures make it easy to grow and maintain in any climate. It's also low-maintenance and can withstand a variety of neglect. Its unique flowerhead, which varies from one-half to two inches wide, stands out against its robust, deep green leaves. The Swan River Daisy is a great addition to any flowerbed and will bring color and beauty to any outdoor setting.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1313_brachyscome_group/regular/e6004de10c22250b916cb1fd448fbdc562c3f1cd.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160221Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=968acc54fb889a35527bdd09a36b36873be75a8d29be7c3ca12bff8fc53950be",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "Full sun",
+        "watering": "Average",
+        "watering_interval": "3-4 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Division",
+            "Layering Propagation"
+        ],
+        "pruning_month": [
+            "May",
+            "June",
+            "July",
+            "September",
+            "October",
+            "November",
+            "May"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T15:00:08.587Z",
+        "updated_at": "2026-10-27T15:00:08.587Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "205d53e8-c9b6-43bb-9662-c7d3456cc62f",
+    "fields": {
+        "perenual_id": 278,
+        "name": "Loquat",
+        "scientific_name": "Eriobotrya japonica",
+        "description": "Loquats, also known as Eriobotrya japonica, are an incredible species of trees with many benefits. Their edible, ornamental fruit is golden yellow, tart, and not as sweet as other fruits. Loquats are an excellent source of dietary fiber, Vitamin A and C, potassium, and omega-3 fatty acids. They have antioxidant properties that may help improve cardiovascular and joint health. Their beautiful leaves and crown of white flowers make them an appealing addition to any garden. Best of all, loquats are easy to grow and require minimal care, making them a great choice for gardeners of all skill levels.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/278_eriobotrya_japonica/regular/24454831223_358eb14c7c_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160228Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=e54ef932313ec32ed7486d487a9bb5fb742bab2ec0a5765538305ea2cdc0fa7d",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun, part sun/part shade",
+        "watering": "Minimum",
+        "watering_interval": "7-10 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Air Layering Propagation",
+            "Grafting Propagation",
+            "Cutting",
+            "Seed Propagation"
+        ],
+        "pruning_month": [
+            "February",
+            "March",
+            "April",
+            "June",
+            "July",
+            "August"
+        ],
+        "growth_rate": "High",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T15:00:17.178Z",
+        "updated_at": "2026-10-27T15:00:17.178Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "2651c432-f701-44b0-bd9e-dfaef18b61e4",
+    "fields": {
+        "perenual_id": 1885,
+        "name": "watermelon",
+        "scientific_name": "Citrullus lanatus",
+        "description": "The watermelon (Citrullus lanatus) is an amazing plant species due to its diverse uses, and delicious taste. This member of the Cucurbitaceae family is packed with nutrients, vitamins and minerals, making it a nutritious and enjoyable snack. It is also used in various culinary dishes, from salads to smoothies. It’s vibrant rind and bright, juicy flesh make it an attractive and refreshing summer snack. Watermelons are also very easy to grow and maintain, making it an ideal fruit for the home gardener. All in all, the watermelon is an amazing plant with a variety of uses and a great taste that anyone can enjoy.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1885_citrullus_lanatus/regular/24563439383_073cc7d9dd_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160227Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=665adaa4a97b208bdcebb5bc2d3704691733a23404e721df68ecc77a0c07dc90",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun",
+        "watering": "Average",
+        "watering_interval": "3-4 days",
+        "difficulty": "Medium",
+        "soil": [
+            "Well-drained"
+        ],
+        "propagation": [
+            "Seed Propagation"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "June",
+            "July",
+            "August"
+        ],
+        "growth_rate": "High",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T15:00:16.062Z",
+        "updated_at": "2026-10-27T15:00:16.062Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "26a97a8f-cf5b-4091-a0c4-efd9b66d70c4",
+    "fields": {
+        "perenual_id": 753,
+        "name": "love-lies-bleeding",
+        "scientific_name": "Amaranthus caudatus",
+        "description": "Love-lies-bleeding (Amaranthus caudatus) is an amazing plant species due to its striking appearance and versatility. Its bright red or burgundy flower clusters can be up to a foot long, cascading from the plant and making it into a visual masterpiece. Its applications make it a highly desirable ornamental plant, and its culinary and medicinal uses give it yet another layer of utility. On top of that, it is Hardy and low maintenance. Love-lies-bleeding is truly a magnificent species and a joy to have in any garden.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/753_amaranthus_caudatus/regular/14912743664_5b2ca6df71_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160220Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=c62a66b71c3b29f17d12f256814ec7f8e328f139c6dc909d86e14481c35d1b53",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun, part shade",
+        "watering": "Average",
+        "watering_interval": "3-4 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Division",
+            "Cutting",
+            "Layering Propagation"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "May",
+            "August"
+        ],
+        "growth_rate": "High",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T15:00:07.481Z",
+        "updated_at": "2026-10-27T15:00:07.481Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "286839ab-fb6e-4db9-8632-e931d830630c",
+    "fields": {
+        "perenual_id": 1739,
+        "name": "cockscomb",
+        "scientific_name": "Celosia argentea var. cristata (Cristata Group)",
+        "description": "Cockscomb (Celosia argentea var. cristata (Cristata Group)) is an amazing plant species that will brighten up any garden. It has beautiful velvety flowers that come in a wide range of bright and vibrant colors such as red, yellow, pink and white. The velvety flowers form on unusual crests that can reach up to 12 inches in diameter. Cockscomb is easy to grow and maintain, and tolerates both heat and drought. It's a great addition to borders and containers, and makes an ideal cut flower. A garden with cockscomb is sure to draw the eye and bring a smile to anyone's face.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1739_celosia_argentea_var_cristata_cristata_group/regular/flowers-field-people-red-nature-wild-flowers.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160225Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=53226db99f8ae2226fd55a313587e56b1a63234d386376f8f65c3744d304a7aa",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "Full sun",
+        "watering": "Average",
+        "watering_interval": "3-4 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Division"
+        ],
+        "pruning_month": [
+            "May",
+            "June",
+            "July"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T15:00:12.666Z",
+        "updated_at": "2026-10-27T15:00:12.666Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "2b6738b5-36c1-4d4e-b298-89d2a5ade1c0",
+    "fields": {
+        "perenual_id": 288,
+        "name": "Common Fig",
+        "scientific_name": "Ficus carica",
+        "description": "The Common Fig (Ficus carica) is a delightful addition to any home or garden. A hardy species, it will thrive in most climates and offers a continuous supply of delicious fruits throughout the year. The deep green foliage provides a beautiful backdrop for the glossy fruits, which can be picked from the tree when ripe and eaten either raw or cooked. Not only does the Common Fig produce a delicious fruit, but its hardy nature and ability to adapt to different climates makes it an amazing choice for many different growing environments.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/288_ficus_carica/regular/52377169610_b7a247a378_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160229Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=3bb9651b80171b748e56a5e58225cbabc44f7d4702b5391619a70c63554830cb",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun, part sun/part shade",
+        "watering": "Minimum",
+        "watering_interval": "7-10 days",
+        "difficulty": "Medium",
+        "soil": [
+            "Well-drained"
+        ],
+        "propagation": [
+            "Air Layering Propagation",
+            "Cutting",
+            "Grafting Propagation",
+            "Division",
+            "Seed Propagation"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "June",
+            "July",
+            "August",
+            "March",
+            "April",
+            "May",
+            "December",
+            "January",
+            "February",
+            "May",
+            "June",
+            "July",
+            "August"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T15:00:18.304Z",
+        "updated_at": "2026-10-27T15:00:18.304Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "4399b91c-1b8b-49ca-bcd2-c35f7725b257",
+    "fields": {
+        "perenual_id": 540,
+        "name": "desert rose",
+        "scientific_name": "Adenium obesum",
+        "description": "The desert rose is an amazing plant species that adds vibrant, flowering color to any space. This drought-tolerant succulent requires minimal water and a sunny, dry environment, making it ideal for most desert and dry climate gardens. Its showy blooms range in color from hot pink and vibrant red to stunning white and yellow shades. The striking ombre of the adenium obesum's swollen base and graceful, slender stems make it a true stunner. It's also highly toxin resistant and can handle a wide range of temperatures and environmental conditions. No wonder it's quickly becoming one of the most popular flowers around!",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/540_adenium_obesum/regular/9244335137_6d662ed77c_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160127Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=45d53f9d918041d585b0af63952ff464a2c2424980ea18370115394ef9359dc0",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "full sun",
+        "watering": "Minimum",
+        "watering_interval": "7-10 days",
+        "difficulty": "",
+        "soil": [],
+        "propagation": [
+            "Grafting Propagation",
+            "Cutting",
+            "Seed Propagation",
+            "Air Layering Propagation",
+            "Division"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "February"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:56:56.546Z",
+        "updated_at": "2026-10-27T14:56:56.546Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "45bf29b8-0fdf-4211-a97e-732a851a3915",
+    "fields": {
+        "perenual_id": 1322,
+        "name": "cabbage",
+        "scientific_name": "Brassica oleracea (Capitata Group)",
+        "description": "Cabbage (Brassica oleracea Capitata Group) is an amazing plant species. It has a wide range of nutritional values, making it an excellent source of Vitamin A and C and minerals like Potassium, Calcium and Magnesium. It is also rich in dietary fiber and antioxidants which boosts your immune system and helps prevent the growth of cancerous cells. Furthermore, it is low in calories and helps you regulate your weight. Plus, its sweet and slightly bitter taste makes it a great ingredient for a variety of dishes. All in all, cabbage is an unbelievably versatile and nutritious plant species that can enhance both your health and diet.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1322_brassica_oleracea_capitata_group/regular/2671495796_c0bdc6bd99_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160211Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=de22f630cb454a036ee37961e77958f5898653188c4cc59e7d3d944fef41e0e4",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun",
+        "watering": "Average",
+        "watering_interval": "",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Layering Propagation",
+            "Division",
+            "Grafting Propagation"
+        ],
+        "pruning_month": [],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:58:31.029Z",
+        "updated_at": "2026-10-27T14:58:31.029Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "46e782c0-b855-4fa9-a218-206f6faf8a78",
+    "fields": {
+        "perenual_id": 551,
+        "name": "stalked aeonium",
+        "scientific_name": "Aeonium undulatum",
+        "description": "Stalked Aeonium, or Aeonium undulatum, is an amazing succulent species with its showy yellow blooms and striking foliage. Its bright purple-green foliage has stout stems that produce a neat rosette pattern, while the yellow flowers appear in winter and early spring. The plant does best in well-drained soil and medium light, making it suitable for all types of gardens. Stalked Aeonium is drought-tolerant and requires minimal care. Its beauty and hardiness make it a great addition to any garden, bringing color and style to any landscape. With its low-maintenance requirements, Stalked Aeonium is an amazing succulent species worth adding to any garden.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/551_aeonium_undulatum/regular/023e2628848775ea95af34a39eaee4d60fab11ed.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160130Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=558312c4a30c06bb067c84b5d561309a542c1da2507336216ec4f1bf040648e4",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "full sun, part shade",
+        "watering": "Average",
+        "watering_interval": "7-10 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Cutting",
+            "Division",
+            "Seed Propagation",
+            "Layering Propagation"
+        ],
+        "pruning_month": [
+            "February",
+            "March",
+            "April"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T14:57:00.188Z",
+        "updated_at": "2026-10-27T14:57:00.188Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "5373e4f3-78e6-4f56-ba65-1f7a54879c07",
+    "fields": {
+        "perenual_id": 1319,
+        "name": "Siberian kale",
+        "scientific_name": "Brassica napus (Pabularia Group)",
+        "description": "The amazing Siberian kale (Brassica napus (Pabularia Group)) is a great addition to any garden. Hardy and tolerant of cold climates, it grows well in most conditions, producing a tasteful and nutritious vegetable. Siberian kale is known for its large, dark green leaves, which have a slightly sweeter flavour than regular kale. It's an excellent source of dietary fibre, vitamins A and C, potassium, iron, and calcium, making it a healthy option for a variety of dishes. It's also highly resistant to bugs, so it makes a great crop for organic gardens, with minimal maintenance required. It's easy to grow and a great alternative to traditional kale varieties.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1319_brassica_napus_pabularia_group/regular/1365px-Brassica_napus_plant2C_koolzaad_28129.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160207Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=721d71020ba27bab5749727351549e372236d7542abd50e20970c7ce91b41665",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun, part shade",
+        "watering": "Average",
+        "watering_interval": "2-3 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Division",
+            "Layering Propagation",
+            "Grafting Propagation"
+        ],
+        "pruning_month": [
+            "May",
+            "May"
+        ],
+        "growth_rate": "High",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:58:27.295Z",
+        "updated_at": "2026-10-27T14:58:27.295Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "5fa472e0-69d1-405c-ad8d-3c2701a2463c",
+    "fields": {
+        "perenual_id": 1038,
+        "name": "bird's nest fern",
+        "scientific_name": "Asplenium nidus 'Antiquum'",
+        "description": "The Bird's Nest Fern (Asplenium nidus 'Antiquum') is a rare and unique species of fern that is a must-have addition to anytropical garden. Its stunning, wide-spreading fronds make it an attractive focal point, while its resistance to pests and diseases make it perfect for busy gardeners. Its foliage is a delight - deep green and glossy, with leathery leaves that are ruffled along the edges. Its yellow patches on the fronds add further to its aesthetic appeal and help it blend into other foliage. Its ability to adapt to different environments makes it a great choice for both indoor and outdoor spaces, making it a great choice for any tropical themed garden.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1038_asplenium_nidus_antiquum/regular/29457334967_82a2d8789c_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160149Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=e13f29461e4ca8bf03b1ab7964fd8eaffd1f99ecb505708df74d9d895774adca",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "full sun, part shade, full shade",
+        "watering": "Average",
+        "watering_interval": "2-3 days",
+        "difficulty": "",
+        "soil": [],
+        "propagation": [
+            "Division",
+            "Cutting",
+            "Spore Propagation",
+            "Tissue Culture"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "May",
+            "March",
+            "April",
+            "May"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "",
+        "created_at": "2026-10-27T14:57:19.527Z",
+        "updated_at": "2026-10-27T14:57:19.527Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "6239f969-ee40-4052-8134-9dc71af81c89",
+    "fields": {
+        "perenual_id": 552,
+        "name": "lipstick plant",
+        "scientific_name": "Aeschynanthus radicans",
+        "description": "The lipstick plant (Aeschynanthus radicans) is an amazing species that stands out with its unique color, texture and shape. Its waxy leaves have attractive colors, making it pleasing to look at, while its clusters of bright red and orange flowers look like tubes of lipstick! This plant is very easy to care for, being a low-maintenance, tropical evergreen climber. It does best in bright, indirect sunlight and in moist, well-drained soil. Additionally, it is known for its long flowering period, adding a splash of color to your indoor or outdoor spaces. With its beautiful colors, distinctive leaves, and ease of care, the lipstick plant is a fantastic addition to any garden.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/552_aeschynanthus_radicans/regular/29949422675_2671589cdf_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160132Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=6c4b3e98f9b0a1b29f42818fe4f1789a213d891d24b4f773f13b81b1f4b9a768",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "part shade, full sun",
+        "watering": "Average",
+        "watering_interval": "7-10 days",
+        "difficulty": "",
+        "soil": [],
+        "propagation": [
+            "Stem Propagation",
+            "Air Layering Propagation",
+            "Division",
+            "Leaf Cutting"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "May"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:57:01.417Z",
+        "updated_at": "2026-10-27T14:57:01.417Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "6815428f-07da-47af-b7d1-d40d5e1d423f",
+    "fields": {
+        "perenual_id": 502,
+        "name": "hot water plant",
+        "scientific_name": "Achimenes (group)",
+        "description": "The Hot Water Plant is an awesome choice of species for any avid gardener. It is a perennial plant, with unique and exotic blooms in a variety of shapes and colors, that can be grown indoors or outdoors. These plants are incredibly adaptive, thriving in all sorts of climates, from warm rainforest environments to cool temperate locations. In order to grow them, simply fill any container with water, place the root-ball into it, and enjoy the beautiful flowers that emerge for months. Hot Water Plants are also great for propagating and are incredibly low-maintenance, surviving both drought and short-term flooding easily. A truly amazing species that anyone can grow.",
+        "image_url": "",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "part shade",
+        "watering": "Average",
+        "watering_interval": "",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Division",
+            "Cutting",
+            "Seed Propagation",
+            "Tissue Culture"
+        ],
+        "pruning_month": [
+            "May",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T14:56:55.416Z",
+        "updated_at": "2026-10-27T14:56:55.416Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "6bffabc9-417a-4d29-b56c-918ba4d8926d",
+    "fields": {
+        "perenual_id": 1325,
+        "name": "Brussels sprouts",
+        "scientific_name": "Brassica oleracea (Gemmifera Group)",
+        "description": "Brussels sprouts (Brassica oleracea (Gemmifera Group)) are an amazing vegetable that pack a nutritious punch! They are high in dietary fiber, as well as vitamins C, K, and A. Brussels sprouts also contain certain phytonutrients that act as antioxidants, protecting the body from free radical damage. They have a unique flavor that can be a delicious addition to any dish or made as a side dish all on its own. Plus, they are easy to grow, making it a great crop for both experienced and novice gardeners alike. With its delicious flavor and powerful nutrition, Brussels sprouts are a great choice to add to any meal.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1325_brassica_oleracea_gemmifera_group/regular/brussels-sprouts-vegetables-brussels-carbon-sprouts-cabbage.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160212Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=8b33e73eefa47a676100989eb229d51319ca30a1e4a888fc2c0c52d973fc7257",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun",
+        "watering": "Average",
+        "watering_interval": "1-1 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Layering Propagation",
+            "Division",
+            "Grafting Propagation"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "May"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:58:32.158Z",
+        "updated_at": "2026-10-27T14:58:32.158Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "740f0b6e-2373-4680-ab65-a22572a4305c",
+    "fields": {
+        "perenual_id": 1316,
+        "name": "mustard greens",
+        "scientific_name": "Brassica juncea 'Japanese Giant Red'",
+        "description": "Mustard greens (Brassica juncea 'Japanese Giant Red') are an amazing plant species! Not only are they a nutritional powerhouse, loaded with vitamins and minerals, but they also taste great in cooked dishes. The leaves of this variety are deeply-colored and full of flavor, with a spicy tones that adds complexity to any meal. The fresh leaves make an excellent addition to salads and can provide some heat to sandwiches, stir-fry, and omelets. Plus, they are easy to cultivate, and quick to provide a bumper crop! Mustard greens are definitely an excellent addition to any garden.",
+        "image_url": "",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun, part shade",
+        "watering": "Average",
+        "watering_interval": "2-3 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Division",
+            "Layering Propagation"
+        ],
+        "pruning_month": [],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:58:26.101Z",
+        "updated_at": "2026-10-27T14:58:26.101Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "79289c0e-fc0f-42ea-b4e3-951add840412",
+    "fields": {
+        "perenual_id": 425,
+        "name": "flowering-maple",
+        "scientific_name": "Abutilon hybridum",
+        "description": "The Flowering Maple (Abutilon hybridum) is an amazing plant species for its hardiness, its unique flowers, and its ability to brighten up any landscape. It's a very low maintenance plant that flourishes in full sun and well drained soils. Its flowers are very striking and come in many different colors - the most common being white and yellow, with a contrasting dark center. This plant is ideal for those looking to add some vibrant color to their gardens without a lot of work. It can easily grow up to six feet and can even tolerate partial shade. The Flowering Maple is definitely an attention-grabber and will be sure to make any garden stand out.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/425_abutilon_hybridum/regular/24527654869_ac712f58c7_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160124Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=ecfa13d87ca2191b55148021a05e6aa6c2e6b7c76966b1ac6f497ebd63f70011",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "full sun, part shade",
+        "watering": "Frequent",
+        "watering_interval": "7-10 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Stem Propagation",
+            "Root Cutting",
+            "Air Layering Propagation",
+            "Grafting Propagation",
+            "Seed Propagation"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "May",
+            "August"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:56:54.363Z",
+        "updated_at": "2026-10-27T14:56:54.363Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "7a2467f0-047a-4b3a-af36-1bc713990b86",
+    "fields": {
+        "perenual_id": 1473,
+        "name": "marigold",
+        "scientific_name": "Calendula officinalis",
+        "description": "Marigold (Calendula officinalis) is amazing! It's an easy to grow, bright, and cheerful flower that can bring beauty and cheer to your garden. Marigolds are a great addition to any garden due to their cheerful, bold blooms. Plus, they attract butterflies and beneficial insects like bees and ladybugs. Marigolds are also very hardy - they'll tolerate drought and poor soil conditions, which makes them a great choice for less-than-perfect gardening conditions. Not only are they beautiful, but they also have medicinal properties, such as being antibacterial, antiviral, and an anti-inflammatory. Make sure to add some marigolds to your garden; you won't regret it!",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1473_calendula_officinalis/regular/52278754303_ec74264930_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160223Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=c588265e8021067af8d423281f19a1c6eceb29cc69457b56cdcd47e14b7d24a0",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun",
+        "watering": "Average",
+        "watering_interval": "3-4 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Division",
+            "Layering Propagation"
+        ],
+        "pruning_month": [
+            "August",
+            "December",
+            "January",
+            "February"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T15:00:09.674Z",
+        "updated_at": "2026-10-27T15:00:09.674Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "82781ede-db01-4f17-9a9b-71dccf8e4f29",
+    "fields": {
+        "perenual_id": 855,
+        "name": "anthurium",
+        "scientific_name": "Anthurium andraeanum",
+        "description": "Anthurium andraeanum is an amazing plant species for many reasons. It has a brightly coloured spathe, which can be orange, white and yellow, as well as long-lasting flowering. It is a long-lived species, and its blooms can remain intact for several months. This attractive plant is also easy to care for and can thrive in indirect light and humid environments. Its flowers bloom regularly and even if the plant is not fertilised, it can still keep thriving. Furthermore, the Anthurium andraeanum is perfect for those looking for a unique, eye-catching houseplant to add to their home. In conclusion, Anthurium andraeanum is a stunning and resilient species with distinctively vibrant flowers.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/855_anthurium_andraeanum/regular/49388458462_0ef650db39_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160139Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=1e5cc9a75461d33f4cf23ee81c09f30900159545c2e26b8660ec947a8441ecc3",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "part sun/part shade",
+        "watering": "Average",
+        "watering_interval": "7-10 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Division",
+            "Air Layering Propagation",
+            "Stem Propagation",
+            "Leaf Cutting",
+            "Seed Propagation"
+        ],
+        "pruning_month": [
+            "May",
+            "June",
+            "July"
+        ],
+        "growth_rate": "High",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T14:57:12.306Z",
+        "updated_at": "2026-10-27T14:57:12.306Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "840fd691-abd6-4b5e-aef2-16fc7bd5c4ec",
+    "fields": {
+        "perenual_id": 1745,
+        "name": "cornflower",
+        "scientific_name": "Centaurea cyanus",
+        "description": "The cornflower (Centaurea cyanus) is an incredible species that provides beauty, medicine, and food! Its vibrant petals in shades of cornflower-blue, lavender, and white capture the eye and spread cheer. Cornflowers have long been prized for their medicinal properties too, and have been used to treat everything from nervous exhaustion to fever. Plus, its edible seeds are used to make flavoring for syrups, liquors, and foods. With bright beauty, an array of medicinal and culinary uses, and drought-tolerance, this amazing plant has something for everyone.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1745_centaurea_cyanus/regular/52294924979_1e0d2f49b1_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160226Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=d5e31ef7bc4a2a84219a29b9e06dee3cc607c3f6d6474c244ba82319488e3682",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun, part shade",
+        "watering": "Average",
+        "watering_interval": "3-4 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Division",
+            "Cutting",
+            "Layering Propagation"
+        ],
+        "pruning_month": [
+            "February",
+            "March",
+            "April",
+            "May",
+            "May"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T15:00:14.521Z",
+        "updated_at": "2026-10-27T15:00:14.521Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "848e3db4-e009-422b-81f7-707a6abf5462",
+    "fields": {
+        "perenual_id": 1320,
+        "name": "kale",
+        "scientific_name": "Brassica oleracea (Acephala Group) 'Redbor'",
+        "description": "Kale is a proud member of the Brassica oleracea family, nicknamed \"the Acephala Group\" and known for its dark, reddish-purple leaves and thick, crunchy stalks. It's an amazing, nutritional powerhouse vegetable, packed with vitamins A, C, and K, along with a good dose of calcium, iron, and other essential minerals. Kale also contains powerful antioxidant properties, and studies have shown it can be beneficial for cardiovascular health. With its crunchy texture and deep flavor, it can easily be added to soups, salads, and stir-fries for a nutrient-rich meal. Kale's adaptability and nutritional benefits make it an amazing plant species we all should be consuming.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1320_brassica_oleracea_acephala_group_redbor/regular/kohl-kale-red-green-cabbage-redbor.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160208Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=3bfb08e65b0e15dc42c75028da365109db7911400d0c9573dc4f19d647604d43",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun, part shade",
+        "watering": "Average",
+        "watering_interval": "3-4 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Division",
+            "Layering Propagation"
+        ],
+        "pruning_month": [
+            "May"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:58:28.598Z",
+        "updated_at": "2026-10-27T14:58:28.598Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "84c4dd24-3cf1-4947-afcf-b2aab994d05a",
+    "fields": {
+        "perenual_id": 1036,
+        "name": "cast-iron plant",
+        "scientific_name": "Aspidistra elatior",
+        "description": "The cast-iron plant (Aspidistra elatior) is an amazing plant species due to its resilience and endurance. This plant is almost impossible to kill, since it can withstand extreme temperatures, low light levels, drought, and poor soil. It also requires very little attention to thrive, making it an ideal choice for busy or novice gardeners. Additionally, it has beautiful broad, dark green leaves which create an elegant, yet durable presence in any room.Featuring extremely low maintenance, this hardy and attractive plant is the perfect addition to any environment.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1036_aspidistra_elatior/regular/e5c6a91ae63e816bdb0d287f549bd74829e09923.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160148Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=f24be008a43596d194ce60a6403e9cdcd5e6b1521cde8883d6b962f9c7cb7116",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "part shade, full shade",
+        "watering": "Average",
+        "watering_interval": "7-10 days",
+        "difficulty": "Low",
+        "soil": [],
+        "propagation": [
+            "Division",
+            "Cutting",
+            "Air Layering Propagation",
+            "Seed Propagation"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "February",
+            "March",
+            "April",
+            "January",
+            "February"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:57:18.220Z",
+        "updated_at": "2026-10-27T14:57:18.220Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "8b443e5e-cf31-43fa-9ede-e411506e163e",
+    "fields": {
+        "perenual_id": 1273,
+        "name": "beet",
+        "scientific_name": "Beta vulgaris",
+        "description": "Beet (Beta vulgaris) is an amazing plant species for numerous reasons. It is both highly nutritious and incredibly versatile. It contains a variety of vitamins and minerals, making it a good dietary addition. It can be cooked, pickled, and juiced, making it a delicious go-to ingredient. Additionally, its deep purple and reddish hues make beet an eye-catching and appealing food option. Beet is also praised for its role in supporting eye, brain, and cardiovascular health. Finally, it is a key ingredient in a variety of cuisines around the world, demonstrating its widespread appeal. All of these factors come together to make beet an amazing and unique plant species.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1273_beta_vulgaris/regular/24673569230_b226299b70_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160202Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=0cdeb55e0df4d456f7eec3fac7553f0bc19834d32de7328976162be1c33ef48c",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "Full sun, part shade",
+        "watering": "Average",
+        "watering_interval": "1-2 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Division",
+            "Layering Propagation"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:58:22.989Z",
+        "updated_at": "2026-10-27T14:58:22.989Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "9636e4c5-d12f-4d01-9582-686c3b2f6d20",
+    "fields": {
+        "perenual_id": 1023,
+        "name": "Sprenger's asparagus fern",
+        "scientific_name": "Asparagus densiflorus",
+        "description": "Sprenger's asparagus fern (Asparagus densiflorus) is an amazing evergreen perennial that is perfect for sunny areas as it often blooms in late spring to summer. It is easy to care for, with arching stems of small, airy green foliage, and tiny white flowers. This makes a lovely ground cover and can also be potted for tabletop displays or hanging baskets. Hardy and drought tolerant, it requires minimal care and will thrive with light fertilizing during the growing season. A true delight to behold, Sprenger's asparagus fern is the perfect addition to any garden.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1023_asparagus_densiflorus/regular/49289066276_4bbe4e5b94_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160144Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=df0a9381e4fabbd373b4ccab38a38533e4acd37a60edc7231a19f584284795e2",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "part shade",
+        "watering": "Average",
+        "watering_interval": "7-10 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Division",
+            "Cutting",
+            "Seed Propagation",
+            "Layering Propagation"
+        ],
+        "pruning_month": [
+            "May",
+            "June",
+            "July"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:57:15.855Z",
+        "updated_at": "2026-10-27T14:57:15.855Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "a8b86954-8b86-4c8e-9209-0ab840ffc353",
+    "fields": {
+        "perenual_id": 1229,
+        "name": "wax gourd",
+        "scientific_name": "Benincasa hispida",
+        "description": "The wax gourd (Benincasa hispida) is an amazing multifaceted species of vine-growing squash. Its amazing because of its versatility – it can be eaten as a vegetable and its mature, dried, shell-like rind is used to make containers, various musical instruments, and even to fuel fires. Additionally, its root, stem, leaf and flower are all edible and oftentimes utilized in traditional medicine for treating a variety of ailments. Its sweet flesh can be eaten cooked or raw, plus the gourd also produces a large amount of edible seeds that can be harvested for their high nutrient content. Truly an amazing plant!",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1229_benincasa_hispida/og/14397805714_f84f9abde5_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160200Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=9de0675037c08e48db335c45dead0ed171c44066b5254bc128e307f082e567f7",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun, part shade",
+        "watering": "Average",
+        "watering_interval": "3-4 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Layering Propagation",
+            "Grafting Propagation"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "May"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:58:21.866Z",
+        "updated_at": "2026-10-27T14:58:21.866Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "ac800616-0a49-463d-af2d-89d006138223",
+    "fields": {
+        "perenual_id": 721,
+        "name": "aloe",
+        "scientific_name": "Aloe harlana",
+        "description": "Aloe harlana, also known as the yellow-flowering barbed aloe, is a plant species that is simply remarkable. It has a remarkable longevity and ability to thrive in arid regions, making it a great choice for those looking for a minimal maintenance houseplant. Its bright yellow flowers are composed of hundreds of wispy petals, giving an almost ethereal ambiance to any room it’s placed in. The leaves of an aloe harlana are thick yet supple and provide powerful medicinal properties, as well as being an effective deterrent against pests. All in all, the Aloe harlana is an easy-to-care for plant with a multitude of benefits that make it a must-have in any home.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/721_aloe_harlana/regular/5582077315_8d613454aa_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160138Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=7cd6e54a6383a89ec96ad1d089ee8b0c59019ca5ac2e1c23d613fcfa3c2f58f9",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "part shade, part sun/part shade",
+        "watering": "Minimum",
+        "watering_interval": "7-10 days",
+        "difficulty": "Low",
+        "soil": [],
+        "propagation": [
+            "Offsets",
+            "Leaf Cutting",
+            "Division",
+            "Seed Propagation",
+            "Grafting Propagation"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "May"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:57:10.360Z",
+        "updated_at": "2026-10-27T14:57:10.360Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "ad9c1ee8-1aa3-4716-b344-5ea54e26a4e2",
+    "fields": {
+        "perenual_id": 1327,
+        "name": "broccoli",
+        "scientific_name": "Brassica oleracea (Italica Group)",
+        "description": "Broccoli is a nutritionally dense superfood, packed with essential vitamins and minerals. It is a member of the Brassica oleracea family (Italica Group), which also includes cabbage, cauliflower, and kale. It is full of essential nutrients, providing a variety of health benefits, such as promoting healthy digestion and building immunity. Broccoli is also an excellent source of antioxidants, which help to neutralize free radicals in the body and protect cells from damage. Broccoli also contains essential fiber and phytochemicals, which help to reduce inflammation and promote healthy cells. With all these incredible benefits, broccoli is truly an amazing vegetable that everyone should include in their diet.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1327_brassica_oleracea_italica_group/og/1558498515_51e566c692_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160214Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=746b4a486012aa7434ec2a9fb5bf1b13ccbc154511c38073bed2b259046c6273",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun",
+        "watering": "Average",
+        "watering_interval": "2-3 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Division",
+            "Layering Propagation",
+            "Grafting Propagation"
+        ],
+        "pruning_month": [],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:58:34.999Z",
+        "updated_at": "2026-10-27T14:58:34.999Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "b5dc234b-9cf4-4583-a197-741fc63b9631",
+    "fields": {
+        "perenual_id": 710,
+        "name": "elephant's ear",
+        "scientific_name": "Alocasia amazonica",
+        "description": "The elephant's ear (Alocasia amazonica) is an amazing plant species. Its striking foliage features parabolic shaped leaves with bright green and silver/blue-green veins on the surface. Its white veins make the plant appear more vibrant, especially when provided with enough sunlight. Its size can range from one to two feet, making it an immediate attention-grabbing and decorative addition to any garden. It can also be grown indoors and is known for its air purifying capabilities. With its stunning, intricate foliage and its ability to add a splash of life and vivid color wherever you choose, the elephant's ear is an amazing species to add to your garden.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/710_alocasia_amazonica/regular/24444063964_a3054131aa_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160134Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=61871e5c6ca9c1cc1594a5f56113863ec0bdb89becef3dc31261515e87ea16a6",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "part shade, part sun/part shade",
+        "watering": "Average",
+        "watering_interval": "7-10 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Division",
+            "Air Layering Propagation",
+            "Stem Propagation",
+            "Offsets",
+            "Seed Propagation"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "May"
+        ],
+        "growth_rate": "High",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T14:57:04.490Z",
+        "updated_at": "2026-10-27T14:57:04.490Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "b67ebffb-90d0-4356-a1a0-3c1875718801",
+    "fields": {
+        "perenual_id": 1031,
+        "name": "asparagus fern",
+        "scientific_name": "Asparagus setaceus",
+        "description": "The asparagus fern (Asparagus setaceus) is an amazing plant for any garden. Boasting attractive, wispy foliage, this delicate fern looks beautiful in the garden or in containers. Not only does it look great, it’s also easy to care for. It prefers bright, indirect light and can even survive low light conditions. Asparagus ferns are also easy to propagate, making them a great addition to any flower bed. With its hardy nature and attractive foliage, this is an ideal choice for both experienced and beginner gardeners.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1031_asparagus_setaceus/regular/24274026853_98d1a2733a_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160145Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=af10e7b32547ebba6f0777e98d19039ac3b2a91cb45d58685f8c83cff21d3d13",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "part shade",
+        "watering": "Frequent",
+        "watering_interval": "7-10 days",
+        "difficulty": "Medium",
+        "soil": [
+            "Acidic",
+            " Alkaline"
+        ],
+        "propagation": [
+            "Seed Propagation"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:57:16.996Z",
+        "updated_at": "2026-10-27T14:57:16.996Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "bba8d0b4-d602-4eb4-b3dc-ab65968f2856",
+    "fields": {
+        "perenual_id": 410,
+        "name": "okra",
+        "scientific_name": "Abelmoschus esculentus",
+        "description": "Okra (Abelmoschus esculentus) is an amazing plant - its pods are an incredible source of nutrients and they have a unique, delicious flavor that is unlike any other vegetable. Okra is easy to grow and its delicate flowers are an eye-catching sight in the garden. It is also full of antioxidants and vitamin C, making it a great choice for those wanting to improve their health and wellbeing. Moreover, it has a high content of dietary fiber, which helps to keep your digestive system in check. Okra is truly amazing - a versatile and nutritious vegetable that tastes great, too!",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/410_abelmoschus_esculentus/regular/48879233903_b29f90fefd_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160152Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=102dbfc8929592260934a5510abec4a0a2d29a7b769734742b0ee6e23bb8bd15",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun",
+        "watering": "Frequent",
+        "watering_interval": "",
+        "difficulty": "",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Layering Propagation",
+            "Division",
+            "Grafting Propagation"
+        ],
+        "pruning_month": [
+            "August"
+        ],
+        "growth_rate": "High",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T14:58:17.585Z",
+        "updated_at": "2026-10-27T14:58:17.585Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "d1555d62-4262-474f-a309-545706272d01",
+    "fields": {
+        "perenual_id": 909,
+        "name": "peanut",
+        "scientific_name": "Arachis hypogaea",
+        "description": "The peanut is an amazing plant species because it is incredibly versatile and has an extraordinary range of uses. Peanuts are a source of high-quality protein and edible oils. They can be used to make peanut butter, made into flour, or popped like popcorn for a tasty snack. In addition to being a nutritious, tasty food, peanuts are also used to make a variety of products including body oils, soaps, and industrial lubricants, making this species incredibly valuable. Best of all, peanuts are easy to grow and can provide a nutritious food source for many communities.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/909_arachis_hypogaea/regular/51118802774_79812c9f6c_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160155Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=791e0d673ef8333ca0d35131a80e23492110a9bcd95be9b326734db89426cdcc",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "Full sun",
+        "watering": "Average",
+        "watering_interval": "2-3 days",
+        "difficulty": "",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Layering Propagation",
+            "Grafting Propagation",
+            "Cutting",
+            "Tissue Culture"
+        ],
+        "pruning_month": [],
+        "growth_rate": "Low",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T14:58:19.667Z",
+        "updated_at": "2026-10-27T14:58:19.667Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "d1cefc23-9913-4bb8-b9ae-69d3a3cbea99",
+    "fields": {
+        "perenual_id": 625,
+        "name": "Philippine evergreen",
+        "scientific_name": "Aglaonema commutatum",
+        "description": "Philippine evergreen (Aglaonema commutatum) is truly an amazing plant for many reasons. It has a beautiful, glossy foliage that is decorated with silver brush strokes, giving it an eye-catching appearance. It is also considered one of the most versatile and easy-to-care-for houseplants. It grows quickly, is tolerant of low light, and surviving drought periods. Additionally, the Philippine evergreen is known to be an air-purifying plant, ridding the air of many harmful toxins. It provides a lush, jungle-like atmosphere to your home or office with minimal effort.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/625_aglaonema_commutatum/regular/24798632751_3a039ecbc6_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160133Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=d57d5e3602cdda31eeb0ad01a88f35e016df30f80447bc00ab4fcf7a5a805be9",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "part shade, full shade",
+        "watering": "Average",
+        "watering_interval": "7-10 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Stem Propagation",
+            "Division",
+            "Air Layering Propagation",
+            "Leaf Cutting"
+        ],
+        "pruning_month": [
+            "May",
+            "August"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:57:02.542Z",
+        "updated_at": "2026-10-27T14:57:02.542Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "d4f40259-f2d0-4666-8c29-86142b68a6ef",
+    "fields": {
+        "perenual_id": 1144,
+        "name": "mountain spinach",
+        "scientific_name": "Atriplex hortensis",
+        "description": "Mountain spinach (Atriplex hortensis) is an amazing plant species due to its many beneficial characteristics. This plant is highly drought-tolerant as well as resistant to most diseases, so it's easy to maintain. With its reddish-green foliage, it is also an attractive addition to any garden. Furthermore, the leaves of these plants can be cooked and eaten, providing a healthy source of iron and other important vitamins and minerals. Not only is mountain spinach an attractive addition to a garden, but it is also a great nutritional supplement and source of food.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1144_atriplex_hortensis/og/29489868944_06b587da94_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160156Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=af022f92c565452de093311bce8b8995cccc1aab04fa1ec6355891884ad61d6b",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun, part shade",
+        "watering": "Average",
+        "watering_interval": "3-4 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Division",
+            "Layering Propagation"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "March",
+            "April",
+            "May",
+            "March",
+            "April",
+            "May",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T14:58:20.734Z",
+        "updated_at": "2026-10-27T14:58:20.734Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "d5346d28-51d3-49ac-8650-d28ec20eb008",
+    "fields": {
+        "perenual_id": 1275,
+        "name": "Swiss chard",
+        "scientific_name": "Beta vulgaris (Leaf Beet Group)",
+        "description": "Swiss Chard is an amazing plant species belonging to the Beta vulgaris (Leaf Beet Group). It has yellow, white, and bright red-veined leaves, with crisp stalks in a rainbow of colors. Swiss Chard is not only a colorful ornamental, but an edible delight with a sweet, mild flavor. It is nutrition-rich with antioxidants, vitamins such as A and C, minerals, and fiber. It is also well-known for being heat-tolerant and is highly adaptable to cooler climates. In addition, it only needs minimal maintenance and its harvest will last multiple seasons. Swiss Chard is truly an amazing and versatile vegetable that is tasty and nourishing for people from all walks of life.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1275_beta_vulgaris_leaf_beet_group/regular/Starr_070112-3389_Beta_vulgaris_subsp._cicla.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160203Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=f74e4799fd5675058b60620dae99a5feb3d0bfbea67140ae27e9845cac865012",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "Full sun, part shade",
+        "watering": "Average",
+        "watering_interval": "3-4 days",
+        "difficulty": "",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Division",
+            "Layering Propagation"
+        ],
+        "pruning_month": [
+            "May"
+        ],
+        "growth_rate": "High",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:58:23.974Z",
+        "updated_at": "2026-10-27T14:58:23.974Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "d9481773-614e-4252-8870-da8760877059",
+    "fields": {
+        "perenual_id": 1192,
+        "name": "ponytail palm",
+        "scientific_name": "Beaucarnea recurvata",
+        "description": "The ponytail palm (Beaucarnea recurvata) is one of the most interesting houseplants out there. Unique and eye-catching, it has a swollen base and a thin, cascading crown of green foliage, resembling a head of hair. It’s a slow growing and long lived species, making it a great gift to last through generations. Its drought tolerant nature also makes it an excellent choice for neglectful owners. This palm is also incredibly hardy, and can survive in temperatures as low as 10°F. With proper care, it can add a unique, tropical feel to any space.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1192_beaucarnea_recurvata/regular/51792797390_1b15a8415d_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160150Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=57f0c9d7ff093ce5a89c63600142378d0164681fb39a44b14ef8d0c6f1b51323",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "part sun/part shade",
+        "watering": "Average",
+        "watering_interval": "7-10 days",
+        "difficulty": "Medium",
+        "soil": [
+            "Rocky ",
+            " gravelly ",
+            " dry",
+            " Well-drained"
+        ],
+        "propagation": [
+            "Greenwood Cuttings"
+        ],
+        "pruning_month": [
+            "May",
+            "June",
+            "July",
+            "August"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:57:20.917Z",
+        "updated_at": "2026-10-27T14:57:20.917Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "dc2362ab-b80d-45ab-8c34-0923b352ba33",
+    "fields": {
+        "perenual_id": 1329,
+        "name": "Asian greens",
+        "scientific_name": "Brassica rapa (Asian Greens Group)",
+        "description": "Asian greens are a type of leafy vegetable known for their nutrient rich content and for their wide variety of culinary uses. They are a low calorie, rich source of vitamins A, C, and K, as well as dietary fiber. The greens are considered a powerhouse vegetable, packed with antioxidants and phytochemicals that support immune health. Their intense flavor and crunchy texture make them a great addition to stews, sides, salads, soups, and stir-fries. Asian greens are versatile, easy to grow, and take only a few weeks to reach maturity. As a Canadian hardy crop, they are ideal for gardening in cooler climates and have the added bonus of producing year-round yields. Asian greens are an eco-friendly and luxurious vegetable that contribute to a healthy, flavorful diet.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1329_brassica_rapa_asian_greens_group/regular/Brassica_rapa_subsp_narinosa.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160215Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=40475f570c9709f5f6318761a5f286f77cfa637a1d11465ed33bac75b459370a",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun, part shade",
+        "watering": "Average",
+        "watering_interval": "2-3 days",
+        "difficulty": "",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Grafting Propagation",
+            "Cutting",
+            "Layering Propagation"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T14:58:37.339Z",
+        "updated_at": "2026-10-27T14:58:37.339Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "dd0718f1-d5c1-41a1-8267-4da52eb3b054",
+    "fields": {
+        "perenual_id": 1321,
+        "name": "Romanesco broccoli",
+        "scientific_name": "Brassica oleracea (Botrytis Group)",
+        "description": "Romanesco broccoli/cauliflower (Brassica oleracea (Botrytis Group)) is an amazing plant species due to its unique beauty and captivating flavor. It looks like a cross between cauliflower and broccoli, with its spiraled florets resembling a fractal pattern. These florets are tender and mild-tasting with a delicate, nutty flavor. Romanesco broccoli/cauliflower is great for roasting and adding to salads, soups, and pasta dishes. It's a nutritional powerhouse, packed with vitamins, minerals, and fiber that can help boost your immune system. Give it a try and be amazed at the incredible flavor of this delightful vegetable!",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1321_brassica_oleracea_botrytis_group/regular/25392112491_3facfbf97c_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160209Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=65dfe35437dd89152437c04c623dbcd381e27363e9d11df04df87be48bd75d40",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun",
+        "watering": "Frequent",
+        "watering_interval": "2-3 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Division",
+            "Layering Propagation"
+        ],
+        "pruning_month": [
+            "July",
+            "August"
+        ],
+        "growth_rate": "High",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:58:29.681Z",
+        "updated_at": "2026-10-27T14:58:29.681Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "de3ff20b-be0b-4932-bb0b-0347a681ec96",
+    "fields": {
+        "perenual_id": 856,
+        "name": "anthurium",
+        "scientific_name": "Anthurium crassinervium",
+        "description": "Anthurium crassinervium is an amazing species of plant. It is an evergreen flowering plant with stunning heart-shaped red, blanket shaped bracts. Its glossy green leaves grow to a length of up to 8 inches, making it a great choice for any indoor or outdoor setting. Furthermore, the Anthurium has air-purifying capabilities and can help to eliminate toxins from the air. This species does not require a great deal of light or water making it easy to maintain. Plus, with its long life-span and minimal maintenance requirements, this plant is sure to bring beauty to your home for years to come.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/856_anthurium_crassinervium/regular/2560px-Anthurium_crassinervium.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160141Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=89ad411b78bfd8e296be29169926ef39d9fdcafbed5fe6fa3fb107ac815ed948",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "full sun, part shade",
+        "watering": "Frequent",
+        "watering_interval": "7-10 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Air Layering Propagation",
+            "Stem Propagation",
+            "Division",
+            "Offsets",
+            "Seed Propagation"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T14:57:13.472Z",
+        "updated_at": "2026-10-27T14:57:13.472Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "e31f0bce-9e96-48cf-a9be-972c154a9c03",
+    "fields": {
+        "perenual_id": 1326,
+        "name": "kohlrabi",
+        "scientific_name": "Brassica oleracea (Gongylodes Group)",
+        "description": "Kohlrabi (Brassica oleracea (Gongylodes Group)) is an amazing plant species for many reasons. It is known for its unique, swollen, edible stem that is juicy and tender. It is also high in essential vitamins and minerals such as vitamin C and potassium, making it a great source of nutrition. Furthermore, this hardy vegetable does not require much maintenance and does well in both hot and cold weather. It has a mildly sweet taste and can be eaten raw or cooked. Plus, it looks pretty too! Kohlrabi is a must-have plant for any garden!",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1326_brassica_oleracea_gongylodes_group/regular/root-vegetable-white-turnip-turnips-roots-turnip.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160213Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=24a9cd7b1039141ce7ac70dd4f9041b86551015316a5dc619717fc169766b7df",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun",
+        "watering": "Average",
+        "watering_interval": "1-2 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Layering Propagation",
+            "Division",
+            "Grafting Propagation"
+        ],
+        "pruning_month": [],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:58:33.275Z",
+        "updated_at": "2026-10-27T14:58:33.275Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "ebb02bf1-c4bb-452b-ad83-81d69a85f478",
+    "fields": {
+        "perenual_id": 1503,
+        "name": "China aster",
+        "scientific_name": "Callistephus chinensis",
+        "description": "The China aster is an incredible plant species and provides beautiful, long lasting colour in gardens for many months. Its puff-like, daisy-like flowers come in various shades of pink, purple and white and are highly attractive to bees and other pollinators. The leaves are small and feathery, while the stems are long and thin, making them perfect for cutting. Planting China aster in batches or as a border gives an especially good look in the garden. They thrive in full sun and produce blooms from mid-summer to mid-autumn. China aster's long flowering season and attractive blooms make it an amazing plant for any garden!",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1503_callistephus_chinensis/regular/Callistephus_chinensis_2021-09-01_0242.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160224Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=9c38e463f9dddce8b0bce46727dc2d8562aee1ac64279d77ccbc34715c989eea",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "Full sun, part shade",
+        "watering": "Average",
+        "watering_interval": "3-4 days",
+        "difficulty": "Medium",
+        "soil": [],
+        "propagation": [
+            "Seed Propagation",
+            "Cutting",
+            "Division",
+            "Layering Propagation"
+        ],
+        "pruning_month": [
+            "September",
+            "October",
+            "November",
+            "December",
+            "January",
+            "February"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T15:00:10.811Z",
+        "updated_at": "2026-10-27T15:00:10.811Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "efadfba8-d6cc-456e-b94f-00e7fd4b0652",
+    "fields": {
+        "perenual_id": 549,
+        "name": "urn plant",
+        "scientific_name": "Aechmea fasciata",
+        "description": "The urn plant (Aechmea fasciata) is an amazing species because of its striking foliage and interesting growth habit. It is one of the few bromeliads that produces structural leaves in a rosette pattern and colorful flower spikes. Its evergreen leaves can range from deep green to silver and can feature stripes, spots, or variegation. Additionally, this species is known to produce offsets, which makes it easier to propagate. And, finally, its vivid red, pink, or yellow flowers, depending on the variety, are stunning and last for months.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/549_aechmea_fasciata/regular/51446529161_03b99a881f_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160129Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=c1af37048745c845efbe707ffaf227cf07c84837299d08d5fb41845c3f77877e",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "part sun/part shade",
+        "watering": "Average",
+        "watering_interval": "1-2 days",
+        "difficulty": "Moderate",
+        "soil": [
+            "Well-drained"
+        ],
+        "propagation": [
+            "Seed Propagation"
+        ],
+        "pruning_month": [
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "May",
+            "June",
+            "July",
+            "December",
+            "January",
+            "February"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T14:56:59.062Z",
+        "updated_at": "2026-10-27T14:56:59.062Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "f3b0baf8-1a98-465f-813d-c10cc1fcfb66",
+    "fields": {
+        "perenual_id": 861,
+        "name": "zebra plant",
+        "scientific_name": "Aphelandra squarrosa",
+        "description": "The zebra plant (Aphelandra squarrosa) is an amazing species for many reasons. It is an evergreen perennial shrub native to tropical regions of America, with a unique and beautiful foliage that is composed of mid-green leaves with bold, yellow-centered darker green veins. Its foliage is incredibly eye-catching and provides an exotic yet stylish look to any garden. Although it does not bloom often, when it does, it puts forth amazing blooms with creamy white petals and yellow centers, looking almost like a daisy. While not overly fuss, it does need a good amount of bright light and regular watering. With the right upkeep, this species will thrive in any environment and provide a unique and attractive look.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/861_aphelandra_squarrosa/regular/9216112108_2bb5c403b3_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160143Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=408d2751328932115fb69a3957c563560fed54b4454ae71adfc2bd7610df3f23",
+        "image_attribution": "",
+        "indoor": true,
+        "sunlight": "part shade, full shade",
+        "watering": "Average",
+        "watering_interval": "7-10 days",
+        "difficulty": "Medium",
+        "soil": [
+            "Well-drained"
+        ],
+        "propagation": [
+            "Greenwood Cuttings"
+        ],
+        "pruning_month": [
+            "February",
+            "March",
+            "April"
+        ],
+        "growth_rate": "Low",
+        "maintenance": "Moderate",
+        "created_at": "2026-10-27T14:57:14.635Z",
+        "updated_at": "2026-10-27T14:57:14.635Z"
+    }
+},
+{
+    "model": "plant_catalog.plant",
+    "pk": "f828a002-1704-4d00-a63f-7ab8626e49df",
+    "fields": {
+        "perenual_id": 834,
+        "name": "dill",
+        "scientific_name": "Anethum graveolens",
+        "description": "Dill (Anethum graveolens) is an amazing herb. Its fern-like leaves are pleasant to look at and its flavour adds a delicious hint of aniseed to dishes. It is incredibly versatile and can be used in any savoury recipe, like soups, stews, salad dressings and sauces. The smell of dill is also amazing, due to its fragrant compounds, making it an ideal herb for aromatherapy. Furthermore, dill has many health benefits, as it is high in vitamin A, C, and K, minerals, and fiber. Dill has revealed to be an effective remedy against inflammations and cancer cells growth, making it an essential ingredient to have in the kitchen or garden.",
+        "image_url": "https://s3.us-central-1.wasabisys.com/perenual/species_image/834_anethum_graveolens/regular/52142605681_267b587549_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20261028%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261028T160154Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=b955115be24cb7a067917fa8ffec25fb8c44b8095538a86606f1f7804a93386e",
+        "image_attribution": "",
+        "indoor": false,
+        "sunlight": "full sun, part shade",
+        "watering": "Average",
+        "watering_interval": "3-4 days",
+        "difficulty": "",
+        "soil": [
+            "Humus rich",
+            " Well-drained"
+        ],
+        "propagation": [
+            "Seed Propagation"
+        ],
+        "pruning_month": [
+            "December",
+            "January",
+            "February"
+        ],
+        "growth_rate": "High",
+        "maintenance": "Low",
+        "created_at": "2026-10-27T14:58:18.640Z",
+        "updated_at": "2026-10-27T14:58:18.640Z"
+    }
+}
+]
