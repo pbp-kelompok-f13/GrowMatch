@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Delete {{ plant.name }} | GrowMatch{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'plant_catalog/css/plant_delete.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="pc-delete-page">
+    <div class="pc-delete-card">
+        <div class="pc-delete-image">
+            {% if plant.image_url %}
+                <img src="{{ plant.image_url }}" alt="{{ plant.name }}">
+            {% else %}
+                <div class="pc-delete-placeholder">
+                    <span class="material-symbols-outlined">potted_plant</span>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="pc-delete-content">
+            <span class="pc-delete-label">REMOVE PLANT</span>
+
+            <h1>Remove this plant?</h1>
+
+            <p>
+                You're about to permanently remove
+                <strong>{{ plant.name }}</strong> from the plant catalog.
+                This action cannot be undone.
+            </p>
+
+            <form method="post" class="pc-delete-actions">
+                {% csrf_token %}
+
+                <a href="{% url 'plant_catalog:detail' plant.id %}" class="pc-keep-button">
+                    Keep plant
+                </a>
+
+                <button type="submit" class="pc-confirm-delete">
+                    Yes, delete plant
+                </button>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}

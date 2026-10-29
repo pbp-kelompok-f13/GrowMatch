@@ -1,5 +1,6 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from .models import Plant
+from .forms import PlantForm
 
 
 def plant_catalog(request):
@@ -65,3 +66,44 @@ def plant_detail(request, plant_id):
         "plant_catalog/detail.html",
         {"plant": plant},
     )
+
+def add_plant(request):
+    form = PlantForm(request.POST or None)
+
+    if request.method == "POST" and form.is_valid():
+        plant = form.save()
+        return redirect("plant_catalog:detail", plant_id=plant.id)
+
+    context = {
+        "form": form,
+        "page_title": "Add a new plant",
+        "submit_label": "Add plant",
+    }
+
+    return render(request, "plant_catalog/plant_form.html", context)
+
+def edit_plant(request, plant_id):
+    plant = get_object_or_404(Plant, pk=plant_id)
+    form = PlantForm(request.POST or None, instance=plant)
+
+    if request.method == "POST" and form.is_valid():
+        plant = form.save()
+        return redirect("plant_catalog:detail", plant_id=plant.id)
+
+    context = {
+        "form": form,
+        "plant": plant,
+        "page_title": "Edit plant",
+        "submit_label": "Save changes",
+    }
+
+    return render(request, "plant_catalog/plant_form.html", context)
+
+def delete_plant(request, plant_id):
+    plant = get_object_or_404(Plant, pk=plant_id)
+
+    if request.method == "POST":
+        plant.delete()
+        return redirect("plant_catalog:catalog")
+
+    return render(request, "plant_catalog/plant_delete.html", {"plant": plant})

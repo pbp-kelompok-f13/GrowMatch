@@ -1,0 +1,151 @@
+.pc-delete-page {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 5%;
+    background: #fffff5;
+}
+
+.pc-delete-card {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.85fr) minmax(320px, 1.15fr);
+    width: 100%;
+    max-width: 900px;
+    overflow: hidden;
+    border: 1px solid #d8ded8;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 16px 40px rgba(22, 59, 45, 0.08);
+}
+
+.pc-delete-image {
+    min-height: 420px;
+    background: #e7eee1;
+}
+
+.pc-delete-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    display: block;
+    object-fit: cover;
+}
+
+.pc-delete-placeholder {
+    height: 100%;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #163b2d;
+}
+
+.pc-delete-placeholder .material-symbols-outlined {
+    font-size: 4rem;
+}
+
+.pc-delete-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3.5rem;
+    color: #163b2d;
+}
+
+.pc-delete-label {
+    margin-bottom: 1rem;
+    color: #ff0e86;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.pc-delete-content h1 {
+    margin: 0 0 1rem;
+    font-size: 2.6rem;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+}
+
+.pc-delete-content p {
+    margin: 0;
+    color: #63736b;
+    line-height: 1.7;
+}
+
+.pc-delete-content p strong {
+    color: #163b2d;
+}
+
+.pc-delete-actions {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 2rem;
+}
+
+.pc-keep-button,
+.pc-confirm-delete {
+    padding: 0.85rem 1.25rem;
+    border-radius: 999px;
+    font: inherit;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.pc-keep-button {
+    border: 1px solid #bfc9c1;
+    background: transparent;
+    color: #163b2d;
+}
+
+.pc-confirm-delete {
+    border: 1px solid #ff0e86;
+    background: #ff0e86;
+    color: #fff;
+}
+
+.pc-keep-button:hover {
+    border-color: #163b2d;
+}
+
+.pc-confirm-delete:hover {
+    opacity: 0.88;
+}
+
+@media (max-width: 700px) {
+    .pc-delete-page {
+        padding: 2rem 1.2rem;
+    }
+
+    .pc-delete-card {
+        grid-template-columns: 1fr;
+    }
+
+    .pc-delete-image,
+    .pc-delete-image img,
+    .pc-delete-placeholder {
+        min-height: 240px;
+        max-height: 280px;
+    }
+
+    .pc-delete-content {
+        padding: 2rem;
+    }
+
+    .pc-delete-content h1 {
+        font-size: 2rem;
+    }
+
+    .pc-delete-actions {
+        flex-direction: column;
+    }
+
+    .pc-keep-button,
+    .pc-confirm-delete {
+        box-sizing: border-box;
+        width: 100%;
+        text-align: center;
+    }
+}
