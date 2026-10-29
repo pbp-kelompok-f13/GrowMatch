@@ -75,6 +75,28 @@
     box-shadow: 0 0.45rem 1rem rgb(255 14 134 / 16%);
 }
 
+.pc-manage-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.pc-manage-actions a {
+    font-size: 1rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.pc-edit-link {
+    color: #66756d;
+}
+
+.pc-delete-link {
+    color: #ff0e86;
+}
+
 /* TOOLBAR */
 
 .pc-toolbar {

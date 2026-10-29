@@ -90,6 +90,12 @@
                     <span class="material-symbols-outlined">add</span>
                     Add to My Garden
                 </a>
+
+                <div class="pc-manage-actions">
+                    <a href="{% url 'plant_catalog:edit' plant.id %}" class="pc-edit-link">Edit plant</a>
+                    <span>·</span>
+                    <a href="{% url 'plant_catalog:delete' plant.id %}" class="pc-delete-link">Delete</a>
+                </div>
             </div>
         </section>
 

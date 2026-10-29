@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ page_title }} | GrowMatch{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'plant_catalog/css/plant_form.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="pc-form-page">
+    <div class="pc-form-layout">
+        <aside class="pc-form-sidebar">
+            <a href="{% url 'plant_catalog:catalog' %}" class="pc-form-back">← Back to catalog</a>
+
+            <h1>{{ page_title }}</h1>
+
+            <div class="pc-form-steps">
+                <div class="pc-form-step">
+                    <span>01</span>
+                    <div>
+                        <strong>Plant profile</strong>
+                        <small>Name, description, image</small>
+                    </div>
+                </div>
+
+                <div class="pc-form-step">
+                    <span>02</span>
+                    <div>
+                        <strong>Care essentials</strong>
+                        <small>Light, water, difficulty</small>
+                    </div>
+                </div>
+
+                <div class="pc-form-step">
+                    <span>03</span>
+                    <div>
+                        <strong>Care details</strong>
+                        <small>Only add what is known</small>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <section class="pc-form-card">
+            <div class="pc-form-card-header">
+                <span>{{ page_title }}</span>
+                <small>Fields marked * are required</small>
+            </div>
+
+            <form method="post">
+                {% csrf_token %}
+
+                <section class="pc-form-section">
+                    <h2><span>01</span> Plant profile</h2>
+
+                    <div class="pc-form-grid">
+                        <div class="pc-field">
+                            <label for="{{ form.name.id_for_label }}">Common name *</label>
+                            {{ form.name }}
+                            {{ form.name.errors }}
+                        </div>
+
+                        <div class="pc-field">
+                            <label for="{{ form.scientific_name.id_for_label }}">Scientific name</label>
+                            {{ form.scientific_name }}
+                            {{ form.scientific_name.errors }}
+                        </div>
+                    </div>
+
+                    <div class="pc-field">
+                        <label for="{{ form.description.id_for_label }}">Short description</label>
+                        {{ form.description }}
+                        {{ form.description.errors }}
+                    </div>
+
+                    <div class="pc-field">
+                        <label for="{{ form.image_url.id_for_label }}">Plant image URL</label>
+                        {{ form.image_url }}
+                        {{ form.image_url.errors }}
+                    </div>
+
+                    <div class="pc-field">
+                        <label for="{{ form.indoor.id_for_label }}">Placement</label>
+                        {{ form.indoor }}
+                        {{ form.indoor.errors }}
+                    </div>
+                </section>
+
+                <section class="pc-form-section">
+                    <h2><span>02</span> Care essentials</h2>
+
+                    <div class="pc-form-grid pc-form-grid-three">
+                        <div class="pc-field">
+                            <label for="{{ form.sunlight.id_for_label }}">Light</label>
+                            {{ form.sunlight }}
+                            {{ form.sunlight.errors }}
+                        </div>
+
+                        <div class="pc-field">
+                            <label for="{{ form.watering.id_for_label }}">Watering</label>
+                            {{ form.watering }}
+                            {{ form.watering.errors }}
+                        </div>
+
+                        <div class="pc-field">
+                            <label for="{{ form.difficulty.id_for_label }}">Difficulty</label>
+                            {{ form.difficulty }}
+                            {{ form.difficulty.errors }}
+                        </div>
+                    </div>
+                </section>
+
+                <section class="pc-form-section">
+                    <h2><span>03</span> Care details <small>OPTIONAL</small></h2>
+
+                    <div class="pc-form-grid">
+                        <div class="pc-field">
+                            <label for="{{ form.soil.id_for_label }}">Soil</label>
+                            {{ form.soil }}
+                            {{ form.soil.errors }}
+                        </div>
+
+                        <div class="pc-field">
+                            <label for="{{ form.propagation.id_for_label }}">Propagation</label>
+                            {{ form.propagation }}
+                            {{ form.propagation.errors }}
+                        </div>
+
+                        <div class="pc-field">
+                            <label for="{{ form.pruning_month.id_for_label }}">Pruning months</label>
+                            {{ form.pruning_month }}
+                            {{ form.pruning_month.errors }}
+                        </div>
+
+                        <div class="pc-field">
+                            <label for="{{ form.growth_rate.id_for_label }}">Growth rate</label>
+                            {{ form.growth_rate }}
+                            {{ form.growth_rate.errors }}
+                        </div>
+
+                        <div class="pc-field">
+                            <label for="{{ form.maintenance.id_for_label }}">Maintenance</label>
+                            {{ form.maintenance }}
+                            {{ form.maintenance.errors }}
+                        </div>
+
+                        <div class="pc-field">
+                            <label for="{{ form.watering_interval.id_for_label }}">Watering interval</label>
+                            {{ form.watering_interval }}
+                            {{ form.watering_interval.errors }}
+                        </div>
+                    </div>
+                </section>
+
+                <div class="pc-form-actions">
+                    <a href="{% url 'plant_catalog:catalog' %}" class="pc-form-cancel">Cancel</a>
+                    <button type="submit" class="pc-form-submit">{{ submit_label }} →</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</main>
+{% endblock content %}
