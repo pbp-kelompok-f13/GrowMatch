@@ -8,45 +8,44 @@ Fonts:
 
 /* Theme */
 :root {
-
-  --primary-10: #E8F0EB;
-  --primary-20: #CFDFD5;
-  --primary-30: #A8C5B2;
-  --primary-40: #79A087;
-  --primary-50: #3F7255;
-  --primary-base: #06351B;
-  --primary-60: #052F18;
+  --primary-10: #e8f0eb;
+  --primary-20: #cfdfd5;
+  --primary-30: #a8c5b2;
+  --primary-40: #79a087;
+  --primary-50: #3f7255;
+  --primary-base: #06351b;
+  --primary-60: #052f18;
   --primary-70: #042815;
   --primary-80: #032111;
-  --primary-90: #02190D;
+  --primary-90: #02190d;
   --primary-100: #011108;
 
-  --secondary-10: #F1F6EC;
-  --secondary-20: #E3EDD9;
-  --secondary-30: #CBDDBA;
-  --secondary-40: #AAC78E;
-  --secondary-50: #83AA60;
-  --secondary-base: #5D8B3A;
-  --secondary-60: #527B33;
-  --secondary-70: #45682B;
+  --secondary-10: #f1f6ec;
+  --secondary-20: #e3edd9;
+  --secondary-30: #cbddba;
+  --secondary-40: #aac78e;
+  --secondary-50: #83aa60;
+  --secondary-base: #5d8b3a;
+  --secondary-60: #527b33;
+  --secondary-70: #45682b;
   --secondary-80: #385523;
-  --secondary-90: #2A401A;
-  --secondary-100: #1C2B11;
+  --secondary-90: #2a401a;
+  --secondary-100: #1c2b11;
 
-  --accent-10: #FFF0F7;
-  --accent-20: #FFD9EA;
-  --accent-30: #FFB7D8;
-  --accent-40: #FF89BE;
-  --accent-50: #FF54A3;
-  --accent-base: #FF0E86;
-  --accent-70: #C80068;
-  --accent-80: #A70057;
+  --accent-10: #fff0f7;
+  --accent-20: #ffd9ea;
+  --accent-30: #ffb7d8;
+  --accent-40: #ff89be;
+  --accent-50: #ff54a3;
+  --accent-base: #ff0e86;
+  --accent-70: #c80068;
+  --accent-80: #a70057;
   --accent-90: #850046;
   --accent-100: #620034;
 
   --selection-color: #5d8b3a77;
   --hover-color: var(--secondary-base);
-  --paper: #FFFFF5;
+  --paper: #fffff5;
   --ink: var(--primary-base);
   --tint: var(--secondary-30);
   --line: var(--primary-30);
@@ -79,7 +78,7 @@ html {
   scrollbar-width: none;
 }
 html::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 body {
@@ -189,10 +188,10 @@ small {
 }
 
 .small-line {
-    width: 1.5rem;
-    height: 1px;
-    background: currentColor;
-    flex-shrink: 0;
+  width: 1.5rem;
+  height: 1px;
+  background: currentColor;
+  flex-shrink: 0;
 }
 
 .eyebrow {
@@ -243,10 +242,9 @@ small {
 }
 
 /* Apply .button to either <button> or <a>. */
-.button, 
-.button--secondary, 
+.button,
+.button--secondary,
 .button--accent {
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -267,8 +265,8 @@ small {
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  transition: 
-    background-color 180ms ease, 
+  transition:
+    background-color 180ms ease,
     transform 180ms ease,
     color 180ms ease;
 }
@@ -309,8 +307,15 @@ label {
 }
 
 :where(
-  input:not([type="checkbox"], [type="radio"], [type="range"],
-    [type="button"], [type="submit"], [type="reset"], [type="color"]),
+  input:not(
+    [type="checkbox"],
+    [type="radio"],
+    [type="range"],
+    [type="button"],
+    [type="submit"],
+    [type="reset"],
+    [type="color"]
+  ),
   textarea,
   select
 ) {
@@ -358,27 +363,82 @@ textarea {
 }
 
 .site-header {
-    border-bottom: 1px solid var(--line);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem 2rem;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2rem;
 }
 
 .brand {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--ink);
-    text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
 }
 
 .site-header nav {
-    display: flex;
-    gap: 2rem;
+  display: flex;
+  gap: 2rem;
 }
 
 .site-header nav a {
-    color: var(--ink);
-    text-decoration: none;
-    font-size: 0.95rem;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+/* toast */
+.toast-component {
+  position: fixed;
+  inset: auto 2rem 2rem auto;
+  margin: 0;
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: 0 10px 25px rgba(28, 25, 23, 0.15);
+  display: none;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+  background-color: var(--paper);
+  color: inherit;
+}
+
+.toast-component:popover-open {
+  display: flex;
+}
+
+.toast-hidden {
+  opacity: 0;
+  transform: translateY(150%);
+  pointer-events: none;
+}
+
+.toast-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+  font-family: var(--font-subheading);
+}
+
+.toast-message {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+}
+
+/* Modifikasi border kiri berdasarkan tipe notifikasi */
+.toast-success {
+  border: 1.5px solid #22c55e;
+}
+.toast-error {
+  border: 1.5px solid #b42318;
+}
+.toast-normal {
+  border: 1.5px solid var(--accent);
 }

@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Plant Reviews | GrowMatch{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/review.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="review-page container">
+    
+    <div class="review-heading">
+        <div class="eyebrow">
+            <span class="small-line"></span>
+            Community notes
+        </div> 
+
+        <h1 class="review-plant-title">
+            Plant #{{ plant.pk }}
+        </h1>
+
+        <p class="review-tagline">
+            Every plant has <i>a story.</i>
+        </p>
+
+        <p class="review-description">
+            Read real experiences from other plant lovers and share your own.
+        </p>
+    </div>
+
+
+    <div id="review-list" class="review-list" aria-live="polite">
+        {% for review in reviews %}
+        <article id="review-{{ review.pk }}" class="review-card"
+                 data-review-id="{{ review.pk }}"
+                 data-rating="{{ review.rating }}"
+                 data-edit-url="{% url 'reviews:edit_plant_review' review.pk %}"
+                 data-delete-url="{% url 'reviews:delete_plant_review' review.pk %}">
+            <div class="review-card-top">
+                <div>
+                    <strong class="review-author">{{ review.user.username }}</strong>
+                    <span class="review-date">{{ review.created_at|date:'M j, Y' }}</span>
+                </div>
+                <span class="review-rating" aria-label="{{ review.rating }} out of 5 stars">
+                    ★ {{ review.rating }} / 5
+                </span>
+            </div>
+            <p class="review-comment" data-comment="{{ review.comment }}">
+                {{ review.comment|default:'No written review.' }}
+            </p>
+            {% if review.user_id == request.user.id %}
+            <div class="review-actions">
+                <button type="button" class="review-link js-edit-review">Edit</button>
+                <button type="button" class="review-link review-link-danger js-delete-review">Delete</button>
+            </div>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </div>
+    <p id="review-empty" class="review-empty" {% if reviews %}hidden{% endif %}>
+        No reviews yet. Be the first to share your experience!
+    </p>
+</section>
+
+<dialog id="review-modal" class="review-modal" aria-labelledby="review-modal-title">
+    <div class="review-modal-top">
+        <div>
+            <div class="eyebrow"><span class="small-line"></span> Grow together</div>
+            <h2 id="review-modal-title">{% if editing_review %}Edit your review{% else %}Write a review{% endif %}</h2>
+        </div>
+        <button id="close-review-modal" type="button" class="review-close" aria-label="Close review form">×</button>
+    </div>
+
+    <p class="review-modal-subtitle">How has this plant treated you? Your experience could help someone else grow.</p>
+
+    <form id="review-form" method="post"
+          data-create-url="{% url 'reviews:plant_review' plant.pk %}"
+          {% if editing_review %}data-initial-edit-id="{{ editing_review.pk }}"{% endif %}
+          action="{% if editing_review %}{% url 'reviews:edit_plant_review' editing_review.pk %}{% else %}{% url 'reviews:plant_review' plant.pk %}{% endif %}">
+        {% csrf_token %}
+        <fieldset class="review-fieldset">
+            <legend>Your rating <span aria-hidden="true">*</span></legend>
+            <div class="rating-options" id="rating-options">
+                {% for value in '12345' %}
+                <label class="rating-option">
+                    <input type="radio" name="rating" value="{{ value }}" aria-label="{{ value }} out of 5 stars" {% if form.rating.value == value %}checked{% endif %} required>
+                    <span aria-hidden="true">★</span>
+                </label>
+                {% endfor %}
+            </div>
+            <p id="rating-hint" class="rating-hint">Choose 1 to 5 stars</p>
+        </fieldset>
+
+        <label for="id_comment">Your thoughts <span class="review-optional">(optional)</span></label>
+        {{ form.comment }}
+
+        <p id="review-form-errors" class="review-errors" role="alert" hidden></p>
+        {% if form.errors %}
+        <div class="review-errors">{{ form.errors }}</div>
+        {% endif %}
+
+        <div class="review-modal-actions">
+            <button id="cancel-review-modal" type="button" class="button--secondary">Cancel</button>
+            <button id="submit-review" type="submit" class="button--accent">{% if editing_review %}Save Changes{% else %}Submit Review{% endif %}</button>
+        </div>
+    </form>
+</dialog>
+
+{% include 'components/toast.html' %}
+<script src="{% static 'js/review.js' %}"></script>
+{% if form.errors %}
+<script>document.getElementById('review-modal').showModal();</script>
+{% endif %}
+{% endblock %}
