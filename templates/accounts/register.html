@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Create Account | GrowMatch{% endblock %}
+
+{% block header_nav %}
+<a href="/">Home</a>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<section class="auth-page">
+
+    <!-- Left introduction panel -->
+    <aside class="auth-intro">
+        <div class="auth-intro-content">
+            <p class="auth-eyebrow">
+                URBAN FARMING &amp; BIODIVERSITY
+            </p>
+
+            <h1>
+                Find the right plants for
+                <em>your space.</em>
+            </h1>
+
+            <p class="auth-description">
+                Discover plants that thrive in your environment
+                and fit your daily care routine.
+            </p>
+
+            <div class="auth-tagline">
+                <span class="material-symbols-outlined" aria-hidden="true">eco</span>
+                <span>Grow smarter. Live greener.</span>
+            </div>
+        </div>
+
+        <div class="auth-leaf-decoration" aria-hidden="true">
+            <div class="leaf-circle leaf-circle-one"></div>
+            <div class="leaf-circle leaf-circle-two"></div>
+            <span class="material-symbols-outlined leaf-icon">eco</span>
+        </div>
+    </aside>
+
+    <!-- Right registration form -->
+    <div class="auth-form-section">
+        <div class="auth-card">
+
+            <h2>Create your <em>GrowMatch</em> account</h2>
+
+            <p class="auth-subtitle">
+                Join GrowMatch and start growing your plants!
+            </p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <div class="form-errors">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+
+                <div class="form-field">
+                    <label for="{{ form.username.id_for_label }}">
+                        Username
+                    </label>
+
+                    {{ form.username }}
+
+                    <small class="field-help">
+                        Required. 150 characters or fewer.
+                        Letters, digits and @/./+/-/_ only.
+                    </small>
+
+                    {% for error in form.username.errors %}
+                        <p class="field-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.password1.id_for_label }}">
+                        Password
+                    </label>
+
+                    <div class="password-wrapper">
+                        {{ form.password1 }}
+
+                        <button type="button"
+                                id="password-toggle"
+                                class="password-toggle"
+                                aria-label="Show password"
+                                aria-pressed="false">
+                            <span class="material-symbols-outlined" aria-hidden="true">visibility</span>
+                        </button>
+                    </div>
+
+                    <div class="password-strength" aria-live="polite">
+                        <div class="strength-track">
+                            <div id="strength-bar" data-level="0"></div>
+                        </div>
+                        <small id="strength-label"></small>
+                    </div>
+
+                    <ul class="password-rules" id="password-rules">
+                        <li data-rule="similar">Can't be too similar to your username</li>
+                        <li data-rule="length">Must contain at least 8 characters</li>
+                        <li data-rule="common">Can't be a commonly used password</li>
+                        <li data-rule="numeric">Can't be entirely numeric</li>
+                    </ul>
+
+                    {% for error in form.password1.errors %}
+                        <p class="field-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.password2.id_for_label }}">
+                        Confirm password
+                    </label>
+
+                    {{ form.password2 }}
+
+                    <small id="match-msg" class="field-help" aria-live="polite">
+                        Enter the same password again, for verification.
+                    </small>
+
+                    {% for error in form.password2.errors %}
+                        <p class="field-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <button type="submit" class="button auth-submit">
+                    Create Account
+                </button>
+            </form>
+
+            <p class="auth-footer">
+                Already have an account?
+                <a href="{% url 'accounts:login' %}">Login here</a>
+            </p>
+
+        </div>
+    </div>
+
+</section>
+
+<script>
+(function () {
+    var username = document.getElementById("{{ form.username.id_for_label }}");
+    var pw1 = document.getElementById("{{ form.password1.id_for_label }}");
+    var pw2 = document.getElementById("{{ form.password2.id_for_label }}");
+    var toggle = document.getElementById("password-toggle");
+    var bar = document.getElementById("strength-bar");
+    var label = document.getElementById("strength-label");
+    var matchMsg = document.getElementById("match-msg");
+    var defaultMatchText = matchMsg ? matchMsg.textContent.trim() : "";
+
+    if (!pw1 || !pw2) { return; }
+
+    // Pengecekan di sisi browser hanya sebagai petunjuk.
+    // Validasi yang sebenarnya tetap dilakukan Django di server.
+    var COMMON = ["password", "password1", "password123", "12345678",
+                  "123456789", "qwertyui", "qwerty123", "iloveyou",
+                  "admin123", "welcome1", "letmein1"];
+
+    var rules = {};
+    document.querySelectorAll("#password-rules li").forEach(function (li) {
+        rules[li.getAttribute("data-rule")] = li;
+    });
+
+    function updatePassword() {
+        var p = pw1.value;
+        var u = username ? username.value.toLowerCase() : "";
+
+        var state = {
+            similar: p.length > 0 && !(u.length >= 3 && p.toLowerCase().indexOf(u) !== -1),
+            length: p.length >= 8,
+            common: p.length > 0 && COMMON.indexOf(p.toLowerCase()) === -1,
+            numeric: p.length > 0 && !/^\d+$/.test(p)
+        };
+
+        var score = 0;
+        Object.keys(state).forEach(function (key) {
+            if (rules[key]) { rules[key].classList.toggle("valid", state[key]); }
+            if (state[key]) { score++; }
+        });
+
+        var level = p.length ? score : 0;
+        bar.style.width = (level * 25) + "%";
+        bar.setAttribute("data-level", level);
+        label.textContent = p.length ? score + " of 4 requirements met" : "";
+
+        updateMatch();
+    }
+
+    function updateMatch() {
+        if (!matchMsg) { return; }
+        matchMsg.classList.remove("password-match", "password-mismatch");
+
+        if (!pw2.value.length) {
+            matchMsg.textContent = defaultMatchText;
+        } else if (pw1.value === pw2.value) {
+            matchMsg.textContent = "Passwords match";
+            matchMsg.classList.add("password-match");
+        } else {
+            matchMsg.textContent = "Passwords don't match yet";
+            matchMsg.classList.add("password-mismatch");
+        }
+    }
+
+    pw1.addEventListener("input", updatePassword);
+    pw2.addEventListener("input", updateMatch);
+    if (username) { username.addEventListener("input", updatePassword); }
+
+    if (toggle) {
+        toggle.addEventListener("click", function () {
+            var show = pw1.type === "password";
+            pw1.type = pw2.type = show ? "text" : "password";
+            toggle.setAttribute("aria-pressed", show ? "true" : "false");
+            toggle.setAttribute("aria-label", show ? "Hide password" : "Show password");
+            toggle.querySelector(".material-symbols-outlined").textContent =
+                show ? "visibility_off" : "visibility";
+        });
+    }
+
+    updatePassword();
+})();
+</script>
+{% endblock %}

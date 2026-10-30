@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Edit Profile | GrowMatch{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<section class="profile-page">
+    <div class="auth-card edit-card">
+
+        <h1>Edit profile</h1>
+        <p class="auth-subtitle">
+            Signed in as <strong>{{ request.user.username }}</strong>.
+            Your username can't be changed.
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            {% if user_form.non_field_errors or profile_form.non_field_errors %}
+                <div class="form-errors">
+                    {{ user_form.non_field_errors }}
+                    {{ profile_form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="{{ user_form.first_name.id_for_label }}">First name</label>
+                    {{ user_form.first_name }}
+                    {% for error in user_form.first_name.errors %}
+                        <p class="field-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ user_form.last_name.id_for_label }}">Last name</label>
+                    {{ user_form.last_name }}
+                    {% for error in user_form.last_name.errors %}
+                        <p class="field-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="{{ user_form.email.id_for_label }}">Email</label>
+                {{ user_form.email }}
+                {% for error in user_form.email.errors %}
+                    <p class="field-error">{{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="form-field">
+                <label for="{{ profile_form.location.id_for_label }}">Location</label>
+                {{ profile_form.location }}
+                {% for error in profile_form.location.errors %}
+                    <p class="field-error">{{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="form-field">
+                <label for="{{ profile_form.bio.id_for_label }}">Bio</label>
+                {{ profile_form.bio }}
+                <small class="field-help">Up to 200 characters.</small>
+                {% for error in profile_form.bio.errors %}
+                    <p class="field-error">{{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="button">Save Changes</button>
+                <a href="{% url 'accounts:profile' %}" class="profile-secondary-button">Cancel</a>
+            </div>
+        </form>
+
+    </div>
+</section>
+{% endblock %}

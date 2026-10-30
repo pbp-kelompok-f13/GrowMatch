@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}My Profile | GrowMatch{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+{% with name=request.user.get_full_name|default:request.user.username %}
+<section class="profile-page">
+    <div class="profile-stack">
+
+        {% for message in messages %}
+            <p class="auth-message {{ message.tags }}" role="status">{{ message }}</p>
+        {% endfor %}
+
+        <article class="profile-card">
+
+            <div class="profile-banner" aria-hidden="true">
+                <span class="material-symbols-outlined profile-banner-leaf">eco</span>
+            </div>
+
+            <div class="profile-body">
+                <div class="profile-avatar" aria-hidden="true">
+                    {{ name|slice:":1"|upper }}
+                </div>
+
+                <p class="auth-eyebrow">MY PROFILE</p>
+                <h1>{{ name }}</h1>
+
+                {% if request.user.get_full_name %}
+                    <p class="profile-handle">@{{ request.user.username }}</p>
+                {% endif %}
+
+                <p class="auth-subtitle">
+                    {% if profile.bio %}{{ profile.bio }}{% else %}Welcome to your GrowMatch account.{% endif %}
+                </p>
+
+                <dl class="profile-details">
+                    <div class="profile-detail">
+                        <dt>
+                            <span class="material-symbols-outlined" aria-hidden="true">alternate_email</span>
+                            Username
+                        </dt>
+                        <dd>{{ request.user.username }}</dd>
+                    </div>
+
+                    <div class="profile-detail">
+                        <dt>
+                            <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+                            Email
+                        </dt>
+                        <dd>
+                            {% if request.user.email %}{{ request.user.email }}{% else %}<span class="profile-empty">Not set</span>{% endif %}
+                        </dd>
+                    </div>
+
+                    <div class="profile-detail">
+                        <dt>
+                            <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
+                            Location
+                        </dt>
+                        <dd>
+                            {% if profile.location %}{{ profile.location }}{% else %}<span class="profile-empty">Not set</span>{% endif %}
+                        </dd>
+                    </div>
+
+                    <div class="profile-detail">
+                        <dt>
+                            <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
+                            Member since
+                        </dt>
+                        <dd>{{ request.user.date_joined|date:"d M Y" }}</dd>
+                    </div>
+                </dl>
+
+                <div class="profile-actions">
+                    <a href="{% url 'accounts:profile_edit' %}" class="button">Edit Profile</a>
+                    <a href="{% url 'accounts:password_change' %}" class="profile-secondary-button">Change Password</a>
+                </div>
+
+                <p class="profile-back"><a href="/">Back to Home</a></p>
+            </div>
+
+        </article>
+    </div>
+</section>
+{% endwith %}
+{% endblock %}

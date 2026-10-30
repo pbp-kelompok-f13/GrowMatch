@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'main',
     'recommendation',
     'plant_catalog',
+    'accounts',
     'reviews.apps.ReviewsConfig',
 ]
 
