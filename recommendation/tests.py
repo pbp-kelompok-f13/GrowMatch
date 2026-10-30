@@ -56,6 +56,7 @@ class RecommendationModelTest(TestCase):
     def test_city(self):
         self.assertEqual(make_recommendation(self.user).city, "Depok")
         self.assertEqual(make_recommendation(self.user, location_name="Bogor").city, "Bogor")
+        self.assertEqual(make_recommendation(self.user, watering_frequency="frequent").watering_label, "Often")
 
     def test_has_weather(self):
         self.assertTrue(make_recommendation(self.user).has_weather)
@@ -259,9 +260,16 @@ class OwnRecommendationTest(TestCase):
 
     def test_history_only_shows_own(self):
         response = self.client.get(reverse("recommendation:history"))
-        self.assertContains(response, "Depok, Indonesia")
-        self.assertContains(response, "Bogor, Indonesia")
-        self.assertNotContains(response, "Jakarta, Indonesia")
+        self.assertContains(response, ">Depok</a>")
+        self.assertContains(response, ">Bogor</a>")
+        self.assertNotContains(response, ">Jakarta</a>")
+        self.assertContains(response, "2 recommendations")
+        self.assertContains(response, "31°C")
+
+    def test_history_without_weather(self):
+        RecommendationRequest.objects.filter(pk=self.mine.pk).update(temperature=None)
+        response = self.client.get(reverse("recommendation:history"))
+        self.assertContains(response, "Weather data isn't available yet")
 
     def test_history_filter_space_type(self):
         response = self.client.get(reverse("recommendation:history"), {"space_type": "outdoor"})

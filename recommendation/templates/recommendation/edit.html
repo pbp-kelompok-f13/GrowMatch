@@ -11,8 +11,12 @@
 {% block content %}
 <section class="container rec-page">
     <div class="eyebrow"><span class="small-line"></span>Plant Recommendation</div>
-    <h1>Update your <i>preferences.</i></h1>
-    <p class="rec-lead">We will fetch fresh weather data for your location.</p>
+    <div class="rec-hero">
+        <h1>Update your<br><i>preferences</i></h1>
+        <div class="rec-hero-side">
+            <p>We'll fetch fresh weather data for your new location.</p>
+        </div>
+    </div>
 
     {% include 'recommendation/_messages.html' %}
     {% url 'recommendation:edit' recommendation.pk as edit_url %}

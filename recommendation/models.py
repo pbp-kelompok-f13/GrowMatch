@@ -52,6 +52,10 @@ class RecommendationRequest(models.Model):
         return self.location_name.split(",")[0].strip()
 
     @property
+    def watering_label(self):
+        return self.get_watering_frequency_display().split(" (")[0]
+
+    @property
     def has_weather(self):
         return self.temperature is not None and self.humidity is not None
 

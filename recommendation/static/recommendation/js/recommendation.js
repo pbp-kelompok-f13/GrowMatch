@@ -65,7 +65,12 @@ async function submitDelete(event) {
         return;
     }
     item.remove();
-    if (!document.querySelector("[data-history-item]")) {
+    const remaining = document.querySelectorAll("[data-history-item]").length;
+    const count = document.querySelector("[data-history-count]");
+    if (count) {
+        count.textContent = `${remaining} recommendation${remaining === 1 ? "" : "s"}`;
+    }
+    if (!remaining) {
         document.querySelector("[data-history-empty]").hidden = false;
     }
 }

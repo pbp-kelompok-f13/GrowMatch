@@ -11,7 +11,10 @@
 {% block content %}
 <section class="container rec-page">
     <div class="eyebrow"><span class="small-line"></span>Plant Recommendation</div>
-    <h1>Your match <i>history.</i></h1>
+    <div class="rec-hero">
+        <h1>Your match<br><i>history</i></h1>
+        <a href="{% url 'recommendation:form' %}" class="button--accent">New recommendation <span aria-hidden="true">→</span></a>
+    </div>
 
     {% include 'recommendation/_messages.html' %}
 
@@ -22,23 +25,34 @@
             <a href="?space_type={{ value }}" {% if space_type == value %}aria-current="page"{% endif %}>{{ label }}</a>
             {% endfor %}
         </nav>
-        <a href="{% url 'recommendation:form' %}" class="button--accent">New recommendation</a>
+        <p class="rec-history-count" data-history-count>{{ recommendations|length }} recommendation{{ recommendations|length|pluralize }}</p>
     </div>
 
-    <div class="grid" data-history-list>
+    <div class="rec-history-grid" data-history-list>
         {% for recommendation in recommendations %}
-        <article class="card rec-card" data-history-item>
-            <h3><a href="{% url 'recommendation:detail' recommendation.pk %}">{{ recommendation.location_name }}</a></h3>
-            <p class="muted">
-                {{ recommendation.get_space_type_display }} · {{ recommendation.get_watering_frequency_display }} · {{ recommendation.get_experience_level_display }}
-            </p>
+        <article class="rec-history-card" data-history-item>
+            <time class="rec-history-date" datetime="{{ recommendation.created_at|date:'c' }}">{{ recommendation.created_at|date:"d M Y, H:i" }}</time>
+            <h3><a href="{% url 'recommendation:detail' recommendation.pk %}">{{ recommendation.city }}</a></h3>
+            <ul class="rec-history-tags">
+                <li>{{ recommendation.get_space_type_display }}</li>
+                <li>{{ recommendation.watering_label }}</li>
+                <li>{{ recommendation.get_experience_level_display }}</li>
+            </ul>
             {% if recommendation.has_weather %}
-            <p>{{ recommendation.temperature }}°C · {{ recommendation.humidity }}% humidity</p>
+            <dl class="rec-history-weather">
+                <div><dt>Temp</dt><dd>{{ recommendation.temperature|floatformat:0 }}°C</dd></div>
+                <div><dt>Humidity</dt><dd>{{ recommendation.humidity|floatformat:0 }}%</dd></div>
+            </dl>
+            {% else %}
+            <p class="rec-history-note">Weather data isn't available yet. Edit and save again to fetch the latest data.</p>
             {% endif %}
-            <small class="muted">{{ recommendation.created_at|date:"d M Y H:i" }}</small>
-            <div class="rec-actions">
-                <a href="{% url 'recommendation:edit' recommendation.pk %}" class="button--secondary">Edit</a>
-                {% include 'recommendation/_delete_form.html' %}
+            <div class="rec-history-actions">
+                <a href="{% url 'recommendation:detail' recommendation.pk %}">View result <span aria-hidden="true">→</span></a>
+                <a href="{% url 'recommendation:edit' recommendation.pk %}">Edit</a>
+                <form method="post" action="{% url 'recommendation:delete' recommendation.pk %}" data-ajax-delete>
+                    {% csrf_token %}
+                    <button type="submit" class="rec-history-delete">Delete</button>
+                </form>
             </div>
         </article>
         {% endfor %}
