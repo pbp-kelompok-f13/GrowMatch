@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from django.db.models import Avg
 
 
 class Plant(models.Model):
@@ -27,5 +28,11 @@ class Plant(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    @property
+    def average_rating(self):
+        return self.reviews.aggregate(
+            average=Avg("rating")
+        )["average"] or 0
+    
     def __str__(self):
         return self.name

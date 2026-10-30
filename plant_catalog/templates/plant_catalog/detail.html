@@ -5,6 +5,7 @@
 
 {% block style %}
 <link rel="stylesheet" href="{% static 'plant_catalog/css/catalog.css' %}">
+<link rel="stylesheet" href="{% static 'css/review.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -142,6 +143,105 @@
             </div>
         </section>
 
+        <section class="pc-reviews">
+            <div class="pc-reviews-heading">
+                <div>
+                    <p class="pc-eyebrow"><span></span> Community reviews</p>
+                    <h2>What growers say</h2>
+                    <p>See how this plant is doing in other gardens.</p>
+                </div>
+
+                <div class="pc-rating-summary">
+                    <strong>★ <span id="average-rating">{{ plant.average_rating|floatformat:1 }}</span></strong>
+                    <span><span id="review-count">{{ reviews|length }}</span> reviews</span>
+                </div>
+            </div>
+
+            {% if user.is_authenticated %}
+                <button type="button" id="open-review-modal" class="pc-review-button">Write a review</button>
+            {% else %}
+                <a href="{% url 'accounts:login' %}" class="pc-review-button">Login to write a review</a>
+            {% endif %}
+
+            <div id="review-list" class="pc-review-list" aria-live="polite">
+                {% for review in reviews %}
+                    <article id="review-{{ review.pk }}" class="pc-review-card review-card"
+                        data-review-id="{{ review.pk }}"
+                        data-rating="{{ review.rating }}"
+                        data-edit-url="{% url 'reviews:edit_plant_review' review.pk %}"
+                        data-delete-url="{% url 'reviews:delete_plant_review' review.pk %}">
+
+                        <div class="pc-review-top review-card-top">
+                            <div>
+                                <strong class="review-author">{{ review.user.username }}</strong>
+                                <span class="pc-review-stars review-rating">★ {{ review.rating }}/5</span>
+                            </div>
+                            <small class="review-date">{{ review.created_at|date:"M j, Y" }}</small>
+                        </div>
+
+                        <p class="review-comment" data-comment="{{ review.comment }}">{{ review.comment|default:"No written review." }}</p>
+
+                        {% if review.user_id == request.user.id %}
+                            <div class="pc-review-actions review-actions">
+                                <button type="button" class="js-edit-review">Edit</button>
+                                <button type="button" class="js-delete-review">Delete</button>
+                            </div>
+                        {% endif %}
+                    </article>
+                {% endfor %}
+            </div>
+
+            <div id="review-empty" class="pc-review-empty" {% if reviews %}hidden{% endif %}>
+                <span class="material-symbols-outlined">reviews</span>
+                <h3>No reviews yet</h3>
+                <p>Be the first grower to share your experience with {{ plant.name }}.</p>
+            </div>
+        </section>
+
     </div>
 </main>
+{% if user.is_authenticated %}
+<dialog id="review-modal" class="review-modal" aria-labelledby="review-modal-title">
+    <div class="review-modal-top">
+        <div>
+            <p class="pc-eyebrow"><span></span> Grow together</p>
+            <h2 id="review-modal-title">Write a review</h2>
+        </div>
+        <button id="close-review-modal" type="button" class="review-close" aria-label="Close review form">×</button>
+    </div>
+
+    <p class="review-modal-subtitle">How has this plant treated you? Your experience could help someone else grow.</p>
+
+    <form id="review-form" method="post" data-create-url="{% url 'reviews:plant_review' plant.pk %}" action="{% url 'reviews:plant_review' plant.pk %}">
+        {% csrf_token %}
+
+        <fieldset class="review-fieldset">
+            <legend>Your rating *</legend>
+
+            <div class="rating-options" id="rating-options">
+                {% for value in '12345' %}
+                    <label class="rating-option">
+                        <input type="radio" name="rating" value="{{ value }}" aria-label="{{ value }} out of 5 stars" required>
+                        <span aria-hidden="true">★</span>
+                    </label>
+                {% endfor %}
+            </div>
+
+            <p id="rating-hint" class="rating-hint">Choose 1 to 5 stars</p>
+        </fieldset>
+
+        <label for="id_comment">Your thoughts <span class="review-optional">(optional)</span></label>
+        <textarea name="comment" id="id_comment" rows="4" placeholder="Write your review..."></textarea>
+
+        <p id="review-form-errors" class="review-errors" role="alert" hidden></p>
+
+        <div class="review-modal-actions">
+            <button id="cancel-review-modal" type="button" class="button--secondary">Cancel</button>
+            <button id="submit-review" type="submit" class="button--accent">Submit Review</button>
+        </div>
+    </form>
+</dialog>
+
+<script src="{% static 'js/review.js' %}"></script>
+{% endif %}
 {% endblock %}
