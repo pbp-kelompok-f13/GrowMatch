@@ -1,7 +1,13 @@
 from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib.auth.decorators import user_passes_test
+
 from .models import Plant
 from .forms import PlantForm
 
+def staff_required(view_func):
+    return user_passes_test(
+        lambda user: user.is_authenticated and user.is_staff
+    )(view_func)
 
 def plant_catalog(request):
     plants = Plant.objects.all().order_by("name")
@@ -67,6 +73,7 @@ def plant_detail(request, plant_id):
         {"plant": plant},
     )
 
+@staff_required
 def add_plant(request):
     form = PlantForm(request.POST or None)
 
@@ -82,6 +89,7 @@ def add_plant(request):
 
     return render(request, "plant_catalog/plant_form.html", context)
 
+@staff_required
 def edit_plant(request, plant_id):
     plant = get_object_or_404(Plant, pk=plant_id)
     form = PlantForm(request.POST or None, instance=plant)
@@ -99,6 +107,7 @@ def edit_plant(request, plant_id):
 
     return render(request, "plant_catalog/plant_form.html", context)
 
+@staff_required
 def delete_plant(request, plant_id):
     plant = get_object_or_404(Plant, pk=plant_id)
 

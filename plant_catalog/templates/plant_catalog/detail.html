@@ -86,16 +86,25 @@
                     {% endif %}
                 </div>
 
-                <a href="#" class="pc-garden-button">
-                    <span class="material-symbols-outlined">add</span>
-                    Add to My Garden
-                </a>
+                {% if user.is_authenticated %}
+                    <a href="#" class="pc-garden-button">
+                        <span class="material-symbols-outlined">add</span>
+                        Add to My Garden
+                    </a>
+                {% else %}
+                    <a href="{% url 'accounts:login' %}" class="pc-garden-button">
+                        <span class="material-symbols-outlined">login</span>
+                        Login to add to garden
+                    </a>
+                {% endif %}
 
-                <div class="pc-manage-actions">
-                    <a href="{% url 'plant_catalog:edit' plant.id %}" class="pc-edit-link">Edit plant</a>
-                    <span>·</span>
-                    <a href="{% url 'plant_catalog:delete' plant.id %}" class="pc-delete-link">Delete</a>
-                </div>
+                {% if user.is_staff %}
+                    <div class="pc-manage-actions">
+                        <a href="{% url 'plant_catalog:edit' plant.id %}" class="pc-edit-link">Edit plant</a>
+                        <span>·</span>
+                        <a href="{% url 'plant_catalog:delete' plant.id %}" class="pc-delete-link">Delete</a>
+                    </div>
+                {% endif %}
             </div>
         </section>
 
