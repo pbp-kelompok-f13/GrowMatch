@@ -60,6 +60,8 @@
         <div>
             <h2>Plants that <i>match</i></h2>
             <p class="rec-results-count" data-plant-count>{{ matches|length }} plant{{ matches|length|pluralize }} sorted by best match</p>
+            <p class="rec-lookup" data-lookup-message {% if not lookup.message %}hidden{% endif %}>{{ lookup.message }}</p>
+            <p class="rec-lookup-left" data-lookup-left {% if not lookup.enabled %}hidden{% endif %}>{{ lookup.lookups_left }} extra search{{ lookup.lookups_left|pluralize:"es" }} left today</p>
         </div>
 
         <form method="get" class="rec-plant-filter" data-plant-filter data-json-url="{% url 'recommendation:plants_json' recommendation.pk %}">
