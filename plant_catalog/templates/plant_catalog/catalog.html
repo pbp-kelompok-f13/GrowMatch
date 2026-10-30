@@ -144,26 +144,5 @@
     </div>
 </main>
 
-<script>
-    const filterToggle = document.getElementById("filterToggle");
-    const filterToggleText = document.getElementById("filterToggleText");
-    const filterPanel = document.getElementById("filterPanel");
-
-    function setFilterOpen(open) {
-        if (open) {
-            filterPanel.removeAttribute("hidden");
-            filterToggleText.textContent = "Hide filters";
-            filterToggle.setAttribute("aria-expanded", "true");
-        } else {
-            filterPanel.setAttribute("hidden", "");
-            filterToggleText.textContent = "Filters";
-            filterToggle.setAttribute("aria-expanded", "false");
-        }
-    }
-
-    filterToggle.addEventListener("click", () => setFilterOpen(filterPanel.hasAttribute("hidden")));
-
-    const activeFilter = "{{ sunlight|escapejs }}" || "{{ watering|escapejs }}" || "{{ difficulty|escapejs }}";
-    if (activeFilter) setFilterOpen(true);
-</script>
+<script src="{% static 'plant_catalog/js/catalog.js' %}"></script>
 {% endblock %}
