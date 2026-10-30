@@ -1,0 +1,15 @@
+<article class="rec-plant">
+    <a href="{% url 'plant_catalog:detail' match.plant.pk %}" class="rec-plant-link">
+        <div class="rec-plant-image">
+            {% if match.plant.image_url %}
+            <img src="{{ match.plant.image_url }}" alt="{{ match.plant.name }}" loading="lazy">
+            {% endif %}
+            <span class="rec-match">{{ match.match_percent }}% match</span>
+        </div>
+        <h3>{{ match.plant.name }}</h3>
+    </a>
+    {% if match.plant.scientific_name %}<p class="rec-plant-latin">{{ match.plant.scientific_name }}</p>{% endif %}
+    <ul class="rec-reasons">
+        {% for reason in match.reasons %}<li>{{ reason }}</li>{% endfor %}
+    </ul>
+</article>

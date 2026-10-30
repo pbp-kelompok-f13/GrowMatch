@@ -1,4 +1,5 @@
 from django.db.models import Q
+from django.urls import reverse
 
 from plant_catalog.models import Plant
 
@@ -123,6 +124,7 @@ def match_to_dict(match):
     plant = match["plant"]
     return {
         "id": str(plant.id),
+        "detail_url": reverse("plant_catalog:detail", args=[plant.id]),
         "name": plant.name,
         "scientific_name": plant.scientific_name,
         "image_url": plant.image_url,

@@ -70,42 +70,36 @@ async function submitDelete(event) {
     }
 }
 
-function renderPlantCard(plant) {
-    const card = document.createElement("article");
-    card.className = "card rec-plant";
+function createElement(tag, className, text) {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (text !== undefined) element.textContent = text;
+    return element;
+}
 
+function renderPlantCard(plant) {
+    const card = createElement("article", "rec-plant");
+    const link = createElement("a", "rec-plant-link");
+    link.href = plant.detail_url;
+
+    const imageWrap = createElement("div", "rec-plant-image");
     if (plant.image_url) {
         const img = document.createElement("img");
         img.src = plant.image_url;
         img.alt = plant.name;
         img.loading = "lazy";
-        card.append(img);
+        imageWrap.append(img);
     }
-
-    const match = document.createElement("span");
-    match.className = "rec-match";
-    match.textContent = `${plant.match_percent}% match`;
-
-    const name = document.createElement("h3");
-    name.textContent = plant.name;
-    card.append(match, name);
+    imageWrap.append(createElement("span", "rec-match", `${plant.match_percent}% match`));
+    link.append(imageWrap, createElement("h3", "", plant.name));
+    card.append(link);
 
     if (plant.scientific_name) {
-        const scientific = document.createElement("p");
-        scientific.className = "muted";
-        const italic = document.createElement("i");
-        italic.textContent = plant.scientific_name;
-        scientific.append(italic);
-        card.append(scientific);
+        card.append(createElement("p", "rec-plant-latin", plant.scientific_name));
     }
 
-    const reasons = document.createElement("ul");
-    reasons.className = "rec-reasons";
-    plant.reasons.forEach((reason) => {
-        const item = document.createElement("li");
-        item.textContent = reason;
-        reasons.append(item);
-    });
+    const reasons = createElement("ul", "rec-reasons");
+    plant.reasons.forEach((reason) => reasons.append(createElement("li", "", reason)));
     card.append(reasons);
     return card;
 }
@@ -122,6 +116,9 @@ async function filterPlants(form) {
         const plants = await response.json();
         list.replaceChildren(...plants.map(renderPlantCard));
         empty.hidden = plants.length > 0;
+        const count = document.querySelector("[data-plant-count]");
+        const noun = plants.length === 1 ? "plant" : "plants";
+        count.textContent = `${plants.length} ${noun} sorted by best match`;
         window.history.replaceState(null, "", `?${params}`);
     } catch (error) {
         window.alert("Could not load plants. Please try again.");
