@@ -36,6 +36,10 @@ Menyediakan katalog tanaman yang dapat dilihat detail tanaman beserta informasi 
 
 **PIC:** Aisyah Zayyana Hanifah
 
+#### AI Declaration
+
+AI (ChatGPT) digunakan sebagai alat bantu dalam pengembangan modul **Plant Catalog**, terutama dalam proses debugging, implementasi fitur, membantu memahami error, dan memberikan saran perbaikan kode. Seluruh hasil yang digunakan telah ditinjau, diuji, dan disesuaikan kembali dengan kebutuhan aplikasi GrowMatch.
+
 ### 4. Plant Recommendation
 
 Memberikan rekomendasi tanaman berdasarkan kondisi dan preferensi yang dimasukkan oleh pengguna, seperti lokasi tempat tinggal dan frekuensi penyiraman.
