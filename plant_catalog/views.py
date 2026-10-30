@@ -64,6 +64,35 @@ def plant_catalog(request):
 
     return render(request, "plant_catalog/catalog.html", context)
 
+def plant_catalog_ajax(request):
+    plants = Plant.objects.all().order_by("name")
+
+    search = request.GET.get("search", "").strip()
+    sunlight = request.GET.get("sunlight", "").strip()
+    watering = request.GET.get("watering", "").strip()
+    difficulty = request.GET.get("difficulty", "").strip()
+
+    if search:
+        plants = plants.filter(name__icontains=search)
+
+    if sunlight:
+        plants = plants.filter(sunlight__iexact=sunlight)
+
+    if watering:
+        plants = plants.filter(watering__iexact=watering)
+
+    if difficulty:
+        plants = plants.filter(difficulty__iexact=difficulty)
+
+    context = {
+        "plants": plants,
+    }
+
+    return render(
+        request,
+        "plant_catalog/partials/plant_results.html",
+        context,
+    )
 
 def plant_detail(request, plant_id):
     plant = get_object_or_404(Plant, id=plant_id)
