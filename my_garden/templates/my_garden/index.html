@@ -1,0 +1,263 @@
+{% extends "base.html" %}
+
+{% block title %}My Garden | GrowMatch{% endblock %}
+
+{% block content %}
+<section class="garden-page">
+    <div class="garden-header">
+        <div>
+            <p class="eyebrow">YOUR PERSONAL PLANT COLLECTION</p>
+            <h1>My Garden</h1>
+            <p>Kelola tanamanmu dan pantau kebutuhan perawatannya.</p>
+        </div>
+
+        <a href="{% url 'plant_catalog:catalog' %}" class="btn-primary">
+            + Tambah Tanaman
+        </a>
+    </div>
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <p class="message {{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if garden_plants %}
+        <div class="garden-grid">
+            {% for item in garden_plants %}
+                <article class="plant-card">
+                    {% if item.plant.image_url %}
+                        <img
+                            src="{{ item.plant.image_url }}"
+                            alt="{{ item.plant.name }}"
+                            class="plant-image"
+                        >
+                    {% else %}
+                        <div class="plant-image plant-placeholder">
+                            🌱
+                        </div>
+                    {% endif %}
+
+                    <div class="plant-card-content">
+                        <p class="plant-label">MY PLANT</p>
+
+                        <h2>
+                            {% if item.nickname %}
+                                {{ item.nickname }}
+                            {% else %}
+                                {{ item.plant.name }}
+                            {% endif %}
+                        </h2>
+
+                        {% if item.nickname %}
+                            <p class="scientific-name">
+                                {{ item.plant.name }}
+                            </p>
+                        {% endif %}
+
+                        {% if item.plant.scientific_name %}
+                            <p class="scientific-name">
+                                {{ item.plant.scientific_name }}
+                            </p>
+                        {% endif %}
+
+                        <p class="plant-notes">
+                            {% if item.notes %}
+                                {{ item.notes|truncatewords:20 }}
+                            {% else %}
+                                Belum ada catatan pribadi.
+                            {% endif %}
+                        </p>
+
+                        <p class="date-added">
+                            Ditambahkan {{ item.date_added|date:"d M Y" }}
+                        </p>
+
+                        <div class="plant-actions">
+                            <a
+                                href="{% url 'my_garden:edit' item.id %}"
+                                class="btn-secondary"
+                            >
+                                Edit
+                            </a>
+
+                            <a
+                                href="{% url 'care_log:add' %}"
+                                class="btn-secondary"
+                            >
+                                Catat Perawatan
+                            </a>
+                        </div>
+
+                        <form
+                            method="post"
+                            action="{% url 'my_garden:remove' item.id %}"
+                            onsubmit="return confirm('Hapus tanaman ini dari My Garden?');"
+                        >
+                            {% csrf_token %}
+                            <button type="submit" class="btn-danger">
+                                Hapus dari My Garden
+                            </button>
+                        </form>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <div class="empty-icon">🌿</div>
+            <h2>Kebunmu masih kosong</h2>
+            <p>
+                Tambahkan tanaman dari katalog GrowMatch untuk mulai
+                mengelola kebun pribadimu.
+            </p>
+
+            <a href="{% url 'plant_catalog:catalog' %}" class="btn-primary">
+                Jelajahi Katalog Tanaman
+            </a>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}
+
+{% block style %}
+<style>
+    .garden-page {
+        max-width: 1120px;
+        margin: 48px auto;
+        padding: 0 24px;
+    }
+
+    .garden-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 32px;
+    }
+
+    .eyebrow, .plant-label {
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        font-weight: 700;
+        color: #668064;
+    }
+
+    .garden-header h1 {
+        font-size: clamp(32px, 5vw, 48px);
+        margin: 8px 0;
+    }
+
+    .garden-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 24px;
+    }
+
+    .plant-card {
+        border: 1px solid #e4e9e0;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+    }
+
+    .plant-image {
+        width: 100%;
+        height: 210px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .plant-placeholder {
+        display: grid;
+        place-items: center;
+        background: #edf3e9;
+        font-size: 56px;
+    }
+
+    .plant-card-content {
+        padding: 22px;
+    }
+
+    .plant-card h2 {
+        margin: 8px 0;
+        font-size: 23px;
+    }
+
+    .scientific-name, .date-added {
+        color: #727b70;
+        font-size: 13px;
+    }
+
+    .plant-notes {
+        line-height: 1.6;
+    }
+
+    .plant-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 18px 0 12px;
+    }
+
+    .btn-primary, .btn-secondary, .btn-danger {
+        display: inline-block;
+        padding: 10px 15px;
+        border-radius: 9px;
+        border: none;
+        text-decoration: none;
+        cursor: pointer;
+        font: inherit;
+        font-size: 14px;
+    }
+
+    .btn-primary {
+        background: #385b3c;
+        color: #fff;
+    }
+
+    .btn-secondary {
+        background: #edf3e9;
+        color: #29472e;
+    }
+
+    .btn-danger {
+        background: #f8e9e6;
+        color: #9a342b;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 64px 24px;
+        border-radius: 18px;
+        background: #f5f8f2;
+    }
+
+    .empty-icon {
+        font-size: 48px;
+    }
+
+    .empty-state p {
+        max-width: 500px;
+        margin: 12px auto 24px;
+        line-height: 1.7;
+    }
+
+    .message {
+        padding: 12px 16px;
+        border-radius: 8px;
+        background: #edf3e9;
+        margin-bottom: 12px;
+    }
+
+    @media (max-width: 650px) {
+        .garden-header {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+    }
+</style>
+{% endblock %}

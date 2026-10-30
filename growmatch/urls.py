@@ -24,4 +24,6 @@ urlpatterns = [
      path('accounts/', include("accounts.urls")),
     path("plants/", include("plant_catalog.urls")),
     path('', include("reviews.urls")),
+    path("my-garden/", include("my_garden.urls")),
+    path("care-log/", include("care_log.urls")),
 ]
