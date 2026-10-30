@@ -6,7 +6,8 @@ from django.utils.formats import date_format
 from django.views.decorators.http import require_POST
 
 from .forms import PlantReviewForm
-from main.models import Plant, PlantReview
+from main.models import PlantReview
+from plant_catalog.models import Plant
 
 
 def is_ajax(request):

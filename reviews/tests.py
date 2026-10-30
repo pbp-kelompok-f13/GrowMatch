@@ -4,7 +4,8 @@ from django.test import TestCase
 from django.urls import reverse
 
 from .forms import PlantReviewForm
-from main.models import Plant, PlantReview
+from main.models import PlantReview
+from plant_catalog.models import Plant
 
 
 class PlantReviewFormTests(TestCase):

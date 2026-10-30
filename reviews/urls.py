@@ -7,9 +7,9 @@ app_name = "reviews"
 
 urlpatterns = [
     path(
-        "plants/<int:plant_id>/review/",
+        "plants/<uuid:plant_id>/review/",
         add_plant_review,
-        name="plant_review"
+        name="plant_review",
     ),
     path(
         "reviews/<int:review_id>/edit/",
