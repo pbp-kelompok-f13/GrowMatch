@@ -16,10 +16,12 @@
             <h1 class="pc-title">Grow what <em>fits your life.</em></h1>
             <p class="pc-description">Match your space, light, and care routine with something worth growing.</p>
 
-            <a href="{% url 'plant_catalog:add' %}" class="pc-add-plant">
-                <span class="material-symbols-outlined">add</span>
-                Add plant
-            </a>
+            {% if user.is_staff %}
+                <a href="{% url 'plant_catalog:add' %}" class="pc-add-plant">
+                    <span class="material-symbols-outlined">add</span>
+                    Add plant
+                </a>
+            {% endif %}
         </section>
 
         <form method="GET" class="pc-toolbar">
