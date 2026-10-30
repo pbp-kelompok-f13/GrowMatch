@@ -58,6 +58,8 @@ Memungkinkan pengguna memberikan rating dan review terhadap tanaman serta meliha
 
 **PIC:** Leow Vincent Vintizel
 
+#### AI Declaration
+AI (ChatGPT) digunakan sebagai alat bantu dalam implementasi unit test pada bagian review. AI juga digunakan untuk membantu menerapkan interaktivitas AJAX pada bagian tersebut.
 
 ## Public API
 
