@@ -301,6 +301,7 @@
 
 .rec-filter a {
     padding: 0.4rem 1rem;
+    font-size: 0.85rem;
     border: 1px solid var(--line);
     border-radius: var(--radius-max);
     color: var(--ink);
@@ -315,6 +316,135 @@
 
 .rec-card h3 a {
     color: var(--ink);
+}
+
+.rec-history-count {
+    margin: 0;
+    color: var(--secondary-base);
+    font-size: 0.875rem;
+}
+
+.rec-history-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+    gap: 1.5rem;
+}
+
+.rec-history-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background: var(--secondary-10);
+    border: 1px solid var(--secondary-20);
+    border-radius: var(--radius-card);
+}
+
+.rec-history-date {
+    color: var(--secondary-base);
+    font-size: 0.75rem;
+}
+
+.rec-history-card h3 {
+    margin: 0.35rem 0 0.75rem;
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+.rec-history-card h3 a {
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.rec-history-card h3 a:hover {
+    color: var(--secondary-base);
+}
+
+.rec-history-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0 0 1.25rem;
+    padding: 0;
+    list-style: none;
+}
+
+.rec-history-tags li {
+    padding: 0.2rem 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-max);
+    background: var(--paper);
+    font-size: 0.75rem;
+}
+
+.rec-history-weather {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 0 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--secondary-20);
+}
+
+.rec-history-weather div + div {
+    padding-left: 1rem;
+    border-left: 1px solid var(--secondary-20);
+}
+
+.rec-history-weather dt {
+    color: var(--secondary-base);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.rec-history-weather dd {
+    margin: 0.2rem 0 0;
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+}
+
+.rec-history-note {
+    margin: 0 0 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--secondary-20);
+    font-size: 0.85rem;
+}
+
+.rec-history-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: auto;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.rec-history-actions a {
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.rec-history-actions a:hover {
+    color: var(--secondary-base);
+}
+
+.rec-history-actions form {
+    margin: 0 0 0 auto;
+}
+
+.rec-history-delete {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--accent-base);
+    font: inherit;
+    cursor: pointer;
+}
+
+.rec-history-delete:hover {
+    text-decoration: underline;
 }
 
 
