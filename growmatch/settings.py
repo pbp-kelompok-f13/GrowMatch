@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'plant_catalog',
     'accounts',
     'reviews.apps.ReviewsConfig',
+    'my_garden',
+    'care_log',
 ]
 
 MIDDLEWARE = [

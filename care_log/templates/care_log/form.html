@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if activity %}Edit Catatan{% else %}Tambah Catatan{% endif %} | Care Log
+{% endblock %}
+
+{% block content %}
+<section class="care-form-page">
+    <a href="{% url 'care_log:index' %}" class="back-link">
+        ← Kembali ke Care Log
+    </a>
+
+    <div class="form-card">
+        <p class="eyebrow">PLANT CARE JOURNAL</p>
+
+        <h1>
+            {% if activity %}
+                Edit Catatan Perawatan
+            {% else %}
+                Catat Perawatan Tanaman
+            {% endif %}
+        </h1>
+
+        {% if not form.fields.garden_plant.queryset.exists %}
+            <div class="empty-notice">
+                <p>
+                    Kamu belum memiliki tanaman di My Garden.
+                    Tambahkan tanaman terlebih dahulu agar bisa
+                    mencatat aktivitas perawatannya.
+                </p>
+
+                <a href="{% url 'plant_catalog:catalog' %}" class="btn-primary">
+                    Jelajahi Katalog Tanaman
+                </a>
+            </div>
+        {% else %}
+            <form method="post">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <div class="error">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+
+                {% for field in form %}
+                    <div class="form-field">
+                        <label for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                        </label>
+
+                        {{ field }}
+
+                        {% if field.help_text %}
+                            <small>{{ field.help_text }}</small>
+                        {% endif %}
+
+                        {% for error in field.errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="btn-primary">
+                    Simpan Catatan
+                </button>
+            </form>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+
+{% block style %}
+<style>
+    .care-form-page {
+        max-width: 680px;
+        margin: 48px auto;
+        padding: 0 24px;
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #385b3c;
+        text-decoration: none;
+    }
+
+    .form-card {
+        padding: 32px;
+        background: #fff;
+        border: 1px solid #e4e9e0;
+        border-radius: 18px;
+    }
+
+    .eyebrow {
+        color: #668064;
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        font-weight: 700;
+    }
+
+    .form-field {
+        margin-bottom: 22px;
+    }
+
+    .form-field label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #d8dfd4;
+        border-radius: 8px;
+        font: inherit;
+    }
+
+    .form-field small {
+        display: block;
+        margin-top: 6px;
+        color: #727b70;
+    }
+
+    .error {
+        color: #b42318;
+    }
+
+    .btn-primary {
+        display: inline-block;
+        padding: 12px 18px;
+        border: none;
+        border-radius: 9px;
+        background: #385b3c;
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+        font: inherit;
+    }
+
+    .empty-notice {
+        padding: 20px;
+        background: #f5f8f2;
+        border-radius: 12px;
+        line-height: 1.7;
+    }
+</style>
+{% endblock %}
