@@ -48,6 +48,10 @@ class RecommendationRequest(models.Model):
         return f"{self.user.username} - {self.location_name} ({self.get_space_type_display()})"
 
     @property
+    def city(self):
+        return self.location_name.split(",")[0].strip()
+
+    @property
     def has_weather(self):
         return self.temperature is not None and self.humidity is not None
 

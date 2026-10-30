@@ -53,6 +53,10 @@ class RecommendationModelTest(TestCase):
         recommendation = make_recommendation(self.user)
         self.assertEqual(str(recommendation), "deo - Depok, Indonesia (Indoor)")
 
+    def test_city(self):
+        self.assertEqual(make_recommendation(self.user).city, "Depok")
+        self.assertEqual(make_recommendation(self.user, location_name="Bogor").city, "Bogor")
+
     def test_has_weather(self):
         self.assertTrue(make_recommendation(self.user).has_weather)
         self.assertFalse(make_recommendation(self.user, temperature=None).has_weather)
@@ -276,8 +280,9 @@ class OwnRecommendationTest(TestCase):
 
     def test_detail(self):
         response = self.client.get(reverse("recommendation:detail", args=[self.mine.pk]))
-        self.assertContains(response, "Depok, Indonesia")
+        self.assertContains(response, "For <i>Depok</i>")
         self.assertContains(response, "30.5°C")
+        self.assertContains(response, "2-3 times a week")
 
     def test_detail_without_weather(self):
         recommendation = make_recommendation(self.user, temperature=None, humidity=None)
@@ -441,6 +446,7 @@ class RecommendPlantsTest(TestCase):
         data = scoring.match_to_dict(scoring.recommend_plants(self.recommendation)[0])
         self.assertEqual(data["id"], str(self.pothos.id))
         self.assertEqual(data["match_percent"], 100)
+        self.assertEqual(data["detail_url"], f"/plants/{self.pothos.id}/")
         self.assertIsInstance(data["reasons"], list)
 
 

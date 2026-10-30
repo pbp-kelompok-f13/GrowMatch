@@ -102,8 +102,13 @@ def show_history(request):
 def show_detail(request, pk):
     recommendation = get_own_recommendation(request, pk)
     filters = get_plant_filters(request)
+    watering_title, watering_note, _ = RecommendationRequestForm.OPTION_DETAILS["watering_frequency"][
+        recommendation.watering_frequency
+    ]
     return render(request, "recommendation/detail.html", {
         "recommendation": recommendation,
+        "watering_title": watering_title,
+        "watering_note": watering_note,
         "matches": recommend_plants(recommendation, **filters),
         "filters": filters,
         "sunlight_choices": [(key, label) for key, (label, _) in SUNLIGHT_FILTERS.items()],
