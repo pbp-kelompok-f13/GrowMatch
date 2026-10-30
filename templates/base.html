@@ -42,6 +42,8 @@
 
             {% if user.is_authenticated %}
                 <a href="{% url 'accounts:profile' %}">Profile</a>
+                <a href="{% url 'my_garden:index' %}">My Garden</a>
+                <a href="{% url 'care_log:index' %}">Care Log</a>
 
                 <form method="POST" action="{% url 'accounts:logout' %}" class="logout-form">
                     {% csrf_token %}
@@ -75,6 +77,8 @@
 
                 {% if user.is_authenticated %}
                     <a href="{% url 'accounts:profile' %}">Profile</a>
+                    <a href="{% url 'my_garden:index' %}">My Garden</a>
+                    <a href="{% url 'care_log:index' %}">Care Log</a>
                 {% else %}
                     <a href="{% url 'accounts:login' %}">Login</a>
                 {% endif %}
@@ -89,4 +93,4 @@
     {% include 'components/toast.html' %}
     <script src="{% static 'js/nav.js' %}"></script>
 </body>
-</html>
+</html>
