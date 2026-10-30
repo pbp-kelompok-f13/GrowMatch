@@ -24,13 +24,13 @@
                     Personalized plant recommendations for 
                     your space, lifestyle, and vibe
                 </p>
-                <button class="button--accent">
+                <a href="{% url 'recommendation:form' %}" class="button--accent">
                     Get Your Match
-                </button>
+                </a>
 
-                <button class="button--secondary">
+                <a href="{% url 'plant_catalog:catalog' %}" class="button--secondary">
                     Explore Catalog
-                </button>
+                </a>
                 <div class="homepage-additional">
                     <span class="material-symbols-outlined">
                     nature
@@ -104,13 +104,13 @@
             <h2>
                 Green has many shapes
             </h2>
-            <button class="button">
+            <a href="{% url 'recommendation:form' %}" class="button">
                 Get Your Match
-            </button>
+            </a>
 
-            <button class="button--secondary">
+            <a href="{% url 'plant_catalog:catalog' %}" class="button--secondary">
                 Explore Catalog
-            </button>
+            </a>
             
             <div class="plant-list">
                 <div class="plant">
@@ -197,9 +197,9 @@
         <h2>
             Small spaces, Growing Possibilities
         </h2>
-        <button class="button">
+        <a href="{% url 'recommendation:form' %}" class="button">
             Get Your Match →
-        </button>
+        </a>
         <div class="bottom-cta-image">
             <img src="{% static 'img/small-plant.jpg' %}" alt="A small growing plant">
         </div>
