@@ -49,9 +49,6 @@
 
     <main>
         {% block content %}
-        <p>
-            ...kamu ngapain kesasar ke base.html?
-        </p>
         {% endblock %}
     </main>
 
@@ -81,5 +78,6 @@
             <p>Fakultas Ilmu Komputer, Universitas Indonesia</p>
         </div>
     </footer>
+    {% include 'components/toast.html' %}
 </body>
 </html>

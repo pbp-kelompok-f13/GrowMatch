@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib import messages
 
 from .models import Plant
 from .forms import PlantForm
@@ -79,6 +80,7 @@ def add_plant(request):
 
     if request.method == "POST" and form.is_valid():
         plant = form.save()
+        messages.success(request, f"{plant.name} was added to the catalog.")
         return redirect("plant_catalog:detail", plant_id=plant.id)
 
     context = {
@@ -96,6 +98,7 @@ def edit_plant(request, plant_id):
 
     if request.method == "POST" and form.is_valid():
         plant = form.save()
+        messages.success(request, f"{plant.name} was updated successfully.")
         return redirect("plant_catalog:detail", plant_id=plant.id)
 
     context = {
@@ -112,7 +115,9 @@ def delete_plant(request, plant_id):
     plant = get_object_or_404(Plant, pk=plant_id)
 
     if request.method == "POST":
+        plant_name = plant.name
         plant.delete()
+        messages.success(request, f"{plant_name} was removed from the catalog.")
         return redirect("plant_catalog:catalog")
 
     return render(request, "plant_catalog/plant_delete.html", {"plant": plant})
