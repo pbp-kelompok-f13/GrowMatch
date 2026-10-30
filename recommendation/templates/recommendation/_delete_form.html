@@ -1,0 +1,4 @@
+<form method="post" action="{% url 'recommendation:delete' recommendation.pk %}" data-ajax-delete>
+    {% csrf_token %}
+    <button type="submit" class="button--secondary rec-delete">Delete</button>
+</form>

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}GrowMatch - Match History{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'recommendation/css/recommendation.css' %}">
+    <script src="{% static 'recommendation/js/recommendation.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<section class="container rec-page">
+    <div class="eyebrow"><span class="small-line"></span>Plant Recommendation</div>
+    <h1>Your match <i>history.</i></h1>
+
+    {% include 'recommendation/_messages.html' %}
+
+    <div class="rec-toolbar">
+        <nav class="rec-filter" aria-label="Filter by space">
+            <a href="{% url 'recommendation:history' %}" {% if not space_type %}aria-current="page"{% endif %}>All</a>
+            {% for value, label in space_choices %}
+            <a href="?space_type={{ value }}" {% if space_type == value %}aria-current="page"{% endif %}>{{ label }}</a>
+            {% endfor %}
+        </nav>
+        <a href="{% url 'recommendation:form' %}" class="button--accent">New recommendation</a>
+    </div>
+
+    <div class="grid" data-history-list>
+        {% for recommendation in recommendations %}
+        <article class="card rec-card" data-history-item>
+            <h3><a href="{% url 'recommendation:detail' recommendation.pk %}">{{ recommendation.location_name }}</a></h3>
+            <p class="muted">
+                {{ recommendation.get_space_type_display }} · {{ recommendation.get_watering_frequency_display }} · {{ recommendation.get_experience_level_display }}
+            </p>
+            {% if recommendation.has_weather %}
+            <p>{{ recommendation.temperature }}°C · {{ recommendation.humidity }}% humidity</p>
+            {% endif %}
+            <small class="muted">{{ recommendation.created_at|date:"d M Y H:i" }}</small>
+            <div class="rec-actions">
+                <a href="{% url 'recommendation:edit' recommendation.pk %}" class="button--secondary">Edit</a>
+                {% include 'recommendation/_delete_form.html' %}
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+
+    <p class="card rec-empty" data-history-empty {% if recommendations %}hidden{% endif %}>
+        No recommendations yet{% if space_type %} for this filter{% endif %}.
+    </p>
+</section>
+{% endblock %}
+

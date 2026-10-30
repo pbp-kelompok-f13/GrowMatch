@@ -1,0 +1,293 @@
+.pc-form-page {
+    min-height: 100vh;
+    padding: 3rem 5%;
+    background: #fffff5;
+    color: #163b2d;
+}
+
+.pc-form-layout {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Sidebar */
+
+.pc-form-sidebar {
+    padding-top: 1rem;
+}
+
+.pc-form-back {
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: #163b2d;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.pc-form-back:hover {
+    color: #ff0e86;
+}
+
+.pc-form-sidebar h1 {
+    margin: 0 0 2.5rem;
+    font-size: 2.4rem;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+}
+
+.pc-form-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.pc-form-step {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.pc-form-step > span {
+    color: #ff0e86;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.pc-form-step div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.pc-form-step strong {
+    font-size: 0.95rem;
+}
+
+.pc-form-step small {
+    color: #6d7d75;
+    font-size: 0.78rem;
+}
+
+/* Main form card */
+
+.pc-form-card {
+    overflow: hidden;
+    border: 1px solid #d9dfd5;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 12px 35px rgba(22, 59, 45, 0.06);
+}
+
+.pc-form-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2rem;
+    border-bottom: 1px solid #e1e5df;
+}
+
+.pc-form-card-header > span {
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.pc-form-card-header small {
+    color: #7c8982;
+}
+
+/* Sections */
+
+.pc-form-section {
+    padding: 2rem;
+    border-bottom: 1px solid #e5e8e3;
+}
+
+.pc-form-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin: 0 0 1.5rem;
+    font-size: 1.15rem;
+}
+
+.pc-form-section h2 > span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #163b2d;
+    color: #fffff5;
+    font-size: 0.72rem;
+}
+
+.pc-form-section h2 small {
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+    background: #eef2ea;
+    color: #66736d;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+}
+
+.pc-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem;
+}
+
+.pc-form-grid-three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Fields */
+
+.pc-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    margin-bottom: 1.2rem;
+}
+
+.pc-field label {
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.pc-field input,
+.pc-field textarea,
+.pc-field select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.85rem 1rem;
+    border: 1px solid #ccd4cd;
+    border-radius: 10px;
+    outline: none;
+    background: #fffffb;
+    color: #163b2d;
+    font: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pc-field textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.pc-field input:focus,
+.pc-field textarea:focus,
+.pc-field select:focus {
+    border-color: #163b2d;
+    box-shadow: 0 0 0 3px rgba(22, 59, 45, 0.08);
+}
+
+.pc-field input::placeholder,
+.pc-field textarea::placeholder {
+    color: #9ba59f;
+}
+
+/* Django form errors */
+
+.pc-field .errorlist {
+    margin: 0;
+    padding: 0;
+    color: #c51f5d;
+    font-size: 0.75rem;
+    list-style: none;
+}
+
+/* Actions */
+
+.pc-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+}
+
+.pc-form-cancel,
+.pc-form-submit {
+    padding: 0.8rem 1.3rem;
+    border-radius: 999px;
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.pc-form-cancel {
+    border: 1px solid #cbd3cc;
+    color: #163b2d;
+    text-decoration: none;
+}
+
+.pc-form-cancel:hover {
+    border-color: #163b2d;
+}
+
+.pc-form-submit {
+    border: 1px solid #ff0e86;
+    background: #ff0e86;
+    color: #fff;
+}
+
+.pc-form-submit:hover {
+    opacity: 0.88;
+}
+
+/* Responsive */
+
+@media (max-width: 850px) {
+    .pc-form-page {
+        padding: 2rem 1.2rem;
+    }
+
+    .pc-form-layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .pc-form-sidebar h1 {
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+    }
+
+    .pc-form-steps {
+        display: none;
+    }
+
+    .pc-form-grid,
+    .pc-form-grid-three {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    .pc-form-card-header,
+    .pc-form-section,
+    .pc-form-actions {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+    }
+
+    .pc-form-card-header small {
+        display: none;
+    }
+
+    .pc-form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .pc-form-cancel,
+    .pc-form-submit {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+}
