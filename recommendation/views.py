@@ -5,9 +5,10 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views.decorators.http import require_GET, require_POST
 
+from recommendation.fallback import recommend_with_fallback
 from recommendation.forms import RecommendationRequestForm
 from recommendation.models import RecommendationRequest
-from recommendation.scoring import DIFFICULTY_FILTERS, SUNLIGHT_FILTERS, match_to_dict, recommend_plants
+from recommendation.scoring import DIFFICULTY_FILTERS, SUNLIGHT_FILTERS, match_to_dict
 from recommendation.weather import LocationNotFound, apply_location_and_weather
 
 LOGIN_URL = "/accounts/login/"
@@ -105,11 +106,13 @@ def show_detail(request, pk):
     watering_title, watering_note, _ = RecommendationRequestForm.OPTION_DETAILS["watering_frequency"][
         recommendation.watering_frequency
     ]
+    matches, lookup = recommend_with_fallback(request.user, recommendation, **filters)
     return render(request, "recommendation/detail.html", {
         "recommendation": recommendation,
         "watering_title": watering_title,
         "watering_note": watering_note,
-        "matches": recommend_plants(recommendation, **filters),
+        "matches": matches,
+        "lookup": lookup,
         "filters": filters,
         "sunlight_choices": [(key, label) for key, (label, _) in SUNLIGHT_FILTERS.items()],
         "difficulty_choices": [(key, label) for key, (label, _) in DIFFICULTY_FILTERS.items()],
@@ -159,5 +162,8 @@ def show_json_by_id(request, pk):
 @require_GET
 def show_plants_json(request, pk):
     recommendation = get_own_recommendation(request, pk)
-    matches = recommend_plants(recommendation, **get_plant_filters(request))
-    return JsonResponse([match_to_dict(match) for match in matches], safe=False)
+    matches, lookup = recommend_with_fallback(request.user, recommendation, **get_plant_filters(request))
+    return JsonResponse({
+        "plants": [match_to_dict(match) for match in matches],
+        "lookup": lookup,
+    })

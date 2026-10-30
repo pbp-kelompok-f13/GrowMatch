@@ -440,6 +440,22 @@
     color: var(--primary-40);
 }
 
+.rec-lookup {
+    display: inline-block;
+    margin: 0.75rem 0 0;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--radius-max);
+    background: var(--accent-10);
+    font-size: 0.8rem;
+    color: var(--accent-90);
+}
+
+.rec-lookup-left {
+    margin: 0.5rem 0 0;
+    font-size: 0.75rem;
+    color: var(--primary-40);
+}
+
 .rec-plant-filter {
     display: flex;
     flex-wrap: wrap;

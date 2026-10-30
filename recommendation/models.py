@@ -70,3 +70,25 @@ class RecommendationRequest(models.Model):
             "created_at": self.created_at.isoformat(),
             "updated_at": self.updated_at.isoformat(),
         }
+
+
+class PerenualLookup(models.Model):
+    """Catatan tiap kali rekomendasi manggil Perenual, dipakai buat batas harian."""
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="perenual_lookups")
+    recommendation = models.ForeignKey(
+        RecommendationRequest,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="perenual_lookups",
+    )
+    success = models.BooleanField(default=False)
+    plants_added = models.PositiveSmallIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.user.username} - {self.created_at:%Y-%m-%d %H:%M} ({self.plants_added} added)"

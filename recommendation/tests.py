@@ -8,9 +8,9 @@ from django.urls import reverse
 from django.utils import timezone
 
 from plant_catalog.models import Plant
-from recommendation import scoring, weather
+from recommendation import fallback, perenual, scoring, weather
 from recommendation.forms import RecommendationRequestForm
-from recommendation.models import RecommendationRequest
+from recommendation.models import PerenualLookup, RecommendationRequest
 
 AJAX = {"HTTP_X_REQUESTED_WITH": "XMLHttpRequest"}
 VALID_DATA = {
@@ -482,11 +482,12 @@ class PlantResultViewTest(TestCase):
 
     def test_plants_json(self):
         data = self.client.get(self.json_url).json()
-        self.assertEqual([plant["name"] for plant in data], ["Pothos", "Fern"])
+        self.assertEqual([plant["name"] for plant in data["plants"]], ["Pothos", "Fern"])
+        self.assertIn("lookups_left", data["lookup"])
 
     def test_plants_json_filter(self):
         data = self.client.get(self.json_url, {"difficulty": "low"}).json()
-        self.assertEqual([plant["name"] for plant in data], ["Pothos"])
+        self.assertEqual([plant["name"] for plant in data["plants"]], ["Pothos"])
 
     def test_plants_json_requires_owner(self):
         other = make_recommendation(User.objects.create_user("aisyah"))
@@ -497,3 +498,238 @@ class PlantResultViewTest(TestCase):
         self.client.logout()
         response = self.client.get(self.json_url)
         self.assertEqual(response.status_code, 302)
+
+
+def perenual_detail(plant_id, **kwargs):
+    data = {
+        "id": plant_id,
+        "common_name": f"Plant {plant_id}",
+        "scientific_name": [f"Plantus {plant_id}"],
+        "default_image": {"regular_url": f"https://img.example/{plant_id}.jpg"},
+        "indoor": True,
+        "sunlight": ["part shade"],
+        "watering": "Average",
+        "care_level": "Low",
+        "watering_general_benchmark": {"value": '"7"', "unit": "days"},
+        "soil": ["Loamy"],
+        "propagation": "Upgrade Plans To Premium",
+        "pruning_month": ["March"],
+        "growth_rate": "Upgrade Plans To Premium",
+        "maintenance": "Low",
+        "description": "A plant.",
+    }
+    data.update(kwargs)
+    return data
+
+
+def fake_perenual(list_ids=(), details=None, list_status=200, detail_status=None):
+    """Bikin side_effect buat requests.get yang niruin Perenual."""
+    details = details or {}
+    detail_status = detail_status or {}
+    calls = []
+
+    def get(url, params=None, timeout=None):
+        calls.append(url)
+        response = Mock()
+        if url == perenual.LIST_URL:
+            response.status_code = list_status
+            response.json.return_value = {"data": [{"id": plant_id} for plant_id in list_ids]}
+        else:
+            plant_id = int(url.rstrip("/").split("/")[-1])
+            response.status_code = detail_status.get(plant_id, 200)
+            response.json.return_value = details.get(plant_id, perenual_detail(plant_id))
+        if response.status_code >= 400:
+            response.raise_for_status.side_effect = requests.HTTPError(response=response)
+        else:
+            response.raise_for_status.return_value = None
+        return response
+
+    get.calls = calls
+    return get
+
+
+class PerenualClientTest(TestCase):
+    def setUp(self):
+        self.recommendation = make_recommendation(User.objects.create_user("deo"))
+
+    @patch("recommendation.perenual.requests.get")
+    def test_search_params_indoor_with_sunlight(self, mock_get):
+        mock_get.side_effect = fake_perenual(list_ids=[1, 2])
+        ids = perenual.search_species_ids("key", self.recommendation, sunlight="shade")
+        self.assertEqual(ids, [1, 2])
+        params = mock_get.call_args.kwargs["params"]
+        self.assertEqual(params, {"key": "key", "watering": "average", "indoor": 1, "sunlight": "full_shade"})
+
+    @patch("recommendation.perenual.requests.get")
+    def test_search_params_outdoor(self, mock_get):
+        self.recommendation.space_type = "outdoor"
+        mock_get.side_effect = fake_perenual()
+        perenual.search_species_ids("key", self.recommendation, sunlight="unknown")
+        self.assertEqual(mock_get.call_args.kwargs["params"], {"key": "key", "watering": "average"})
+
+    @patch("recommendation.perenual.requests.get")
+    def test_search_ignores_bad_items(self, mock_get):
+        response = Mock(status_code=200)
+        response.raise_for_status.return_value = None
+        response.json.return_value = {"data": [{"id": 5}, {"id": "x"}, "junk"]}
+        mock_get.return_value = response
+        self.assertEqual(perenual.search_species_ids("key", self.recommendation), [5])
+        response.json.return_value = ["not a dict"]
+        self.assertEqual(perenual.search_species_ids("key", self.recommendation), [])
+
+    @patch("recommendation.perenual.requests.get")
+    def test_errors(self, mock_get):
+        mock_get.side_effect = requests.Timeout
+        with self.assertRaises(perenual.PerenualError):
+            perenual.search_species_ids("key", self.recommendation)
+        mock_get.side_effect = fake_perenual(list_status=429)
+        with self.assertRaises(perenual.PerenualLimitReached):
+            perenual.search_species_ids("key", self.recommendation)
+        mock_get.side_effect = fake_perenual(list_status=500)
+        with self.assertRaises(perenual.PerenualError):
+            perenual.search_species_ids("key", self.recommendation)
+
+    def test_plant_defaults_mapping(self):
+        defaults = perenual.plant_defaults(perenual_detail(7))
+        self.assertEqual(defaults["name"], "Plant 7")
+        self.assertEqual(defaults["scientific_name"], "Plantus 7")
+        self.assertEqual(defaults["sunlight"], "part shade")
+        self.assertEqual(defaults["watering_interval"], "7 days")
+        self.assertEqual(defaults["difficulty"], "Low")
+        self.assertEqual(defaults["growth_rate"], "")
+        self.assertEqual(defaults["propagation"], [])
+
+    def test_plant_defaults_edge_cases(self):
+        self.assertIsNone(perenual.plant_defaults({"common_name": "", "scientific_name": []}))
+        defaults = perenual.plant_defaults({
+            "common_name": None, "scientific_name": "Solo", "indoor": "yes", "default_image": None,
+            "sunlight": "Upgrade Plans To Premium", "watering_general_benchmark": "bad",
+        })
+        self.assertEqual(defaults["name"], "Solo")
+        self.assertIsNone(defaults["indoor"])
+        self.assertEqual(defaults["sunlight"], "")
+        self.assertEqual(defaults["watering_interval"], "")
+
+    @patch("recommendation.perenual.requests.get")
+    def test_fetch_skips_existing_and_out_of_plan_ids(self, mock_get):
+        make_plant("Existing", perenual_id=10)
+        mock_get.side_effect = fake_perenual(list_ids=[10, 4000, 11, 12, 13])
+        plants = perenual.fetch_new_plants("key", self.recommendation, limit=2)
+        self.assertEqual([plant.perenual_id for plant in plants], [11, 12])
+        self.assertEqual(len(mock_get.side_effect.calls), 3)
+
+    @patch("recommendation.perenual.requests.get")
+    def test_fetch_detail_failures(self, mock_get):
+        mock_get.side_effect = fake_perenual(
+            list_ids=[1, 2, 3],
+            details={2: {"common_name": ""}},
+            detail_status={1: 500},
+        )
+        plants = perenual.fetch_new_plants("key", self.recommendation, limit=3)
+        self.assertEqual([plant.perenual_id for plant in plants], [3])
+
+    @patch("recommendation.perenual.requests.get")
+    def test_fetch_stops_on_limit(self, mock_get):
+        mock_get.side_effect = fake_perenual(list_ids=[1, 2], detail_status={1: 429})
+        self.assertEqual(perenual.fetch_new_plants("key", self.recommendation), [])
+        self.assertEqual(len(mock_get.side_effect.calls), 2)
+
+    @patch.dict("os.environ", {"PERENUAL_API_KEY": "  abc  "})
+    def test_get_api_key(self):
+        self.assertEqual(perenual.get_api_key(), "abc")
+
+
+@patch.dict("os.environ", {"PERENUAL_API_KEY": "test-key"})
+@patch("recommendation.perenual.requests.get")
+class FallbackTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user("deo")
+        self.recommendation = make_recommendation(self.user)
+
+    def test_enough_results_no_api_call(self, mock_get):
+        for index in range(fallback.MIN_RESULTS):
+            make_plant(f"Plant {index}")
+        matches, status = fallback.recommend_with_fallback(self.user, self.recommendation)
+        self.assertEqual(len(matches), fallback.MIN_RESULTS)
+        mock_get.assert_not_called()
+        self.assertEqual(status["lookups_left"], fallback.USER_DAILY_LIMIT)
+        self.assertTrue(status["enabled"])
+
+    def test_adds_plants_when_results_low(self, mock_get):
+        mock_get.side_effect = fake_perenual(list_ids=[1, 2, 3])
+        matches, status = fallback.recommend_with_fallback(self.user, self.recommendation)
+        self.assertEqual(Plant.objects.count(), 2)
+        self.assertEqual(len(matches), 2)
+        self.assertEqual(status["added"], 2)
+        self.assertEqual(status["lookups_left"], 1)
+        self.assertIn("We found 2 more plants", status["message"])
+        lookup = PerenualLookup.objects.get()
+        self.assertTrue(lookup.success)
+        self.assertEqual(lookup.plants_added, 2)
+        self.assertIn("deo", str(lookup))
+
+    def test_single_plant_message(self, mock_get):
+        mock_get.side_effect = fake_perenual(list_ids=[1])
+        _, status = fallback.recommend_with_fallback(self.user, self.recommendation)
+        self.assertIn("1 more plant from", status["message"])
+
+    def test_none_found(self, mock_get):
+        mock_get.side_effect = fake_perenual(list_ids=[])
+        matches, status = fallback.recommend_with_fallback(self.user, self.recommendation)
+        self.assertEqual(matches, [])
+        self.assertEqual(status["message"], fallback.MESSAGES["none_found"])
+
+    def test_api_error_still_counts(self, mock_get):
+        mock_get.side_effect = requests.ConnectionError
+        _, status = fallback.recommend_with_fallback(self.user, self.recommendation)
+        self.assertEqual(status["message"], fallback.MESSAGES["error"])
+        self.assertEqual(status["lookups_left"], 1)
+        self.assertFalse(PerenualLookup.objects.get().success)
+
+    def test_user_daily_limit(self, mock_get):
+        mock_get.side_effect = fake_perenual(list_ids=[])
+        for _ in range(fallback.USER_DAILY_LIMIT):
+            fallback.recommend_with_fallback(self.user, self.recommendation)
+        calls = mock_get.call_count
+        _, status = fallback.recommend_with_fallback(self.user, self.recommendation)
+        self.assertEqual(mock_get.call_count, calls)
+        self.assertEqual(status["lookups_left"], 0)
+        self.assertEqual(status["message"], fallback.MESSAGES["user_limit"])
+
+    def test_limit_resets_next_day(self, mock_get):
+        mock_get.side_effect = fake_perenual(list_ids=[])
+        for _ in range(fallback.USER_DAILY_LIMIT):
+            fallback.recommend_with_fallback(self.user, self.recommendation)
+        PerenualLookup.objects.update(created_at=timezone.now() - timedelta(days=1))
+        self.assertEqual(fallback.lookups_left(self.user), fallback.USER_DAILY_LIMIT)
+
+    def test_global_daily_limit(self, mock_get):
+        other = User.objects.create_user("other")
+        PerenualLookup.objects.bulk_create(
+            [PerenualLookup(user=other) for _ in range(fallback.GLOBAL_DAILY_LIMIT)]
+        )
+        _, status = fallback.recommend_with_fallback(self.user, self.recommendation)
+        mock_get.assert_not_called()
+        self.assertEqual(status["message"], fallback.MESSAGES["global_limit"])
+
+    @patch.dict("os.environ", {"PERENUAL_API_KEY": ""})
+    def test_disabled_without_key(self, mock_get):
+        matches, status = fallback.recommend_with_fallback(self.user, self.recommendation)
+        mock_get.assert_not_called()
+        self.assertFalse(status["enabled"])
+        self.assertEqual(status["message"], "")
+
+    def test_detail_page_shows_message(self, mock_get):
+        mock_get.side_effect = fake_perenual(list_ids=[1, 2])
+        self.client.force_login(self.user)
+        response = self.client.get(reverse("recommendation:detail", args=[self.recommendation.pk]))
+        self.assertContains(response, "We found 2 more plants from Perenual for you.")
+        self.assertContains(response, "1 extra search left today")
+        self.assertContains(response, "Plant 1")
+
+    def test_json_includes_lookup(self, mock_get):
+        mock_get.side_effect = fake_perenual(list_ids=[5])
+        self.client.force_login(self.user)
+        data = self.client.get(reverse("recommendation:plants_json", args=[self.recommendation.pk])).json()
+        self.assertEqual([plant["name"] for plant in data["plants"]], ["Plant 5"])
+        self.assertEqual(data["lookup"]["added"], 1)

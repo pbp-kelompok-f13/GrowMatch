@@ -104,6 +104,16 @@ function renderPlantCard(plant) {
     return card;
 }
 
+function updateLookup(lookup) {
+    const message = document.querySelector("[data-lookup-message]");
+    const left = document.querySelector("[data-lookup-left]");
+    message.textContent = lookup.message;
+    message.hidden = !lookup.message;
+    const noun = lookup.lookups_left === 1 ? "search" : "searches";
+    left.textContent = `${lookup.lookups_left} extra ${noun} left today`;
+    left.hidden = !lookup.enabled;
+}
+
 async function filterPlants(form) {
     const params = new URLSearchParams(new FormData(form));
     const list = document.querySelector("[data-plant-list]");
@@ -113,12 +123,14 @@ async function filterPlants(form) {
     try {
         const response = await fetch(`${form.dataset.jsonUrl}?${params}`, { headers: AJAX_HEADERS });
         if (!response.ok) throw new Error(response.statusText);
-        const plants = await response.json();
+        const data = await response.json();
+        const plants = data.plants;
         list.replaceChildren(...plants.map(renderPlantCard));
         empty.hidden = plants.length > 0;
         const count = document.querySelector("[data-plant-count]");
         const noun = plants.length === 1 ? "plant" : "plants";
         count.textContent = `${plants.length} ${noun} sorted by best match`;
+        updateLookup(data.lookup);
         window.history.replaceState(null, "", `?${params}`);
     } catch (error) {
         window.alert("Could not load plants. Please try again.");
