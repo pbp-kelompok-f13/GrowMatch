@@ -4,6 +4,7 @@ from django.contrib import messages
 
 from .models import Plant
 from .forms import PlantForm
+from main.models import PlantReview
 
 def staff_required(view_func):
     return user_passes_test(
@@ -97,11 +98,10 @@ def plant_catalog_ajax(request):
 def plant_detail(request, plant_id):
     plant = get_object_or_404(Plant, id=plant_id)
 
-    return render(
-        request,
-        "plant_catalog/detail.html",
-        {"plant": plant},
-    )
+    reviews = (PlantReview.objects.filter(plant=plant).select_related("user").order_by("-created_at", "-pk"))
+    context = {"plant": plant, "reviews": reviews}
+
+    return render(request, "plant_catalog/detail.html", context)
 
 @staff_required
 def add_plant(request):

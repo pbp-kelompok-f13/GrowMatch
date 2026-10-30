@@ -2,7 +2,8 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
-from main.models import Plant, PlantReview
+from main.models import PlantReview
+from plant_catalog.models import Plant
 
 
 class PlantReviewAjaxTests(TestCase):
@@ -10,7 +11,7 @@ class PlantReviewAjaxTests(TestCase):
         self.user = get_user_model().objects.create_user(
             username="tester", password="testpassword123"
         )
-        self.plant = Plant.objects.create()
+        self.plant = Plant.objects.create(name="Test Plant")
         self.client.force_login(self.user)
         self.create_url = reverse("reviews:plant_review", args=[self.plant.pk])
         self.ajax = {"HTTP_X_REQUESTED_WITH": "XMLHttpRequest"}
