@@ -18,7 +18,7 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Akun berhasil dibuat! Silakan login.")
+            messages.success(request, "Account created successfully! Please log in.")
             return redirect("accounts:login")
     else:
         form = UserCreationForm()
@@ -42,7 +42,7 @@ def login_view(request):
 
         messages.error(
             request,
-            "Username atau password salah."
+            "Invalid username or password."
         )
 
     return render(request, "accounts/login.html")
