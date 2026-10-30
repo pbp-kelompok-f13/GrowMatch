@@ -24,7 +24,7 @@
             {% endif %}
         </section>
 
-        <form method="GET" class="pc-toolbar">
+        <form method="GET" class="pc-toolbar" data-ajax-url="{% url 'plant_catalog:catalog_ajax' %}">
             <div class="pc-search-row">
                 <div class="pc-search-box">
                     <span class="material-symbols-outlined">search</span>
@@ -75,71 +75,9 @@
             </div>
         </form>
 
-        <section class="pc-results">
-            <p class="pc-results-heading"><strong>{{ plants|length }}</strong> plant{{ plants|length|pluralize }} to explore</p>
-
-            <div class="pc-grid">
-                {% for plant in plants %}
-                    <article class="pc-card">
-                        <a href="{% url 'plant_catalog:detail' plant.id %}" class="pc-card-image">
-                            {% if plant.image_url %}
-                                <img src="{{ plant.image_url }}" alt="{{ plant.name }}">
-                            {% else %}
-                                <div class="pc-placeholder">
-                                    <span class="material-symbols-outlined">eco</span>
-                                    <small>Image Unavailable</small>
-                                </div>
-                            {% endif %}
-                        </a>
-
-                        <div class="pc-card-body">
-                            <h2>{{ plant.name }}</h2>
-
-                            {% if plant.scientific_name %}
-                                <p class="pc-scientific">{{ plant.scientific_name }}</p>
-                            {% endif %}
-
-                            {% if plant.description %}
-                                <p class="pc-card-description">{{ plant.description|truncatewords:12 }}</p>
-                            {% endif %}
-
-                            <div class="pc-meta">
-                                {% if plant.sunlight %}
-                                    <span><span class="material-symbols-outlined">sunny</span>{{ plant.sunlight }}</span>
-                                {% endif %}
-
-                                {% if plant.watering %}
-                                    <span><span class="material-symbols-outlined">water_drop</span>{{ plant.watering }}</span>
-                                {% endif %}
-
-                                {% if plant.difficulty %}
-                                    <span><span class="material-symbols-outlined">eco</span>{{ plant.difficulty }}</span>
-                                {% endif %}
-
-                                {% if plant.indoor is not None %}
-                                    <span>
-                                        <span class="material-symbols-outlined">home</span>
-                                        {% if plant.indoor %}Indoor{% else %}Outdoor{% endif %}
-                                    </span>
-                                {% endif %}
-                            </div>
-
-                            <a href="{% url 'plant_catalog:detail' plant.id %}" class="pc-view-link">
-                                Meet this plant
-                                <span class="material-symbols-outlined">arrow_forward</span>
-                            </a>
-                        </div>
-                    </article>
-
-                {% empty %}
-                    <div class="pc-empty">
-                        <span class="material-symbols-outlined">search_off</span>
-                        <h2>No plants found.</h2>
-                        <a href="{% url 'plant_catalog:catalog' %}">Clear filters</a>
-                    </div>
-                {% endfor %}
-            </div>
-        </section>
+        <div id="plantResults">
+            {% include "plant_catalog/partials/plant_results.html" %}
+        </div>
 
     </div>
 </main>
