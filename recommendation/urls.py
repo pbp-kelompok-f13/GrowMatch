@@ -1,5 +1,7 @@
-from django.urls import path
+from django.urls import include, path
+from rest_framework.routers import SimpleRouter
 
+from recommendation.api_views import RecommendationRequestViewSet
 from recommendation.views import (
     create_recommendation,
     delete_recommendation,
@@ -14,10 +16,14 @@ from recommendation.views import (
 
 app_name = "recommendation"
 
+router = SimpleRouter()
+router.register(r"", RecommendationRequestViewSet, basename="api")
+
 urlpatterns = [
     path("", show_recommendation_form, name="form"),
     path("create/", create_recommendation, name="create"),
     path("history/", show_history, name="history"),
+    path("api/", include(router.urls)),
     path("json/", show_json, name="json"),
     path("json/<uuid:pk>/", show_json_by_id, name="json_by_id"),
     path("json/<uuid:pk>/plants/", show_plants_json, name="plants_json"),

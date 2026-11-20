@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
+from rest_framework import status
+from rest_framework.test import APITestCase
 
 from plant_catalog.models import Plant
 from recommendation import fallback, perenual, scoring, weather
@@ -249,6 +251,7 @@ class CreateRecommendationTest(TestCase):
         self.assertEqual(self.client.get(self.url).status_code, 405)
 
 
+@patch.dict("os.environ", {"PERENUAL_API_KEY": ""})
 class OwnRecommendationTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user("deo", password="pass12345")
@@ -458,6 +461,7 @@ class RecommendPlantsTest(TestCase):
         self.assertIsInstance(data["reasons"], list)
 
 
+@patch.dict("os.environ", {"PERENUAL_API_KEY": ""})
 class PlantResultViewTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user("deo")
@@ -741,3 +745,138 @@ class FallbackTest(TestCase):
         data = self.client.get(reverse("recommendation:plants_json", args=[self.recommendation.pk])).json()
         self.assertEqual([plant["name"] for plant in data["plants"]], ["Plant 5"])
         self.assertEqual(data["lookup"]["added"], 1)
+
+
+class RecommendationAPITest(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create_user("deo", password="pass12345")
+        self.other = User.objects.create_user("aisyah", password="pass12345")
+        self.mine = make_recommendation(self.user, location_name="Depok, Indonesia")
+        self.outdoor = make_recommendation(self.user, location_name="Bogor, Indonesia", space_type="outdoor")
+        self.theirs = make_recommendation(self.other, location_name="Jakarta, Indonesia")
+        self.pothos = make_plant(
+            "Pothos",
+            image_url="https://example.com/pothos.jpg",
+            scientific_name="Epipremnum",
+        )
+        self.fern = make_plant("Fern", difficulty="Medium")
+        self.list_url = reverse("recommendation:api-list")
+        self.options_url = reverse("recommendation:api-options")
+
+    def test_options_is_public(self):
+        response = self.client.get(self.options_url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual([item["value"] for item in response.data["space_type"]], ["indoor", "outdoor"])
+        self.assertEqual(len(response.data["watering_frequency"]), 3)
+        self.assertEqual(len(response.data["experience_level"]), 3)
+        self.assertEqual(len(response.data["sunlight_filters"]), 3)
+        self.assertEqual(len(response.data["difficulty_filters"]), 3)
+
+    def test_guest_cannot_access_protected_endpoints(self):
+        detail_url = reverse("recommendation:api-detail", args=[self.mine.pk])
+        plants_url = reverse("recommendation:api-plants", args=[self.mine.pk])
+        self.assertEqual(self.client.get(self.list_url).status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(self.client.post(self.list_url, VALID_DATA, format="json").status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(self.client.get(detail_url).status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(self.client.delete(detail_url).status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(self.client.get(plants_url).status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_list_only_own_and_filter_space_type(self):
+        self.client.force_authenticate(user=self.user)
+        response = self.client.get(self.list_url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual({item["id"] for item in response.data}, {str(self.mine.pk), str(self.outdoor.pk)})
+
+        filtered = self.client.get(self.list_url, {"space_type": "outdoor"})
+        self.assertEqual([item["id"] for item in filtered.data], [str(self.outdoor.pk)])
+
+        unknown = self.client.get(self.list_url, {"space_type": "moon"})
+        self.assertEqual(len(unknown.data), 2)
+
+    @patch("recommendation.serializers.apply_location_and_weather")
+    def test_create_recommendation(self, mock_apply):
+        def fill_weather(instance):
+            instance.location_name = "Depok, Indonesia"
+            instance.latitude = -6.4
+            instance.longitude = 106.8
+            instance.temperature = 30.5
+            instance.humidity = 75
+            return True
+
+        mock_apply.side_effect = fill_weather
+        self.client.force_authenticate(user=self.user)
+        response = self.client.post(self.list_url, {**VALID_DATA, "location_name": "  Depok  "}, format="json")
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data["user"], "deo")
+        self.assertEqual(response.data["location_name"], "Depok, Indonesia")
+        self.assertEqual(response.data["city"], "Depok")
+        self.assertEqual(response.data["temperature"], 30.5)
+        self.assertTrue(response.data["has_weather"])
+
+    @patch("recommendation.serializers.apply_location_and_weather")
+    def test_create_validation_and_location_not_found(self, mock_apply):
+        self.client.force_authenticate(user=self.user)
+        short = self.client.post(self.list_url, {**VALID_DATA, "location_name": " a "}, format="json")
+        self.assertEqual(short.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("location_name", short.data)
+        mock_apply.assert_not_called()
+
+        mock_apply.side_effect = weather.LocationNotFound
+        missing = self.client.post(self.list_url, VALID_DATA, format="json")
+        self.assertEqual(missing.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("location_name", missing.data)
+
+    def test_retrieve_update_delete_own_and_block_others(self):
+        self.client.force_authenticate(user=self.user)
+        own_url = reverse("recommendation:api-detail", args=[self.mine.pk])
+        other_url = reverse("recommendation:api-detail", args=[self.theirs.pk])
+
+        detail = self.client.get(own_url)
+        self.assertEqual(detail.status_code, status.HTTP_200_OK)
+        self.assertEqual(detail.data["location_name"], "Depok, Indonesia")
+        self.assertEqual(self.client.get(other_url).status_code, status.HTTP_404_NOT_FOUND)
+
+        with patch("recommendation.serializers.apply_location_and_weather") as mock_apply:
+            patch_resp = self.client.patch(own_url, {"space_type": "outdoor"}, format="json")
+            self.assertEqual(patch_resp.status_code, status.HTTP_200_OK)
+            self.assertEqual(patch_resp.data["space_type"], "outdoor")
+            mock_apply.assert_not_called()
+
+            put_resp = self.client.put(own_url, {**VALID_DATA, "location_name": "Bandung"}, format="json")
+            self.assertEqual(put_resp.status_code, status.HTTP_200_OK)
+            mock_apply.assert_called_once()
+
+        self.assertEqual(self.client.patch(other_url, {"space_type": "outdoor"}, format="json").status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(self.client.delete(other_url).status_code, status.HTTP_404_NOT_FOUND)
+
+        delete_resp = self.client.delete(own_url)
+        self.assertEqual(delete_resp.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertFalse(RecommendationRequest.objects.filter(pk=self.mine.pk).exists())
+
+    @patch.dict("os.environ", {"PERENUAL_API_KEY": ""})
+    def test_plants_action_with_filters_and_owner_check(self):
+        self.client.force_authenticate(user=self.user)
+        plants_url = reverse("recommendation:api-plants", args=[self.mine.pk])
+        response = self.client.get(plants_url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["recommendation"]["id"], str(self.mine.pk))
+        self.assertEqual([plant["name"] for plant in response.data["plants"]], ["Pothos", "Fern"])
+        self.assertEqual(response.data["plants"][0]["match_percent"], 100)
+        self.assertEqual(response.data["plants"][0]["detail_url"], f"/plants/{self.pothos.id}/")
+        self.assertIn("lookups_left", response.data["lookup"])
+
+        filtered = self.client.get(plants_url, {"difficulty": "medium"})
+        self.assertEqual([plant["name"] for plant in filtered.data["plants"]], ["Fern"])
+
+        other_plants_url = reverse("recommendation:api-plants", args=[self.theirs.pk])
+        self.assertEqual(self.client.get(other_plants_url).status_code, status.HTTP_404_NOT_FOUND)
+
+    @patch.dict("os.environ", {"PERENUAL_API_KEY": "test-key"})
+    @patch("recommendation.perenual.requests.get")
+    def test_plants_action_triggers_perenual_fallback(self, mock_get):
+        mock_get.side_effect = fake_perenual(list_ids=[9])
+        self.client.force_authenticate(user=self.user)
+        response = self.client.get(reverse("recommendation:api-plants", args=[self.mine.pk]))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["lookup"]["added"], 1)
+        self.assertIn("Plant 9", [plant["name"] for plant in response.data["plants"]])
