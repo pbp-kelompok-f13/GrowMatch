@@ -1,4 +1,6 @@
 django~=5.2
+djangorestframework
+django-cors-headers
 gunicorn
 psycopg2-binary
 python-dotenv
